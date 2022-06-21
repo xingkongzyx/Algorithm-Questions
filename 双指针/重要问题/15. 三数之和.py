@@ -1,4 +1,8 @@
-# https://leetcode.cn/problems/3sum/solution/3sumpai-xu-shuang-zhi-zhen-yi-dong-by-jyd/
+
+#? https://leetcode.cn/problems/3sum/solution/3sumpai-xu-shuang-zhi-zhen-yi-dong-by-jyd/
+""" 
+* 如果我们对有序数组中〖求两数和为定值〗的算法熟悉的话, 我们会很快找到正确的思路。nums 是一个从小到大有序排列的数组, 找出数组中所有两数之和为定值 target的数对。这本质是一个搜索问题, 因为我们必须遍历数组, 把所有可能情况考虑进去, 当然, 用两个for循环能用 O(n²) 的时间复杂度完成目标, 但是这就没有利用到数组是有序的特点。其实, 我们可以从数组的两端同时进行搜索, 这就是双指针的由来。
+"""
 class Solution(object):
     def threeSum(self, nums):
         nums.sort()

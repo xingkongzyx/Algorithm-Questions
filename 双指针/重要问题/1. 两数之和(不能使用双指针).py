@@ -1,3 +1,8 @@
+
+""" 
+* 为什么两数之和不能使用双指针呢
+* 因为两数之和要求返回的是索引下标，而双指针法一定要排序，一旦排序之后原数组的索引就被改变了。
+"""
 class Solution(object):
     def twoSum(self, nums, target):
         record = {}
