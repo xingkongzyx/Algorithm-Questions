@@ -1,0 +1,13 @@
+? 724. 寻找数组的中心下标 https://leetcode.cn/problems/find-pivot-index/ 
+* 前缀和的最简单应用 只需要运用哈希表
+? 560. 和为 K 的子数组：https://leetcode.cn/problems/subarray-sum-equals-k/ 
+* 需要 哈希表 + 前缀和
+? 1248. 统计「优美子数组」: https://leetcode.cn/problems/ count-number-of-nice-subarrays/ 
+* 需要 哈希表 + 前缀和
+? 974. 和可被 K 整除的子数组：https://leetcode.cn/problems/subarray-sums-divisible-by-k/ 
+* 需要 哈希表 + 前缀和
+? 523. 连续的子数组和：https://leetcode.cn/problems/continuous-subarray-sum/
+* 需要 哈希表 + 前缀和
+? 525. 连续数组 https://leetcode.cn/problems/contiguous-array/ 
+* 需要对数组中的元素做出巧妙的转换，但仍然需要 哈希表 + 前缀和
+

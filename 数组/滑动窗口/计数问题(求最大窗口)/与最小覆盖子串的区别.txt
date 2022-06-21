@@ -1,0 +1,3 @@
+https://leetcode.cn/problems/fruit-into-baskets/solution/shen-du-jie-xi-zhe-dao-ti-he-by-linzeyin-6crr/
+
+这个题其实与 487及其同类非常类似，因为都是求最大或者最长的属性

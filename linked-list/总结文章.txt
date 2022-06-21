@@ -1,0 +1,18 @@
+精选
+https://leetcode.cn/circle/article/YGr54o/
+
+几乎刷完了力扣所有的链表题，我发现了这些东西
+https://leetcode.cn/circle/article/Ej98dm/
+
+时间复杂度可看文章
+https://leetcode.cn/circle/article/SdAM9C/
+
+
+# 什么时候需要定义虚拟头节点:
+* 当需要删除某个节点的时候，并且需要删除的这个节点有可能是头节点。删除元素，我们需要获取被删除节点前面的元素，就定义一个虚拟头节点指向头节点。
+
+# 链表的操作
+* 操作	时间复杂度
+* 查找	O(n)
+* 插入	O(1)(仅插入本身，加上查找就是O(n))
+* 删除	O(1)(仅删除本身，加上查找就是O(n))

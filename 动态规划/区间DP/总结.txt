@@ -1,0 +1,6 @@
+知道了小区间的最长回文子序列的长度，可以得到大区间的回文子序列的长度，根据这一点定义「子问题」，接下来需要考虑如何分类讨论。如何定义子问题（定义状态）和找到子问题的结果之间的联系（状态转移方程），需要有一定的做题的经验，类似的问题还有 312. 戳气球，这一类「动态规划」问题有个名称叫「区间 DP」 。
+
+作者：liweiwei1419
+链接：https://leetcode.cn/problems/longest-palindromic-subsequence/solution/dong-tai-gui-hua-java-by-liweiwei1419-yz55/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

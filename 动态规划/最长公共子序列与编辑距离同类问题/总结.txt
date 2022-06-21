@@ -1,0 +1,17 @@
+* 小小的总结
+* 求两个数组或者字符串的子序列问题，肯定是要用动态规划的。
+* 首先，区分两个概念：
+*   子序列（subsequence）：子序列并不要求连续，例如：序列 [4, 6, 5] 是 [1, 2, 4, 3, 7, 6, 5] 的一个子序列；
+*   子串（substring、subarray）：子串一定是原始字符串的连续子串
+
+* 另外，动态规划也是有套路的：
+*   当单个数组或者字符串要用动态规划时，可以把动态规划 dp[i] 定义为 nums[0:i] 中想要求的结果；
+*   当两个数组或者字符串要用动态规划时，可以把动态规划定义成两维的 dp[i][j] ，其含义是在 A[0:i-1] 与 B[0:j-1] 之间匹配得到的想要的结果。
+
+作者：Nehzil
+链接：https://leetcode.cn/problems/is-subsequence/solution/by-nehzil-ixw6/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+经典讲解: https://leetcode.cn/problems/maximum-subarray/solution/dong-tai-gui-hua-fen-zhi-fa-python-dai-ma-java-dai/
