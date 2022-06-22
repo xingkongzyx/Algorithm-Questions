@@ -13,7 +13,7 @@ var removeDuplicates = function (nums) {
 
     // > 数组是有序的是使用循环不变量的关键
     // # 指针 traversePointer 进行数组遍历，insertPointer 指向了下一个将要被赋值的元素的下标。
-    // # 这里的循环不变量是 [0..insertPointer), 说明 insertPointer 之前的元素是有序的且无重复的，insertPointer 指向了下一个将要被赋值的元素的下标。因为第一个元素肯定是无重复的，所以两个指针初始化为 1. 每次 nums[traversePointer] 要与有序数组部分的最后一个元素进行比较，如果 nums[traversePointer] != nums[insertPointer-1] 说明遇到了与 [0..insertPointer) 之间无重复的值。将 insertPointer 指向的位置进行赋值操作，然后更新两个指针。最后返回的值就是 insertPointer
+    // # 这里的循环不变量是 [0..insertPointer), 说明 insertPointer 之前的元素是有序的且无重复的，insertPointer 指向了下一个将要被赋值的元素的下标。因为第一个元素肯定是无重复的，所以两个指针初始化为 1。每次 nums[traversePointer] 要与有序数组部分的最后一个元素进行比较，如果 nums[traversePointer] != nums[insertPointer-1] 说明遇到了与 [0..insertPointer) 之间无重复的值。将 insertPointer 指向的位置进行赋值操作，然后更新两个指针。最后返回的值就是 insertPointer
 
     let traversePointer = 1;
     let insertPointer = 1;
