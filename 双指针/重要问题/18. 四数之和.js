@@ -6,12 +6,12 @@ var fourSum = function (nums, target) {
     let res = [];
 
     for (let i = 0; i <= nums.length - 4; i++) {
-        // 注意：[-6, -5, -2, 0, 0, 1, 5] target = -11 中，如果加上下面两个注释的判断语句。-6 > -11 直接退出循环，但由于target是负数，即使-6大于-11，但后面的 -5，0，0加在一起还能凑出 -11 所以不能通过这个判断语句就跳出循环
+        //* 注意：[-6, -5, -2, 0, 0, 1, 5] target = -11 中，如果加上下面两个注释的判断语句。-6 > -11 直接退出循环，但由于target是负数，即使-6大于-11，但后面的 -5，0，0加在一起还能凑出 -11 所以不能通过这个判断语句就跳出循环
 
-        // 注意: 为什么注释?  if (nums[i] > target) break;
+        //! 注意: 为什么注释?  if (nums[i] > target) break;
         if (i > 0 && nums[i] === nums[i - 1]) continue;
         for (let j = i + 1; j <= nums.length - 3; j++) {
-            // 注意: 为什么注释?  if (nums[j] > target - nums[i]) break;
+            //! 注意: 为什么注释?  if (nums[j] > target - nums[i]) break;
             if (j > i + 1 && nums[j] === nums[j - 1]) continue;
 
             let remain = target - nums[i] - nums[j];
