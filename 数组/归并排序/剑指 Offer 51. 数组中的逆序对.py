@@ -50,6 +50,7 @@ class Solution(object):
                 i += 1
             elif tempArr[i] > tempArr[j]:
                 #* 此时 (tempArr[i], tempArr[j]) 是一个逆序对. 但由于左子区间已经按从小到大排好序. 所以可推断出 tempArr[i]~tempArr[mid] 都大于 tempArr[j]，这也是这个方法的巧妙之处. 也就是说，在合并左右子区间时，新引入了共「mid-i+1」对「以tempArr[j]为右元素」的逆序对
+                #! 每当遇到 左子数组当前元素 > 右子数组当前元素 时，意味着 「左子数组当前元素 至 末尾元素」 与 「右子数组当前元素」 构成了若干 「逆序对」。 可以看出这个解法是针对于右子数组的每个元素看齐与多少左子数组的元素构成逆序对，在315 题中便无法使用了
                 crossPairs += (mid - i + 1)
                 arr[insertPointer] = tempArr[j]
                 j += 1
