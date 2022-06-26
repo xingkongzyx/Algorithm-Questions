@@ -1,6 +1,10 @@
 /* 
-# 本题遍历只能是“后序遍历”，因为我们要通过递归函数的返回值来判断两个子树的内侧节点和外侧节点是否相等。
-# 正是因为要遍历两棵树而且要比较内侧和外侧节点，所以准确的来说是一个树的遍历顺序是左右中，一个树的遍历顺序是右左中。
+? https://leetcode.cn/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-di-gui-jie-fa-dai-m-p5rs/
+
+! 判断一棵二叉树是否轴对称，其实就是判断这颗二叉树的左右两个子树是否互为镜像。
+* 两个子树是否互为镜像当且仅当:
+* 1. 两个子树根节点的值相同
+* 2. 第一棵子树的左子树和第二棵子树的右子树对称，且第一棵子树的右子树和第二棵子树的左子树对称；
 */
 
 var isSymmetric = function (root) {
@@ -12,10 +16,10 @@ function symmetricHelper(leftTree, rightTree) {
     if (leftTree === null && rightTree !== null) return false;
     else if (leftTree !== null && rightTree === null) return false;
     else if (leftTree === null && rightTree === null) return true;
-    else if (leftTree.val !== rightTree.val) return false;
-    else
-        return (
-            symmetricHelper(leftTree.left, rightTree.right) &&
-            symmetricHelper(leftTree.right, rightTree.left)
-        );
+    //* 前序遍历查看节点值是否相等，不相等返回false
+    if (leftTree.val !== rightTree.val) return false;
+    return (
+        symmetricHelper(leftTree.left, rightTree.right) &&
+        symmetricHelper(leftTree.right, rightTree.left)
+    );
 }

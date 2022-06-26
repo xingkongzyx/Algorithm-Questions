@@ -10,7 +10,8 @@
 * 3. 确定单层递归的逻辑：先求它的左子树的深度，再求的右子树的深度，最后取左右深度最大的数值 再+1 （加1是因为算上当前中间节点）就是目前节点为根节点的树的深度。 
 */
 
-var maxDepth = function (root) {
+//> 高度是从下到上求(后续遍历)，深度是从上到下求解(前序遍历)
+var maxHeight = function (root) {
     if (root === null) return 0;
 
     let leftDepth = maxDepth(root.left);
@@ -18,3 +19,4 @@ var maxDepth = function (root) {
 
     return Math.max(leftDepth, rightDepth) + 1;
 };
+
