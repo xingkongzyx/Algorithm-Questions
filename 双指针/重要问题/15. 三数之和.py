@@ -27,6 +27,7 @@ class Solution(object):
                 
                 if leftNum + rightNum == target:
                     result.append([currentNum, leftNum, rightNum])
+                    #! 我觉得最重要的一点 如果不加 left < right 这个判断条件, 遇到 [0, 0, 0, 0] 的情况 会一直执行 left += 1 最终导致溢出的情况
                     while left < right and nums[left] == nums[left + 1]:
                         left += 1
                     while left < right and nums[right] == nums[right - 1]:

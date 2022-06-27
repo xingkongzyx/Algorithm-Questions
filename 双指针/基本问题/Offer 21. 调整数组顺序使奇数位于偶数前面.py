@@ -11,17 +11,18 @@ class Solution(object):
         right = len(nums) - 1
         
         while left < right:   
-            #* 当找到一个奇数时，就跳出循环。
-            while left < right and nums[right] % 2 != 1:
-                right -= 1
-                
-            #* 当找到一个偶数时，就跳出循环。
-            while left < right and nums[left] % 2 != 0:
+            if nums[left] % 2 == 1:
                 left += 1
-                
-            #* 如果两个指针还没有碰到一起时，说明找到了需要交换的位置
-            if left < right:
-                nums[left], nums[right] = nums[right], nums[left]
+                continue
+            
+            if nums[right] % 2 == 0:
+                right -= 1
+                continue
+
+            nums[left], nums[right] = nums[right], nums[left]
+
+            left += 1
+            right -= 1
 
         return nums
 

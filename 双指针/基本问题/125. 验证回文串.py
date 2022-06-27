@@ -1,5 +1,7 @@
 
 #* The isalnum() method returns True if all characters in the string are alphanumeric (either alphabets or numbers). If not, it returns False. 或者也可以 isdigit(), isalpha() 一起用
+#! 这道题最重要的是确保 s[left] 和 s[right] 进行比较的时候指向的都是「有效的字符」且两个指针没有越界. 保证两个都是「有效的字符」需要〚if〛判断句中的〚continue〛, 否则的话遇到 
+#! "a  bbA" 中间有两个「非有效的字符」的情况, 将会直接将 " " 与 "b" 进行比较, 得到错误的结果. 通过〚continue〛确保两个指针在比较时都能指向「有效的字符」. 
 class Solution(object):
     def isPalindrome(self, s):
         left = 0
@@ -18,7 +20,7 @@ class Solution(object):
 
             if s[left].upper() != s[right].upper():
                 return False
-            
+            # print(s[left], s[right])
             left += 1
             right -= 1
         return True
@@ -31,3 +33,5 @@ class Solution(object):
         
         return letterCheck or digitCheck
     
+
+Solution().isPalindrome("a  bbA")
