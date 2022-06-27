@@ -1,43 +1,46 @@
+class Solution:
+    def spiralOrder(self, matrix):
+        top = 0
+        left = 0
+        right = len(matrix[0]) - 1
+        bottom = len(matrix) - 1
 
-class Solution(object):
-    def findRightInterval(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: List[int]
-        """
-        # [1,2] [2,3] [3,4] 求得是第一个 大于等于 current interval 的 endIdx 的interval所在的下标
-        from collections import defaultdict
-        length = len(intervals)
-        
-        record = defaultdict()
-        for i in range(length):
-            record[intervals[i][0]] = i
-        # print(record)
-        intervals.sort(key = lambda item: item[0])
-        # print(intervals)
-        result = [-1 for _ in range(length)]
-        for i in range(length):
-            currentInterVal = intervals[i]
-            start, end = currentInterVal[0], currentInterVal[1]
-            
-            left = i
-            right = length - 1
-            
-            while left < right:
-                mid = left + (right - left) // 2
-                if intervals[mid][0] < end:
-                    # 下一轮搜索区间 [mid + 1, right]
-                    left = mid + 1
-                else:
-                    # 下一轮搜索区间 [left, mid]
-                    right = mid
-                    
-            if intervals[left][0] < end:
-                continue
-            else:
-                foundStart = intervals[left][0]
-                # print(f"for current {currentInterVal}, found start {foundStart}")
-                result[record[start]] = record[foundStart]
-        # print(result)     
+        result = []
 
-print(Solution().findRightInterval(intervals = [[1,4],[2,3],[3,4]]))
+        while True:
+            for i in range(left, right + 1):
+                # print(matrix[top][i])
+                result.append(matrix[top][i])
+            top += 1
+            if top > bottom:
+                break
+            
+            for j in range(top, bottom + 1):
+                # print(matrix[j][right])
+                result.append(matrix[j][right])
+            right -= 1
+            
+            if left > right:
+                break
+
+            for k in range(right, left - 1, -1):
+                # print(matrix[bottom][k])
+                result.append(matrix[bottom][k])
+            bottom -= 1
+
+            if top > bottom:
+                break
+
+            for l in range(bottom, top - 1, -1):
+                # print(matrix[l][left])
+                result.append(matrix[l][left])
+            left += 1
+
+            if left > right:
+                break
+        # print(result)
+        return  result
+
+Solution().spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+print(matrix[0],"\n", matrix[1], "\n",matrix[2],"\n", matrix[3])

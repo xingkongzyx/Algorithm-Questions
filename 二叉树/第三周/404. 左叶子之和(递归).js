@@ -1,6 +1,5 @@
 //! 后序遍历
 
-
 //# 如果左节点不为空，且左节点没有左右孩子，那么这个节点的左节点就是左叶子
 //# 判断当前节点是不是左叶子是无法判断的，必须要通过节点的父节点来判断其左孩子是不是左叶子。
 
@@ -20,14 +19,13 @@ var sumOfLeftLeaves = function (root) {
 
     let leftSum = sumOfLeftLeaves(root.left);
     let rightSum = sumOfLeftLeaves(root.right);
-    let sum = leftSum + rightSum;
-    // 判断当前节点是否有左叶子节点
+    //* 判断当前节点是否有左叶子节点. 如果当前节点的左子节点就是题目所要的「左叶子」，说明前面获取的 leftSum 肯定是 0
     if (
         root.left !== null &&
         root.left.left === null &&
         root.left.right === null
     )
-        sum += root.left.val;
+        leftSum = root.left.val;
 
-    return sum;
+    return leftSum + rightSum;
 };

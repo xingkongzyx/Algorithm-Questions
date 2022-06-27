@@ -1,6 +1,6 @@
 //* 使用前序求的就是深度，使用后序求的是高度。
 //* 高度是从下到上求(后续遍历)，深度是从上到下求解(前序遍历)
-
+//? 结合这篇文章的图来看: https://programmercarl.com/0110.%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.html#%E9%80%92%E5%BD%92
 var maxDepth = function (root) {
     //* 如果根节点就是 Null, 说明深度是 0
     if (root === null) return 0;

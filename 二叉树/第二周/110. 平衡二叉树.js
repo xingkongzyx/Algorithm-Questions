@@ -1,4 +1,11 @@
+/* 
 //! 后序遍历
+//? https://leetcode.cn/problems/balanced-binary-tree/solution/balanced-binary-tree-di-gui-fang-fa-by-jin40789108/
+* 这道题的递归终止条件有两个：
+* 1. 当越过叶子节点时，返回高度 0；
+* 2. 当左（右）子树高度『leftHeight == -1』或者『rightHeight == -1』时，代表此子树的 左（右）子树 不是平衡树，因此直接返回 -1；
+
+*/
 var isBalanced = function (root) {
     let res = getHeight(root);
     if (res === -1) return false;
