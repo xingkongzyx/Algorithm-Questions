@@ -24,6 +24,7 @@ var hasPathSum = function (root, targetSum) {
 };
 
 function helper(node, targetSum) {
+    //* 同样是到达叶子节点就到达了递归终止条件, 在这里检查是否找到了满足要求的一条路径
     if (node.left === null && node.right === null) {
         if (targetSum === 0) return true;
         else return false;

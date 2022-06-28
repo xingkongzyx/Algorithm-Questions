@@ -8,10 +8,12 @@ var maxDepth = function (root) {
     let result = 0;
 
     function getDepth(node, depth) {
-        //* 传入的 depth 已经代表了在当前这一层的深度是多少(root节点默认为1), 从 root 开始算
-        if (depth > result) result = depth;
         //* 终止条件，如果左右节点都是空，深度不可能再继续增加，直接返回
-        if (node.left === null && node.right === null) return;
+        if (node.left === null && node.right === null) {
+            //* 在到达叶子节点时检查depth. 因为传入的 depth 已经代表了在当前这一层的深度是多少(root节点默认为1), 看 depth 是否已经超过了其他叶子节点所在深度
+            if (depth > result) result = depth;
+            return;
+        }
 
         if (node.left) {
             depth += 1;

@@ -10,13 +10,9 @@
 ? 证明(可忽略): https://leetcode.cn/problems/boats-to-save-people/solution/gong-shui-san-xie-noxiang-xin-ke-xue-xi-hosg8/
 
 """
-
 class Solution(object):
     def numRescueBoats(self, people, limit):
-
-        #* [3,5,3,4] limit = 5
-        #* [3,3,4,5]
-        
+  
         people.sort()
         count = 0
         left = 0
