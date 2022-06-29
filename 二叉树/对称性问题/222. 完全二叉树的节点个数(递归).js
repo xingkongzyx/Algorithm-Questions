@@ -9,8 +9,10 @@
 
 var countNodes = function (root) {
     if (root === null) return 0;
+    //# 左
     let leftNodes = countNodes(root.left);
+    //# 右
     let rightNodes = countNodes(root.right);
-
+    //# 中
     return 1 + leftNodes + rightNodes;
 };
