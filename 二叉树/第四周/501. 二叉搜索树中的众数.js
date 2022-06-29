@@ -1,32 +1,3 @@
-/* var findMode = function (root) {
-    let inOrderTraversalResult = {};
-    let inOrderTraversal = function (node) {
-        if (node === null) return;
-
-        inOrderTraversal(node.left);
-        if (node.val in inOrderTraversalResult)
-            inOrderTraversalResult[node.val]++;
-        else inOrderTraversalResult[node.val] = 1;
-        inOrderTraversal(node.right);
-    };
-    inOrderTraversal(root);
-    let modes = [];
-    let times = 0;
-    for (let key in inOrderTraversalResult) {
-        if (inOrderTraversalResult[key] > times) {
-            times = inOrderTraversalResult[key];
-        }
-    }
-
-    for (let key in inOrderTraversalResult) {
-        if (inOrderTraversalResult[key] == times) {
-            modes.push(key);
-        }
-    }
-
-    return modes;
-}; */
-
 //> 因为是BST才能使用如下方法，如果是一般的tree使用上面的方法
 //> 中序遍历
 var findMode = function (root) {
@@ -35,21 +6,26 @@ var findMode = function (root) {
     let result = [];
     let maxCount = 0;
     function inOrderTraverse(currentNode) {
+        //* 终止条件: 遇到空节点停止递归
         if (currentNode === null) return;
-
+        //* 左
         inOrderTraverse(currentNode.left);
+
+        //* 中
+        //* 更新计数器, 只有在 prevNode 与 currentNode value 相同的时候 count 才会加1, 其余的情况说明遇到了一个新的值, count 恢复成1
         if (prevNode === null) count = 1;
         else if (prevNode.val === currentNode.val) count++;
         else count = 1;
 
-        prevNode = currentNode;
-
         if (count === maxCount) result.push(currentNode.val);
-
-        if (count > maxCount) {
+        else if (count > maxCount) {
+            //# 最妙的一点, 当目前的count比存储的最大的maxCount大的时候，直接清零 result 数组，并将新的出现次数最多的元素加入这个初始化的结果数组
             maxCount = count;
             result = [currentNode.val];
         }
+        prevNode = currentNode;
+
+        //* 右
         inOrderTraverse(currentNode.right);
     }
 
