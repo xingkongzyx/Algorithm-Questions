@@ -8,7 +8,7 @@
  *
  * 3. 确定单层递归的逻辑
  * 因为二叉搜索树的节点是有序的，所以可以有方向的去搜索。
- *  如果root.val > val，搜索左子树，如果root.val < val，就搜索右子树，最后如果都没有搜索到，就返回NULL。
+ *  如果root.val > val，递归搜索左子树，如果root.val < val，递归搜索右子树，最后如果都没有搜索到，就返回NULL。
  *
  */
 
@@ -19,5 +19,6 @@ var searchBST = function (root, val) {
 
     if (root.val < val) return searchBST(root.right, val);
 
+    //* 最后一句的 return 没有实际意义，无论是否搜索得到或者搜索不到都会在前面进行返回
     return null;
 };

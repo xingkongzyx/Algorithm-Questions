@@ -1,3 +1,4 @@
+//! 这道题是从上向下查找目标区间，遇到目标区间内的节点，直接返回。而不需要像 236 那样使用后序遍历，需要遍历整棵树并且有处理左右两棵子树递归的结果的代码逻辑
 var lowestCommonAncestor = function (root, p, q) {
     if (root === null) return null;
 
