@@ -8,6 +8,7 @@
 */
 
 var countNodes = function (root) {
+    //# root先把任务分发给孩子节点，让它们分别统计子树节点个数，再通过 return 传回给父节点，父节点再把自己进行计数。
     if (root === null) return 0;
     //# 左
     let leftNodes = countNodes(root.left);

@@ -1,5 +1,9 @@
-// ! 前序遍历
-// 使用recursive的解法 O(N) time->因为遍历了树中的每一个node, O(d) space, d is the depth of the tree
+/* 
+/ 时间复杂度：O(N)，其中 N 为二叉树节点的数目。我们会遍历二叉树中的每一个节点，对每个节点而言，我们在常数时间内交换其两棵子树。
+
+/ 空间复杂度：O(N)。使用的空间由递归栈的深度决定，它等于当前节点在二叉树中的高度。在平均情况下，二叉树的高度与节点个数为对数关系，即 O(logN)。而在最坏情况下，树形成链状，空间复杂度为 O(N)。
+*/
+
 var invertTreeRecursive = function (root) {
     if (root === null) return root;
     //# 中
@@ -11,9 +15,7 @@ var invertTreeRecursive = function (root) {
     return root;
 };
 
-// 时间复杂度：同样每个节点都需要入队列/出队列一次，所以是 O(n)O(n)
-// 空间复杂度：最坏的情况下会包含所有的叶子节点，完全二叉树叶子节点是 n/2个，所以时间复杂度是 0(n)0(n)
-
+//* 迭代的写法
 var invertTree = function (root) {
     let queue = [];
     if (root !== null) queue.push(root);

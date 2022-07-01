@@ -13,13 +13,14 @@ var isSymmetric = function (root) {
 };
 
 function symmetricHelper(leftTree, rightTree) {
-    if (leftTree === null && rightTree !== null) return false;
+    //# 中
+    if (leftTree === null && rightTree === null) return true;
     else if (leftTree !== null && rightTree === null) return false;
-    else if (leftTree === null && rightTree === null) return true;
-    //* 前序遍历查看节点值是否相等，不相等返回false
-    if (leftTree.val !== rightTree.val) return false;
-    return (
-        symmetricHelper(leftTree.left, rightTree.right) &&
-        symmetricHelper(leftTree.right, rightTree.left)
-    );
+    else if (leftTree === null && rightTree !== null) return false;
+    else if (leftTree.val !== rightTree.val) return false;
+
+    //# 左
+    let leftCheck = symmetricHelper(leftTree.left, rightTree.right);
+    let rightCheck = symmetricHelper(leftTree.right, rightTree.left);
+    return leftCheck && rightCheck;
 }
