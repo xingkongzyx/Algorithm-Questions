@@ -1,12 +1,9 @@
 /* 
-//! 同最小高度树
-* 根据本题目的两个关键字：有序 & 二叉搜索树
-* 可知：希望你通过中序遍历构造BST
-* 众所周知：中序遍历不能完整的确认一颗树，因为每个节点都可以是根结点
-* 
-* 但题目要求期望BST是平衡的，那么，我们每次都讲中间的节点作为根结点即可（但依旧不唯一，这点题目也接受可以不唯一）
+//! 前序遍历 同最小高度树
 
-? 链接：https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/solution/you-xu-shu-zu-zhuan-hua-by-yang-zi-37-011g/
+
+? 链接：https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/solution/by-nehzil-t9v2/
+? https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/solution/tu-jie-er-cha-sou-suo-shu-gou-zao-di-gui-python-go/
 */
 
 var sortedArrayToBST = function (nums) {
