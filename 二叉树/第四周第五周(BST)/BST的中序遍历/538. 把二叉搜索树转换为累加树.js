@@ -1,34 +1,32 @@
 /* 
 //! 反中序遍历
-* 1. 确定递归函数的参数及返回值
-* 要递归遍历，参数中少不了下一个遍历的节点
-* 因为我们使用全局变量保存前一个节点的值，因此不需要返回值
-* 
-* 2. 确定递归函数终止条件
-* 越过叶子节点时，终止递归
-* 修改当前节点的值且更新全局变量的值后终止递归
-* 
-* 3.确定每次进入递归函数做什么
-! 注意要右中左来遍历二叉树， 中节点的处理逻辑就是让cur的数值加上前一个节点的数值。
-* 递归root的右节点，找到所有比当前节点值大的节点；
-* 当递归到最右时，我们终止递归，开始累加这条路径上的所有节点值，即，当前节点值累加全局变量的值并更新全局变量的值为累加后的值
-* 递归左节点；
-* 终止当前递归
+? https://leetcode.cn/problems/convert-bst-to-greater-tree/solution/shou-hua-tu-jie-zhong-xu-bian-li-fan-xiang-de-by-x/
+
+# 这里又要用到递归了，递归的一个非常重要的点就是：不去管函数的内部细节是如何处理的，我们只看其函数作用以及输入与输出。对于函数 inOrder 来说：
+* 函数作用：将以 root 为根节点的二叉树变为「累加树」, 从而使得每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。借助辅助变量 sum 来保存「比当前节点值大的所有节点值的和」。
+* 输入：二叉搜索树的根节点
+* 输出：无
+* 遍历过程中需要将已经遍历的节点的值进行累加，然后再赋值给当前节点。
 */
 
-var convertBST = function (root) {
-    let prevNodeVal = null;
-    let rnlTraverse = function (currentNode) {
-        if (currentNode === null) return null;
-        rnlTraverse(currentNode.right);
-
-        if (prevNodeVal === null) prevNodeVal = currentNode.val;
-        else {
-            currentNode.val += prevNodeVal;
-            prevNodeVal = currentNode.val;
+const convertBST = (root) => {
+    //* sum 用于 保存「比当前节点值大的所有节点值的和」。
+    let sum = 0;
+    const inOrder = (root) => {
+        if (root == null) {
+            //* 遍历到null节点，开始返回
+            return;
         }
-        rnlTraverse(currentNode.left);
+        //* 先进入右子树
+        inOrder(root.right);
+
+        //* 节点值累加给sum
+        sum += root.val;
+        //* 累加的结果，赋给root.val
+        root.val = sum;
+        //* 然后才进入左子树
+        inOrder(root.left);
     };
-    rnlTraverse(root);
+    inOrder(root);
     return root;
 };
