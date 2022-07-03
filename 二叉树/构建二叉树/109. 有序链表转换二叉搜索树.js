@@ -7,7 +7,13 @@
 > 还有使用中序遍历的更优解法, 下次再看
 */
 var sortedListToBST = function (head) {
-    /// 递归函数的意义是 用链表的[head, tail)左闭右开区间内的节点构造子树，并返回根节点
+    /*  
+    / 递归函数的意义是 用传入链表的 [head, tail)左闭右开区间 内的节点构造子树，并返回根节点
+    / 单层递归的逻辑：
+    / 在链表的 [head, tail) 范围内选取要构造关系的节点并创建它作为该子树的根节点
+    / 调用该函数递归构造该节点的左子树
+    / 调用该函数递归构造该节点的右子树
+    */
     function buildTreeHelper(head, tail) {
         if (head == tail) return null;
 

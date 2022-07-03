@@ -1,9 +1,17 @@
 /* 
 //! 前序遍历 同最小高度树
 
+? 非常好的链接: https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/solution/tu-jie-er-cha-sou-suo-shu-gou-zao-di-gui-python-go/
 
-? 链接：https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/solution/by-nehzil-t9v2/
-? https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/solution/tu-jie-er-cha-sou-suo-shu-gou-zao-di-gui-python-go/
+ 
+/ 递归函数的意义是 用有序数组 [startIdx, endIdx] 左闭右闭区间内的节点构造子树，并返回根节点
+/ 单层递归的逻辑：
+/ 在有序数组 [startIdx, endIdx] 范围内选取要构造关系的中心节点并创建它作为该子树的根节点
+/ 调用该函数递归构造该节点的左子树
+/ 调用该函数递归构造该节点的右子树
+
+/ 数组中的元素都使用1次，时间复杂度为O(n).
+/ 递归使用栈辅助空间，空间复杂度O(log(n)).
 */
 
 var sortedArrayToBST = function (nums) {
