@@ -1,5 +1,20 @@
 
-#? https://leetcode.cn/problems/sort-characters-by-frequency/solution/451-gen-ju-zi-fu-chu-xian-pin-lu-pai-xu-xup3z/
+""" 
+* 用哈希表存储每个字符的出现次数，再通过一个大顶堆（根据出现次数排序），不断取出堆顶元素，使用 result string 不断承接弹出的元素就行
+
+* ➀ 先使用「哈希表」对词频进行统计；
+* ➁ 遍历统计好词频的哈希表，将每个键值对以 {字符,词频} 的形式存储到「优先队列（堆）」中。并规定「优先队列（堆）」排序逻辑为：
+*     ◎如果 词频 不同，则按照 词频 倒序；
+* ➂ 从「优先队列（堆）」依次弹出，构造答案。
+
+/ 时间复杂度：令字符集的大小为 C。使用「哈希表」统计词频的复杂度为 O(n)；最坏情况下字符集中的所有字符都有出现，最多有 C 个节点要添加到「优先队列（堆）」中，复杂度为 O(ClogC)；构造答案需要从「优先队列（堆）」中取出元素并拼接，复杂度为 O(n)。整体复杂度为 O(max(n,ClogC))
+/ 空间复杂度：O(n)
+
+
+链接：https://leetcode.cn/problems/sort-characters-by-frequency/solution/gong-shui-san-xie-shu-ju-jie-gou-yun-yon-gst9/
+
+
+"""
 class Solution(object):
     def frequencySort(self, s):
         record = {}
