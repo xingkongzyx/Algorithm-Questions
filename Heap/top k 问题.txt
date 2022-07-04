@@ -1,0 +1,17 @@
+对于 topk 问题: 求 topk smallest 使用「最大堆」，求 topk largest 使用「最小堆」
+
+topk 小: 构建一个 k 个数的最大堆，当读取的数小于根节点时，替换根节点，重新塑造最大堆
+topk 大: 构建一个 k 个数的最小堆，当读取的数大于根节点时，替换根节点，重新塑造最小堆
+
+这一题的总体时间复杂度是 O(nlogk)
+遍历统计元素出现频率 O(n)
+前k个数构造规模为 k 的最小堆需要 O(k) 时间/空间复杂度
+遍历规模k之外的数据，大于堆顶则入堆，下沉维护规模为k的最小堆 minheap. O(nlogk)
+(如需按频率输出，对规模为k的堆进行排序)
+
+? https://leetcode.cn/problems/top-k-frequent-elements/solution/python-dui-pai-xu-by-xxinjiee/
+
+
+一个非常好的动画: #? 动画: https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/solution/tu-jie-top-k-wen-ti-de-liang-chong-jie-fa-you-lie-/
+
+讲 maxHeap 的参考: https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/solution/shou-si-dui-pai-xu-yi-wen-kan-hui-dui-pai-xu-by-ti/
