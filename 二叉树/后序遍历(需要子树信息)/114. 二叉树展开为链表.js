@@ -1,3 +1,4 @@
+//> “不去管函数的内部细节是如何处理的，我们只看其函数作用以及输入与输出” 就像看起来简单但是实际威力巨大的功法口诀 一般。
 //* 对于函数flatten来说, 它的函数作用是：将一个二叉树, 原地将它展开为链表, 没有返回值
 //? https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/solution/114-er-cha-shu-zhan-kai-wei-lian-biao-by-ming-zhi-/
 //! 后序遍历
