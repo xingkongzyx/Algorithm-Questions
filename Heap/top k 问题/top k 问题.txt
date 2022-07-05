@@ -1,0 +1,19 @@
+对于 topk 问题: 求 topk smallest 使用「最大堆」，求 topk largest 使用「最小堆」
+
+topk 小: 构建一个 k 个数的最大堆，当读取的数小于根节点时，替换根节点，重新塑造最大堆
+topk 大: 构建一个 k 个数的最小堆，当读取的数大于根节点时，替换根节点，重新塑造最小堆
+
+
+* 求最小k个数为什么要定义大顶堆呢？
+* 因为本地要求最小k个数，每次添加堆，都是从顶部把最大的弹出去，然后堆里留下的就是最小的k个数了。
+
+? https://leetcode.cn/problems/top-k-frequent-elements/solution/python-dui-pai-xu-by-xxinjiee/
+
+
+? 题目时间/空间复杂度的分析: https://leetcode.cn/problems/top-k-frequent-elements/solution/hashmaptong-ji-pin-ci-you-xian-du-lie-by-nchkdxlq/
+
+? 一个非常好的动画: : https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/solution/tu-jie-top-k-wen-ti-de-liang-chong-jie-fa-you-lie-/
+
+? 讲 maxHeap 的参考: https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/solution/shou-si-dui-pai-xu-yi-wen-kan-hui-dui-pai-xu-by-ti/
+
+? flix的讲解: https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/by-flix-amc8/
