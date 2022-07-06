@@ -1,36 +1,42 @@
+//> 543, 687, 124 为同一类型
+
 /* 
 //! 后序遍历 值得再看
-? https://leetcode.cn/problems/diameter-of-binary-tree/solution/liang-chong-si-lu-shi-yong-quan-ju-bian-liang-yu-b/
-? https://leetcode.cn/problems/diameter-of-binary-tree/solution/java-shen-du-you-xian-bian-li-dfs-by-sugar-31/
+? https://leetcode.cn/problems/diameter-of-binary-tree/solution/javascriptshen-du-you-xian-bian-li-dfs-guan-fang-t/
+? 分析借鉴 https://leetcode.cn/problems/diameter-of-binary-tree/solution/er-cha-shu-de-zhi-jing-by-leetcode-solution/
+
 > 最大的直径不一定是经过根节点的,可能最大的直径出现在子树中
-二叉树直径实际上就是二叉树中的最长路径,我们是可以划分出子问题的：
-二叉树的最长路径 = max{左子树的最长路径, 右子树的最长路径, 经过根结点的最长路径}
+* 最大的直径有三种可能性:
+* ➊ 不穿过根节点，在左子树中
+* ➋ 不穿过根节点，在右子树中
+* ➌ 穿过根节点，相当于 左子树 + 右子树 + 根节点
 
-最大的直径有三种可能性:
-1. 不穿过根节点，在左子树中
-2. 不穿过根节点，在右子树中
-3. 穿过根节点，相当于 左子树 + 右子树 + 根节点
-时间复杂度：O(n) n为二叉树的节点 遍历n
-空间复杂度：O(Height) 常数变量 递归的深度为二叉树的高度
+# 首先深度的定义是 "根节点到最远叶子节点的最长路径上的节点数". 我们知道一条「路径的长度」为该路径经过的节点数减一. 其次，求「直径」 == 求「路径长度的最大值」 == 求「最长的一条路径经过的节点数减一」。
+//! 注意一点: 二叉树的「直径」或者说「路径长度的最大值」或者说「最长的一条路径经过的节点数」不一定包含根节点 root，但是一定是：经过树中某一个节点，该节点的左右子树的最大深度之和 + 1, 〚左右子树的最大深度之和〛也就是「左右子节点」向下遍历经过最多的节点数之和, 这里包含了左右两个子节点的节点数。+1 则代表当前节点本身的节点数。加在一起的结果就是「最长的一条路径经过的节点数」。根据前面分析,「路径长度的最大值」为「最长的一条路径经过的节点数」-1。所以最后 ans - 1 即为所求
 
+/ 时间复杂度：O(n) n为二叉树的节点 遍历n
+/ 空间复杂度：O(Height) 常数变量 递归的深度为二叉树的高度
 */
 
 var diameterOfBinaryTree = function (root) {
-    //* ans 用来记录以某个节点为根节点的时候，最大的路径
+    //* 设置全局变量 ans，用来记录「路径经过节点数的最大值」
     let ans = 0;
 
     /// traverse 函数的作用是：找出以 root 为根节点的二叉树的最大深度
+    //! 下面的代码与求解『104. 二叉树的最大深度』几乎是一样的，唯一的不同就是在每个节点都更新 ans 用于记录到目前为止「路径经过节点数的最大值」
     function traverse(node) {
         if (node === null) return 0;
 
         let leftDepth = traverse(node.left);
         let rightDepth = traverse(node.right);
-        ans = Math.max(ans, leftDepth + 1 + rightDepth);
+
+        //* 通过分别递归左右子树, 求得了左子树深度(左儿子向下遍历经过最多的节点数) 以及 右子树深度(右儿子向下遍历经过最多的节点数)，从而可以更新路径经过节点数的最大值(注意这里要 + 1)
+        ans = Math.max(ans, leftDepth + rightDepth + 1);
 
         return Math.max(leftDepth, rightDepth) + 1;
     }
     traverse(root);
 
-    //* 两结点之间的路径长度是以它们之间「边的数目」表示，而 ans 计算出的是最长路径经过的节点的数目，边的数目 = 经过的节点的数目 - 1
+    //> 最大直径 == 路径的长度的最大值 == 该最长路径经过的节点数 - 1
     return ans - 1;
 };
