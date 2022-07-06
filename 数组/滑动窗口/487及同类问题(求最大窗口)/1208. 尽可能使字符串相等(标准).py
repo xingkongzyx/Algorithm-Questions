@@ -3,6 +3,7 @@
 
 ? 链接：https://leetcode.cn/problems/get-equal-substrings-within-budget/solution/chua-dong-chuang-kou-yan-shi-by-boille-pf2z/
 
+#> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指 currentCost 大于题目所提供的 maxCost
 """
 class Solution(object):
     def equalSubstring(self, s, t, maxCost):

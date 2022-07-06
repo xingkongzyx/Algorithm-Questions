@@ -1,9 +1,9 @@
-七道题总结 https://leetcode.cn/problems/M1oyTv/solution/by-flix-4bcr/
-https://suanfa8.com/algorithm-basic/sliding-window/intro/
+? 最小滑动窗口七道题总结: https://leetcode.cn/problems/M1oyTv/solution/by-flix-4bcr/
+
 
 ? 13道题总结 https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/yi-ge-mo-ban-miao-sha-10dao-zhong-deng-n-sb0x/
 
-
+https://leetcode.cn/circle/article/WC6uBv/ 
 !最大窗口与最小窗口的区别:
 ? https://leetcode.cn/problems/fruit-into-baskets/solution/shen-du-jie-xi-zhe-dao-ti-he-by-linzeyin-6crr/
 
@@ -14,7 +14,8 @@ https://suanfa8.com/algorithm-basic/sliding-window/intro/
 求最小窗口：窗口合法 → 移左变小：while/if → 内部目标捕捉
 求最大窗口：窗口非法 → 移左变小：while/if → 外部目标捕捉
 求固定窗口：窗口合适 → 移左变小：if → 内部目标捕捉
-
+* 如果是求窗口的最大可行解，那么肯定是在右指针前进的过程中得到一个可行解。
+* 如果是求窗口最小可行解，那么肯定是在左指针前进的过程中得到一个可行解。
 
 > 可行解的最大窗口宽度
 * 求解思路
