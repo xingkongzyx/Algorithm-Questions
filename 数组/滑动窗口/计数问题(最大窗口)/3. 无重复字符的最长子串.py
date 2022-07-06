@@ -1,6 +1,6 @@
 
 #* 可以使用滑动窗口的原因：如果一个子串包含重复字符，那么与它有相同左端点的、长度更长的字符串一定也包含重复字符；又由于题目只要求我们找最长不重复子串的长度，如果已经找到了一个长度为 n 的子串，那么小于等于长度 n 的子串就没有必要再枚举了. 符合滑动窗口性质：向右边扩散得到和越来越大，向左边界扩散得到和越来越小。
-
+#> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指窗口存在重复字符，此时需要移动左窗口
 #? https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/wu-zhong-fu-zi-fu-de-zui-chang-zi-chuan-by-leetc-2/
 #? https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/zen-yao-yong-hua-dong-chuang-kou-wei-he-35418/
 
@@ -17,13 +17,11 @@ class Solution(object):
         
         while right < len(s):
             ## Step 3
-            ## 更新需要维护的变量 (max_len, hashmap)
-            ## i.e. 把窗口末端元素加入哈希表，使其频率加1，并且更新最大长度
+            ## 更新需要维护的变量 (hashmap)
+            ## i.e. 把窗口末端元素加入哈希表，使其频率加1
             rightChar = s[right]
             record[rightChar] = record.get(rightChar, 0) + 1
             
-            if len(record) == right - left + 1:
-                maxLen = max(maxLen, right - left + 1)
             
             ## Step 4: 
             ## 根据题意,  题目的窗口长度可变: 这个时候一般涉及到窗口是否合法的问题
@@ -39,6 +37,9 @@ class Solution(object):
                     
                 left += 1
                 
+            #* 经历过上面的缩小窗口后(也可能本来就符合要求不需要缩小)，此时的 [left, right] 窗口是合法的
+            maxLen = max(maxLen, right - left + 1)
+            
             right += 1
         
         return maxLen

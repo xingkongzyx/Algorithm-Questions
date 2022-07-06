@@ -3,6 +3,8 @@
 
 #> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指窗口内「0 元素的数量」大于1的时候。
 
+## 直接计算替换一个 0 后的最大连续子数组长度，将问题转换为1004. 最大连续1的个数 III，最后将结果减 1 就是删除一个 0 的最长子数组长度了。
+
 #! 这种解法与 487 1004 思路一致，但是中间有无用的缩小滑动窗口的行为. 既然只对最长有效的子数组感兴趣，所以我们的滑动窗口不需要收缩，即使窗口可能覆盖无效的子数组。
 class Solution(object):
     def longestSubarray(self, nums):
@@ -17,27 +19,26 @@ class Solution(object):
         left = 0
         right = 0
         
-        ## Step 3: 更新需要维护的变量 (record, maxLen). 
-        #! 只要 zeroCount 中记录的 0 的个数「小于等于 1 个」, 说明就可以删除这个 0 得到全是 1  的子数组; 或者如果子数组目前全是 1 (zeroCount 是 0) 也符号要求
+        ## Step 3: 更新需要维护的变量 (record). 
         while right < len(nums):
             rightNum = nums[right]
             if rightNum == 0:
                 zeroCount += 1
                 
-            if zeroCount <= 1:
-                maxLen = max(maxLen, right - left + 1)
-
             ## Step 4
             ## 根据题意, 题目的窗口长度可变: 这个时候一般涉及到窗口是否合法的问题
             ## 这时要用一个while去不断移动窗口左指针, 从而剔除非法元素直到窗口再次合法
             ## 当 zeroCount 大于 1 的时候，窗口不合法
             ## 所以需要不断移动窗口左指针直到窗口再次合法, 同时提前更新需要维护的变量 (zeroCount)
             while zeroCount > 1:
-                # print("move left")
                 leftNum = nums[left]
                 if leftNum == 0:
                     zeroCount -= 1
                 left += 1
+            
+            maxLen = max(maxLen, right - left + 1)
             right += 1   
+        
+        #* 由于窗口长度为替换一个 0 后最长连续 1 的长度，因此减掉 1 后为 删除一个 0 的最长长度了
         return maxLen - 1
 print(Solution().longestSubarray(nums = [1,1,1]))

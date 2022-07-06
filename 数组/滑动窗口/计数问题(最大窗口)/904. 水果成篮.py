@@ -1,3 +1,5 @@
+
+#! 159 的换皮题目，内核是完全一样的
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
         ## Step 1: 
@@ -13,12 +15,11 @@ class Solution:
         while right < len(fruits):
         ## Step 3
         ## 更新需要维护的变量 (max_len, record)
-        ## i.e. 把窗口末端元素加入哈希表，使其频率加1，并且更新最大长度
+        ## i.e. 把窗口末端元素加入哈希表，使其频率加1
             rightFruit = fruits[right]
             record[rightFruit] = record.get(rightFruit, 0) + 1
             
-            if len(record) <= 2:
-                maxLen = max(maxLen, right - left + 1)
+               
 
             ## Step 4: 
             ## 根据题意,  题目的窗口长度可变: 这个时候一般涉及到窗口是否合法的问题
@@ -34,5 +35,7 @@ class Solution:
                     
                 left += 1
 
+            ## 更新满足题目要求的最大窗口的长度
+            maxLen = max(maxLen, right - left + 1)
             right += 1
         return maxLen

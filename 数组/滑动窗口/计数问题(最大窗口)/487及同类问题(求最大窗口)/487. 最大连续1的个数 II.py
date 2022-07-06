@@ -1,19 +1,5 @@
-""" 
-* 给定一个二进制数组, 你可以最多将 1 个 0 翻转为 1, 找出其中最大连续 1 的个数. 
 
-* Given a binary array, find the maximum number of consecutive 1s in this array if you can flip at most one 0.
-
-* 示例 1: 
-* 输入: [1,0,1,1,0]
-* 输出: 4
-* 解释: 翻转第一个 0 可以得到最长的连续 1. 
-*       当翻转以后, 最大连续 1 的个数为 4. 
-
-* 注: 
-* 输入数组只包含 0 和 1.
-* 输入数组的长度为正整数, 且不超过 10,000
-"""
-#> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指窗口内的「0元素」的个数大于了可翻转的个数 - 1
+#> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指窗口内的「0元素」的个数大于了可翻转的个数 1
 
 #! 窗口中每次循环结束后 [left, right) 包含的就是只含有『0 个 0』或者『1 个 0』的子数组
 class Solution:
@@ -28,14 +14,10 @@ class Solution:
         left = 0
         right = 0
         
-        ## Step 3: 更新需要维护的变量 (record, max_len). 
-        #! 只要 record 中记录的 0 的个数「小于等于 1 个」, 说明就可以反转这个0变为1(有1个0) 然后计算长度; 或者直接计算目前全是 1 的子数组的长度(有0个0)
+        ## Step 3: 更新需要维护的变量 (record). 
         while right < len(nums):
             rightNum = nums[right]
             record[rightNum] = record.get(rightNum, 0) + 1
-            
-            if record.get(0, 0) <= 1:
-                maxLen = max(right - left + 1, maxLen)
             
             ## Step 4
             ## 根据题意, 题目的窗口长度可变: 这个时候一般涉及到窗口是否合法的问题
@@ -47,6 +29,7 @@ class Solution:
                 record[leftNum] -= 1
                 left += 1
             
+            maxLen = max(right - left + 1, maxLen)
             right += 1
             
         return maxLen

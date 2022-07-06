@@ -1,5 +1,6 @@
 
-#* 每次 while 循环结束后 nums[left...right) 区间内的数字的乘积 mul 都是严格小于k的，所以需要获得以right结尾的子数组的数量，方法就是在循环中 "right += 1" 前使用 "count += (right-left+1)" 记录数量
+#> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指窗口内的数字的乘积 >= k
+#* 每次 while 循环结束后 nums[left...right) 区间内的数字的乘积 mul 都是严格小于 k 的，所以需要获得「以 right 结尾」的子数组的数量，方法就是在循环中 "right += 1" 前使用 "count += (right-left+1)" 记录数量
 #? https://leetcode.cn/problems/subarray-product-less-than-k/solution/jian-dan-yi-dong-xiang-xi-zhu-jie-shuang-jvy3/
 class Solution(object):
     def numSubarrayProductLessThanK(self, nums, k):    
@@ -17,6 +18,7 @@ class Solution(object):
             if mul < k:
                 count += (right - left + 1)  
             """     
+            ## 这里left一定要<= right 在不满足条件时 left 会等于right + 1 才能在计算 count 时得到 right-left + 1 = 0
             while mul >= k and left <= right:
                 leftNum = nums[left]
                 mul //= leftNum

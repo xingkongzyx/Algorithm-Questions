@@ -14,17 +14,12 @@ class Solution(object):
             rightNum = nums[right]
             record[rightNum] = record.get(rightNum, 0) + 1
             
-            ## 因为滑动窗口代表的含义，所以这句判断放在这里或者循环结束前都可以
-            if record.get(0, 0) <= k:
-                maxLen = max(right - left + 1, maxLen)
-                
             while record.get(0, 0) > k: 
                 leftNum = nums[left]
                 record[leftNum] -= 1
                 left += 1
             
-            # if record.get(0, 0) <= k:
-            #     maxLen = max(right - left + 1, maxLen)
+            maxLen = max(right - left + 1, maxLen)
             
             right += 1
             
