@@ -1,5 +1,6 @@
 
-#* 可以使用滑动窗口的原因：如果一个子串包含重复字符，那么与它有相同左端点的、长度更长的字符串一定也包含重复字符；又由于题目只要求我们找最长不重复子串的长度，如果已经找到了一个长度为 n 的子串，那么小于等于长度 n 的子串就没有必要再枚举了. 符合滑动窗口性质：向右边扩散得到和越来越大，向左边界扩散得到和越来越小。
+#* 可以使用滑动窗口的原因：如果一个连续子串包含重复字符，那么左端点固定, 且长度更长的子串一定也包含重复字符, 此时的虽然「长度更长」, 但是背离了「不重复子串」的要求。 所以此时选择收缩窗口, 开始考虑固定「右指针」, 向右移动「左指针」的情况了。这是在找到满足「不重复子串」的可行解，找到后记录最大的可行子串的长度。符合滑动窗口性质：向右边扩散得到和越来越大, 向左边界扩散得到和越来越小。
+
 #> 求最大窗口，所以在窗口非法时「收缩窗口」(也就是移动左指针)，并且在「收缩窗口」的判断句外面记录最大窗口。这道题「窗口非法」就是指窗口存在重复字符，此时需要移动左窗口
 #? https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/wu-zhong-fu-zi-fu-de-zui-chang-zi-chuan-by-leetc-2/
 #? https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/zen-yao-yong-hua-dong-chuang-kou-wei-he-35418/

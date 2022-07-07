@@ -1,5 +1,5 @@
 
-#? https://leetcode.cn/problems/shortest-supersequence-lcci/solution/xiang-xi-tu-jie-hua-dong-chuang-kou-chao-qi7g/
+#? 对应的代码讲解 https://leetcode.cn/problems/minimum-window-substring/solution/hua-dong-chuang-kou-ji-bai-liao-100de-javayong-hu-/
 class Solution(object):
     def shortestSeq(self, big, small):
         minLen = len(big) + 1
