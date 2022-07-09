@@ -5,10 +5,7 @@
 """
 class Solution(object):
     def middleNode(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
+
         slow = head
         fast = head
         
