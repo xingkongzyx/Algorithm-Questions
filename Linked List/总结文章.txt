@@ -1,7 +1,7 @@
-精选
+精选1
 https://leetcode.cn/circle/article/YGr54o/
 
-几乎刷完了力扣所有的链表题，我发现了这些东西
+精选2
 https://leetcode.cn/circle/article/Ej98dm/
 
 时间复杂度可看文章

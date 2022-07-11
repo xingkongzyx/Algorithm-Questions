@@ -31,8 +31,8 @@ def removeNthFromEnd(self, head, n):
     while fast.next:
         slow = slow.next
         fast = fast.next
-    #* 覆盖掉slow的next节点, 即删除第n个节点
+    #*  此时fast.next为空，说明fast是尾结点, slow.next为倒数第n个节点
+    #* 下面进行删除倒数第n个节点的操作
     slow.next = slow.next.next 
     
-    #* 由于预置了节点, 所以slow.next必然存在(为head), 即使只有一个节点,slow.next.next 为 None, 也是符合条件的. 这里返回预设指针的下一个节点
     return dummyHead.next 
