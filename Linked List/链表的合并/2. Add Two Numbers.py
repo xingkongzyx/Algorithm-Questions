@@ -5,7 +5,7 @@
 * ➁ 则当前位的值为(l1.val + l2.val + carry) % 10
 * ➂ 则进位值为(l1.val + l2.val + carry) / 10
 * ➃ 建立新node, 然后将进位传入下一层。
-
+# https://leetcode.cn/problems/add-two-numbers/solution/hua-jie-suan-fa-2-liang-shu-xiang-jia-by-guanpengc/
 / 时间复杂度: O(max(m,n))
 / 空间复杂度: O(max(m,n))
 """
@@ -23,7 +23,7 @@ class Solution(object):
         l1Head = l1
         l2Head = l2
         
-        #* 当l1 不等于null或l2 不等于空时, 就进入循环
+        #* 当 l1 不等于 None 或 l2 不等于 None 时, 就进入循环
         while l1Head != None or l2Head != None:
             if l1Head == None:
                 nodeVal = (l2Head.val + carry) % 10

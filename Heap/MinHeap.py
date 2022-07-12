@@ -24,23 +24,6 @@ class MinHeap:
         self.heap.append(value)
         self.siftUp(len(self.heap) - 1)
         
-    
-    def remove(self):
-        """
-        * 弹出堆顶
-        * 第一步，记录堆顶元素的值
-        * 第二步，交换堆顶元素与末尾元素
-        * 第三步，删除数组末尾元素
-        * 第四步，新的堆顶元素向下调整
-        * 第五步，返回答案
-        """
-        item = self.heap[0]
-        self.swap(0, len(self.heap) - 1)
-        self.heap.pop()
-        self.siftDown(0)
-        return item
-
-    
     def siftUp(self, currentIdx):
         """
         * 向上调整
@@ -56,6 +39,22 @@ class MinHeap:
                 currentIdx = parentIdx
             else:
                 break
+            
+    def remove(self):
+        """
+        * 弹出堆顶
+        * 第一步，记录堆顶元素的值
+        * 第二步，交换堆顶元素与末尾元素
+        * 第三步，删除数组末尾元素
+        * 第四步，新的堆顶元素向下调整
+        * 第五步，返回答案
+        """
+        item = self.heap[0]
+        self.swap(0, len(self.heap) - 1)
+        self.heap.pop()
+        self.siftDown(0)
+        return item
+
     
     def siftDown(self, currentIdx):
         endIdx = len(self.heap) - 1
