@@ -78,4 +78,5 @@ class MaxHeap:
     
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
-Solution().kClosest(points = [[3,3],[5,-1],[-2,4]], k = 2)
+
+

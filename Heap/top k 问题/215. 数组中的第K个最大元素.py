@@ -2,6 +2,10 @@
 * 我们可以维护一个有 K 个元素的「最小堆」：
 * ➀ 如果当前堆不满，直接添加；
 * ➁ 堆满的时候，如果新读到的数小于等于「堆顶元素」，肯定不是我们要找的元素，只有新遍历到的数大于「堆顶元素」的时候，才将「堆顶元素」拿出，然后放入新读到的数，进而让堆自己去调整内部结构。
+
+? minHeap 解法1: https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/java-pai-xu-xiao-ding-dui-shi-xian-by-yankuangshig/
+
+? minHeap 解法2: https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/javascriptsi-chong-fang-shi-jie-topkwen-ti-by-user/
 """
 
 
