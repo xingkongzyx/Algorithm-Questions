@@ -1,5 +1,5 @@
 """ 
-* LRU （Least Recently Used）缓存机制
+* LRU (Least Recently Used) 缓存机制
 * 在缓存满的时候, 删除缓存里最久未使用的数据, 然后再放入新元素；
 * 数据的访问时间很重要, 访问时间距离现在最近, 就最不容易被删除。
 * 如果我们每次默认从「链表尾部」添加元素, 那么显然「越靠尾部」的元素就是「最近使用」的, 「越靠头部」的元素就是「最久未使用」的。
@@ -45,7 +45,7 @@ class DoubleList:
         self.tail.pre = newNode
         self.size += 1
     
-    #* 删除链表中的 node 节点（node 一定存在）
+    #* 删除链表中的 node 节点(node 一定存在）
     #* 由于是双链表且给的是目标 node 节点, 时间 O(1)
     def remove(self, deleteNode):
         deleteNode.pre.next = deleteNode.next

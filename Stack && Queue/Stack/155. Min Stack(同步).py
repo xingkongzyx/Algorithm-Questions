@@ -10,7 +10,7 @@ class MinStack:
         self.helper = []
 
     #! 与不同步解法的不同之处
-    ## 只要往「主栈 stack」插入一个元素, 就要在「辅助栈 helper」插入当前时期主栈中所有元素的最小值, 方法就是「辅助栈 helper」栈顶元素与新插入的元素取最小值
+    ## 只要往「主栈 stack」插入一个元素, 就要在「辅助栈 helper」插入当前时期主栈中所有元素的最小值, 方法就是「辅助栈 helper」栈顶元素与「新插入元素 x」取最小值然后放进「辅助栈 helper」
     def push(self, x):
         self.data.append(x)
         if len(self.helper) == 0 or x <= self.helper[-1]:
@@ -19,7 +19,7 @@ class MinStack:
             self.helper.append(self.helper[-1])
 
     def pop(self):
-        ## 因为这里 helper 与 data 元素的数量是相同的, 所以出栈时对两个栈都要操作
+        ## 因为这里 helper 与 data 元素的数量是相同的, 在同时期是完全对应的, 所以出栈时对两个栈都要操作
         if self.data:
             self.helper.pop()
             return self.data.pop()

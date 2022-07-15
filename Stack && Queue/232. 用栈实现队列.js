@@ -32,7 +32,7 @@ MyQueue.prototype.push = function (x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function () {
-    //* 如果「输出栈」目前没有元素，需要把「输入栈」中的所有元素放到「输出栈」中，在这过程中「输入栈」的栈顶元素称为了「输出栈」的栈底元素，「输入栈」的栈底元素也就是 "first in" 的元素则成为了「输出栈」的栈顶元素，它会被最先弹出「输出栈」。满足了队列的「FIFO」的原则
+    //* 如果「输出栈」目前没有元素，需要把「输入栈」中的所有元素放到「输出栈」中，在这过程中「输入栈」的栈顶元素成为了「输出栈」的栈底元素，「输入栈」的栈底元素也就是 "first in" 的元素则成为了「输出栈」的栈顶元素，它会被最先弹出「输出栈」。满足了队列的「FIFO」的原则
     if (this.outStack.length === 0) {
         while (this.inStack.length > 0) {
             let num = this.inStack.pop();

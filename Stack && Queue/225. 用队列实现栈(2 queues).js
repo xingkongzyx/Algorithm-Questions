@@ -22,7 +22,7 @@ MyStack.prototype.push = function (x) {
  * @return {number}
  */
 MyStack.prototype.pop = function () {
-    //* 把mainQueue中除了最后一个元素外的元素放到helperQueue中，然后pop from front得到正确结果，最后把helperQueue中的元素再放回mainQueue
+    //* 进行队列中的 pop 操作时, 把 mainQueue 中除了最后一个元素外的元素放到helperQueue中，然后在 mainQueue 上实行 queue 的 pop from front 得到正确结果，最后把 helperQueue 中的元素再放回 mainQueue
     let size = this.mainQueue.length;
     while (size > 1) {
         this.helperQueue.push(this.mainQueue.shift());

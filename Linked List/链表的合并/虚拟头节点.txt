@@ -8,10 +8,7 @@
 * 涉及到两个元素的遍历题，使用 while l1 and/or l2 的方式。即两个元素都没有遍历完或者至少有一个没遍历完，具体使用 and 还是 or 要根据场景进行选择。
 * 
 * 这类常见的题目有：
-* 
 * 合并两个链表
 * 两数相加/两个链表表示的数相加
-
-
 ? https://leetcode.cn/problems/merge-two-sorted-lists/solution/xin-shou-you-hao-xue-hui-tao-lu-bu-fan-cuo-4nian-l/
     
