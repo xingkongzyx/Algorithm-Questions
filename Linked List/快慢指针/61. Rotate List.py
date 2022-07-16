@@ -1,6 +1,7 @@
 """ 
 * 假设链表的长度为n, 为了将链表每个节点向右移动 k 个位置, 我们只需要将链表的后 「k % n」个节点移动到链表的最前面, 然后将链表的后「k % n」个节点和前「n - k」个节点连接到一块即可。
 ? 链接：https://leetcode.cn/problems/rotate-list/solution/xuan-zhuan-lian-biao-tu-jie-lian-biao-zu-ku33/
+? https://leetcode.cn/problems/rotate-list/solution/ji-bai-liao-91de-javayong-hu-qing-xi-yi-dong-by-re/
 """
 class Solution(object):
     def rotateRight(self, head, k):
