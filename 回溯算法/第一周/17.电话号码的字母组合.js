@@ -1,5 +1,9 @@
-// 时间复杂度：遍历所有节点，最坏的情况去到 O(4^n)，n 为数字串的长度。
-// 空间复杂度：O(n)，递归栈调用的深度。
+/* 
+! 本题每一个数字代表的是「不同集合」，也就是求「不同集合」之间的组合
+/ 时间复杂度：遍历所有节点, 最坏的情况去到 O(4^n), n 为数字串的长度。
+/ 空间复杂度：O(n), 递归栈调用的深度。
+*/
+
 var letterCombinations = function (digits) {
     let numMap = {
         2: "abc",
@@ -15,9 +19,9 @@ var letterCombinations = function (digits) {
     const results = [];
     let currentPath = [];
 
-    //* 参数index是记录遍历到digits中第几个数字了，同时index也表示树的深度。
+    //* 参数index是用于记录当前遍历到 digits 中的第几位数字, index 也代表了树的深度。
     function helper(numMap, digits, index) {
-        //! 当指针越界时，此时生成了一个解，加入解集，结束当前递归，去别的分支，找齐所有的解。
+        //! 当指针越界时, 此时生成了一个解, 加入解集, 结束当前递归, 去别的分支, 找齐所有的解。
         if (index === digits.length) {
             results.push(currentPath.join(""));
             return;
@@ -28,7 +32,8 @@ var letterCombinations = function (digits) {
 
         for (let i = 0; i < digitChars.length; i++) {
             currentPath.push(digitChars[i]);
-            helper(numMap, digits, index + 1); //* 递归，注意index+1，代表要处理下一个数字了
+            //* 递归, 注意这里传入的是「index + 1」而不是像一般组合问题中的「i + 1」, 「index + 1」代表要处理「下一个数字」而不是当前数字对应的「下一个letter」
+            helper(numMap, digits, index + 1);
             currentPath.pop();
         }
     }

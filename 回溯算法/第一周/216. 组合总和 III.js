@@ -1,3 +1,4 @@
+//# 这道题与 77 属于同类型. 39 和 40 单独属于难一些的组合问题
 var combinationSum3 = function (k, n) {
     let results = [];
     let currentNums = [];
