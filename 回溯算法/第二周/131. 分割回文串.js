@@ -2,7 +2,6 @@ var partition = function (s) {
     let currentPath = [];
     let totalPath = [];
     function backtracking(s, startIdx) {
-        
         if (startIdx === s.length) {
             totalPath.push(currentPath.slice());
             return;
