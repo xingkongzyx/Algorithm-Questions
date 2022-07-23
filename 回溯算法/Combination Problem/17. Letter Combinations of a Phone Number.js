@@ -19,7 +19,7 @@ var letterCombinations = function (digits) {
     const results = [];
     let currentPath = [];
 
-    //* 参数index是用于记录当前遍历到 digits 中的第几位数字, index 也代表了树的深度。
+    //* 参数 index 是用于记录当前遍历到 digits 中的第几位数字, 代表的是树的深度。
     function helper(numMap, digits, index) {
         //! 当指针越界时, 此时生成了一个解, 加入解集, 结束当前递归, 去别的分支, 找齐所有的解。
         if (index === digits.length) {
@@ -30,9 +30,10 @@ var letterCombinations = function (digits) {
         let digitNum = digits[index];
         let digitChars = numMap[digitNum];
 
+        //! 这里的 for循环，不是从 startIdx 开始遍历的
         for (let i = 0; i < digitChars.length; i++) {
             currentPath.push(digitChars[i]);
-            //* 递归, 注意这里传入的是「index + 1」而不是像一般组合问题中的「i + 1」, 「index + 1」代表要处理「下一个数字」而不是当前数字对应的「下一个letter」
+            //* 递归, 注意这里传入的是「index + 1」而不是像一般组合问题中的「i + 1」, 「index + 1」代表要处理「下一个数字」而不是当前数字对应的「下一个letter」。这里的 index 代表的是遍历的深度
             helper(numMap, digits, index + 1);
             currentPath.pop();
         }
