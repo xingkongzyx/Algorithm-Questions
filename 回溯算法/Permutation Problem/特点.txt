@@ -1,0 +1,3 @@
+permutation(排列)问题的不同之处:
+1. 每层都是从 0 开始搜索而不是 startIndex
+2. 需要 used数组 记录 path 里都放了哪些元素

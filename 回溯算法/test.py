@@ -1,3 +1,3 @@
 
-        
-Solution().restoreIpAddresses(s = "101023")
+
+Solution().restoreIpAddresses(s="101023")
