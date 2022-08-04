@@ -1,4 +1,12 @@
- # ? https://leetcode.cn/problems/number-of-islands/solution/by-lfool-2wmw/
+""" 
+/ DFS为什么要沉岛
+/ 遍历遇到 1 即遇到土地，土地肯定在一个岛上，计数 +1
+/ 如果不把与它和同在一个岛的土地变成 0，则DFS遍历到它们时，会对一个岛重复计数
+? 来自: https://leetcode.cn/problems/number-of-islands/solution/tong-ji-wan-yi-ge-dao-hou-yao-ba-ta-chen-liao-200-/
+? https://leetcode.cn/problems/number-of-islands/solution/by-lfool-2wmw/
+"""
+
+
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         # / 定义一个表示岛屿数量的变量
@@ -13,15 +21,16 @@ class Solution:
         return count
 
     def dfs(self, grid, r, c):
-        # / 判断 base case
-        # / 如果坐标(r, c) 超出了网格范围，直接返回
+        # / 终止条件：
+        # / ➀ 坐标(r, c) 超出了网格范围;
         if(not self.inArea(grid, r, c)):
             return
-        # / 访问上、下、左、右四个相邻结点
 
-        # /如果这个格子不是陆地或者这个格子是已经被访问过的陆地，则直接返回
+        # / ➁ 如果这个格子不是陆地或者这个格子是已经被访问过的陆地，则直接返回
         if(grid[r][c] != '1'):
             return
+
+        # / 访问上、下、左、右四个相邻结点
         # / 将当前是陆地的格子标记为「已遍历过」
         grid[r][c] = "2"
         self.dfs(grid, r + 1, c)
