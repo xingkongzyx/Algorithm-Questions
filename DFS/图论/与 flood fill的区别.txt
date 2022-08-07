@@ -1,0 +1,6 @@
+lc 130 、lc 200 这些题目里, 每个元素是独立的个体, 以自身的值为依据做连通。而lc 547 中, 需要理解成以行或列为独立的个体, 元素值表示的是这些个体之间是否连通。这个题目等于是给了一个图, 要计算的是有多少连通的子图。对图算法敏感的话, 应该第一时间就明白就是计算图的连通分量数目。从代码的角度看, lc 130 、lc 200 是以二维数组的每个元素为粒度做DFS, 这个题目是以图的节点为粒度做DFS.
+
+https://leetcode.cn/problems/number-of-provinces/solution/sheng-fen-shu-liang-by-leetcode-solution-eyk0/1499206
+
+
+必看文章 https://leetcode.cn/circle/discuss/FyPTTM/

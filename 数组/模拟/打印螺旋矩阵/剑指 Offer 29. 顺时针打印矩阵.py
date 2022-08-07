@@ -2,6 +2,7 @@
 # ? 必看: 参考了剑指offer 29 的解法, 代码能够统一 https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/
 class Solution(object):
     def spiralOrder(self, matrix):
+        #! 与 54 的不同之处，需要判断矩阵是否为空
         if len(matrix) == 0:
             return []
         top, left = 0, 0
@@ -17,10 +18,10 @@ class Solution(object):
             for i in range(left, right + 1):
                 result.append(matrix[top][i])
             top += 1
-            
+
             if top > bottom:
                 break
-            
+
             """ 
             * 从上往下，行在变
             * 从上往下的下一步是从右往左，右边界收缩，故 right -= 1
@@ -28,7 +29,7 @@ class Solution(object):
             for j in range(top, bottom + 1):
                 result.append(matrix[j][right])
             right -= 1
-            
+
             if left > right:
                 break
             """ 
@@ -38,7 +39,7 @@ class Solution(object):
             for m in range(right, left - 1, -1):
                 result.append(matrix[bottom][m])
             bottom -= 1
-            
+
             if top > bottom:
                 break
             """ 
@@ -48,7 +49,7 @@ class Solution(object):
             for n in range(bottom, top - 1, -1):
                 result.append(matrix[n][left])
             left += 1
-            
+
             if left > right:
                 break
         return result

@@ -1,6 +1,7 @@
 /* 
 ? https://leetcode.cn/problems/word-search/solution/shou-hua-tu-jie-79-dan-ci-sou-suo-dfs-si-lu-de-cha/
 ? 讲解很好: https://leetcode.cn/problems/word-search/solution/hui-su-suan-fa-qiu-jie-by-sdwwld-2/
+? k 神的链接: https://leetcode.cn/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/
 / 时间复杂度与空间复杂度的讲解: https://leetcode.cn/problems/word-search/solution/tu-jie-di-gui-shen-du-you-xian-sou-suo-by-z1m/
 / 时间复杂度: O((M*N)²)
 / 空间复杂度: O(M*N)
