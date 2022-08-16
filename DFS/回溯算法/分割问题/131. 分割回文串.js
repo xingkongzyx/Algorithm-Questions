@@ -1,3 +1,7 @@
+/* 
+
+? https://leetcode.cn/problems/palindrome-partitioning/solution/shou-hua-tu-jie-san-chong-jie-fa-hui-su-q5zjt/
+*/
 var partition = function (s) {
     let currentPath = [];
     let totalPath = [];

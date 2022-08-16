@@ -4,7 +4,8 @@
 * 思路：创建两个 map   
 * 第一步 key为pattern, value为words, 遍历pattern, 检查同一个patten是否对应相同的word
 * 第二步 key为words, value为pattern, 遍历words, 检查同一个word是否对应相同的patter
-
+* 为什么定义两个 map 呢?
+* 为何定义两个呢？ 防止[aaaa]与[cat dog dog cat]、[abba]与[cat cat cat cat]时输出true
 ? https://leetcode.cn/problems/word-pattern/solution/dan-ci-gui-lu-by-leetcode-solution-6vqv/
 """
 

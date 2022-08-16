@@ -1,6 +1,8 @@
 """ 
-* 两个 hash https://leetcode.cn/problems/word-pattern-ii/solution/c-hui-su-zhu-shi-zai-dai-ma-zhong-by-xing-chen-da-/
+? 两个 hash https://leetcode.cn/problems/word-pattern-ii/solution/c-hui-su-zhu-shi-zai-dai-ma-zhong-by-xing-chen-da-/
 ? 细讲: https://leetcode.cn/problems/word-pattern-ii/solution/hui-su-hashmapbao-cun-pi-pei-hashsetbao-645u7/
+? 回溯树 https://leetcode.cn/problems/word-pattern-ii/solution/by-yvhuiwang-d1fy/
+/ 时间复杂度 O(状态总数 * 计算每个状态的时间) = O(MN * N) = O(M * N^2)
 """
 
 
@@ -14,7 +16,7 @@ class Solution:
             print("-------------------------------------------\n")
             print(
                 f"{'  ' * count} In backtracking: {patternIdx} is patternIdx, {strIdx} is strIdx")
-            # * 终止条件: pattern 遍历完成的同时, strIdx 也遍历完成, 说明成功 match. 否则说明 s 中有部分字符没有匹配到
+            # * 终止条件: patternIdx 遍历完成的同时, strIdx 也遍历完成, 说明成功 match. 否则说明 s 中有部分字符没有匹配到
             if patternIdx == len(pattern):
                 if strIdx == len(s):
                     return True

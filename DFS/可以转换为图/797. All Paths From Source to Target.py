@@ -13,7 +13,8 @@ class Solution:
         total = []
         targetNode = len(graph) - 1
 
-        def backtracking(curNode):
+        def backtracking(curNode, count):
+            print(f"{'  ' * count} visiting {curNode}, path is {curPath}")
             # * 递归终止条件: 当到达了目标节点的时候存储当前路径到结果中
             if curNode == targetNode:
                 total.append(curPath[:])
@@ -23,9 +24,13 @@ class Solution:
                 # * 遍历到的节点加入到路径中来
                 curPath.append(connectNode)
                 # * 递归
-                backtracking(connectNode)
+                backtracking(connectNode, count + 1)
+                print(f"{'  ' * count} backtracking from {connectNode}")
                 # * 回溯，撤销本节点
                 curPath.pop()
 
-        backtracking(0)
+        backtracking(0, 0)
         return total
+
+
+Solution().allPathsSourceTarget(graph=[[1, 2], [3], [3], []])

@@ -1,5 +1,6 @@
 class Solution(object):
     from collections import deque
+
     def cloneGraph(self, node):
         """
         :type node: Node
@@ -7,7 +8,7 @@ class Solution(object):
         """
         if node == None:
             return None
-        
+
         cloned_dict = {}
         clonedNode = Node(node.val)
         cloned_dict[node] = clonedNode
@@ -19,7 +20,7 @@ class Solution(object):
             clonedCurrentNode = cloned_dict[currentNode]
 
             for neighbor in currentNode.neighbors:
-                #* 如果neighbor已经被创建(已经放在了dict中)，则直接提取它. 否则在此进行 clonedNeighbor 的构造，并将其加入queue中。此时新创造的 clonedNeighbor 它本身的 neighbors 是 []. 我们通过加入queue然后在BFS 遍历到它时构造它的neighbors list
+                # * 如果neighbor已经被创建(已经放在了dict中)，则直接提取它. 否则在此进行 clonedNeighbor 的构造，并将其加入queue中。此时新创造的 clonedNeighbor 它本身的 neighbors 是 []. 我们通过加入queue然后在BFS 遍历到它时构造它的neighbors list
                 if neighbor in cloned_dict:
                     clonedNeighbor = cloned_dict[neighbor]
                 else:
