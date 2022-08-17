@@ -1,6 +1,6 @@
 """ 「」
 > 本题与1162. 地图分析是一样的思路。
-* 矩阵中的0有很多个, 要求「最近」的0, 最直观的思路就是: 每次从一个 1 出发一圈圈扩展(BFS), 遇到的「第一个 0」就是所谓「最近的」。这就是暴力思路, 然而矩阵中的每个元素(位置)是一个结点(状态), 对于这MN个结点, 每个进行一次 O(MN) 的BFS, 时间复杂度就到了O(N^2 * M^2), 肯定会超时。
+* 矩阵中的 0 有很多个, 要求「最近」的 0, 最直观的思路就是: 每次从一个 1 出发一圈圈扩展(BFS), 遇到的「第一个 0」就是所谓「最近的」。这就是暴力思路, 然而矩阵中的每个元素(位置)是一个结点(状态), 对于这MN个结点, 每个进行一次 O(MN) 的BFS, 时间复杂度就到了O(N^2 * M^2), 肯定会超时。
 ? 暴力解法的代码: https://leetcode.cn/problems/01-matrix/solution/bao-li-duo-yuan-bfsdpdpyou-hua-dai-zheng-ming-by-b/
 ? 暴力思路的问题: https://leetcode.cn/problems/01-matrix/solution/ni-xiang-si-wei-de-bfscshi-xian-by-da-fei-kai/
 

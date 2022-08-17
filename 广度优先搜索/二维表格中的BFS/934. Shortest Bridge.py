@@ -1,5 +1,6 @@
 """ 「」
-* ➀ 遍历矩阵, 找到第一个岛, 调用 dfs 把和第一个岛联通的所有 1 改成 2, 并且加入队列, 作为多源广度搜索的source
+* ➀ 遍历矩阵, 找到「第一个岛」, 调用 dfs 把和第一个岛联通的所有 1 改成 2, 并且加入队列, 作为之后「多源」广度搜索的 source
+# grid[i][j] == 2 代表这个cell已经「被访问过」
 * ➁ 调用「多源」广度搜索把第一个岛向周围扩散(即把它把周围的0改为2), 直到在某次扩散时遇到 1, 说明已经遇到了另一个岛, 此时返回扩散的次数即可。
 ? https://leetcode.cn/problems/shortest-bridge/solution/zui-duan-qiao-yan-sou-shen-sou-by-liangqi/
 """

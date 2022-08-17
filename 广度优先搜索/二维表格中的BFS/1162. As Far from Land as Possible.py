@@ -43,7 +43,7 @@ class Solution:
                 for i in range(4):
                     newX, newY = currentX + \
                         dirArr[i][0], currentY + dirArr[i][1]
-                    # * 如果搜索到的新坐标超出范围或者已经遍历过, 则不搜索了
+                    # * 只有在搜索到的新坐标不超出范围并且没有被访问过的情况下, 才加入到队列中
                     if inArea(newX, newY) and visited[newX][newY] == False:
                         visited[newX][newY] = True
                         queue.append((newX, newY))

@@ -1,30 +1,29 @@
-什么情况应当用 BFS 搜索
-我们都知道 DFS（深度优先搜索）和 BFS（广度优先搜索）的区别, 它们各有不同的适应场景。
+/ 什么情况应当用 BFS 搜索
+* 我们都知道 DFS(深度优先搜索)和 BFS(广度优先搜索)的区别, 它们各有不同的适应场景。
+* BFS 可以看成是层序遍历。从某个结点出发, BFS 首先遍历到距离为 1 的结点, 然后是距离为 2. 3. 4.... 的结点。因此, BFS 可以用来求「最短路径」问题。BFS 先搜索到的结点, 一定是距离最近的结点。
 
-BFS 可以看成是层序遍历。从某个结点出发, BFS 首先遍历到距离为 1 的结点, 然后是距离为 2. 3. 4.... 的结点。因此, BFS 可以用来求最短路径问题。BFS 先搜索到的结点, 一定是距离最近的结点。
-
-链接：https://leetcode.cn/problems/as-far-from-land-as-possible/solution/li-qing-si-lu-wei-shi-yao-yong-bfs-ru-he-xie-bfs-d/
-
-
-* Tree 的 BFS: 把root节点先入队, 然后再一层一层的无脑遍历就行了。
-* 「图」的 BFS 与「Tree」的 BFS 区别如下: 
-* 1. tree 只有1个root, 而图可以有多个源点, 所以首先需要把多个源点都入队。
-! 2. tree 是有向的因此不需要标志是否「访问过」, 而对于无向图来说, 必须得标志是否访问过！并且为了防止某个节点多次入队, 需要在入队之前就将其设置成已访问！
-? 来源: https://leetcode.cn/problems/as-far-from-land-as-possible/solution/jian-dan-java-miao-dong-tu-de-bfs-by-sweetiee/
+? 链接：https://leetcode.cn/problems/as-far-from-land-as-possible/solution/li-qing-si-lu-wei-shi-yao-yong-bfs-ru-he-xie-bfs-d/
 
 
 * 一般而言, 广度优先遍历求的是「最短路径」, 但仔细一想, 发现「最长路径」使用广度优先遍历也是适用的：
 * 求「最短路径」的时候, 只要找到目标值, 返回即可；
 * 求「最长路径」的时候, 所有目标值都看完以后, 才返回。
 
-* 编写 BFS 算法的注意事项
+! 编写 BFS 算法的注意事项
 * 1. 如果题目要求返回的结果和「距离」相关, 需要在 while 循环内部一下子把当前列表的所有元素都依次取出来, 这种「一下子」操作的次数就是我们需要的距离；
-/ 2. 一个单元格被添加到队列的同时, 需要马上将它标记为「已经访问」（根据情况, 可以直接在原始输入数组上修改, 也可以使用一个布尔数组 visited 进行标记）, 如果不这么做, 很可能会出现〖死循环〗, 这一点如果一开始没有注意到, 也可以通过调试代码观察出。
+/ 2. 一个单元格被添加到队列的同时, 需要马上将它标记为「已经访问」(根据情况, 可以直接在原始输入数组上修改, 也可以使用一个布尔数组 visited 进行标记), 如果不这么做, 很可能会出现〖死循环〗, 这一点如果一开始没有注意到, 也可以通过调试代码观察出。
 ? https://leetcode.cn/problems/as-far-from-land-as-possible/solution/yan-du-you-xian-bian-li-java-by-liweiwei1419/
 
+「」《》〔〕『』
+* Tree 的 BFS: 把root节点先入队, 然后再一层一层的无脑遍历就行了。
+* 「图」的 BFS 与「Tree」的 BFS 区别如下: 
+* 1. tree 只有1个root, 而图可以有多个源点, 所以首先需要把多个源点都入队。
+! 2. tree 是「有向」的因此不需要标志是否「访问过」, 而对于「无向图」来说, 必须得标志是否访问过! 并且为了防止某个节点多次入队, 需要在『入队之前』就将其设置成已访问！
+? 来源: https://leetcode.cn/problems/as-far-from-land-as-possible/solution/jian-dan-java-miao-dong-tu-de-bfs-by-sweetiee/
 
-? 单个源点的广搜与多个源点的广搜的动图:https://leetcode.cn/problems/as-far-from-land-as-possible/solution/zhen-liang-yan-sou-huan-neng-duo-yuan-kan-wan-miao/
+
+? 单个源点的广搜与多个源点的广搜的动图: https://leetcode.cn/problems/as-far-from-land-as-possible/solution/zhen-liang-yan-sou-huan-neng-duo-yuan-kan-wan-miao/
 
 
-* 值得一看的文章: 
+* 值得一看的文章包含代码模板: 
 ? https://leetcode.cn/problems/as-far-from-land-as-possible/solution/tao-lu-da-jie-mi-gao-dong-ti-mu-kao-cha-shi-yao-sh/
