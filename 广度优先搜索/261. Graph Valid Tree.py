@@ -11,6 +11,7 @@
 *     2-3
 
 ? https://leetcode.cn/problems/graph-valid-tree/solution/shen-du-you-xian-yan-du-you-xian-bing-cha-ji-de-zo/
+
 * 对于 ➁ 的另一种理解也可以是: 对于一个 n 结点的图, 其边数一定是 n-1。如果边数大于 n-1, 那么一定存在环; 若边数小于 n-1, 那么一定有孤立的点, 也不能构成一棵树; 如果是按这么理解, 则「不需要定义 count 变量」, 而只需要在开头进行如下判断: 
 /    if len(edges) != n - 1:
 /        return False

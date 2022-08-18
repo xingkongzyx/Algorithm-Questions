@@ -20,7 +20,7 @@ class Solution(object):
         :type isConnected: List[List[int]]
         :rtype: int
         """
-        #! 重要细节: dfs中没有显式写递归终止条件, 但是调用 dfs(i)时, 只有当i 不在 visited 中, 才能进行DFS, 防止死循环
+        #! 重要细节: dfs中没有显式写递归终止条件, 但是调用 dfs(i) 时, 只有当 i 不在 visited 中, 才能进行DFS, 防止死循环
         def dfs(cityIdx):
             # * 对当前的城市标记为已访问
             visited[cityIdx] = True

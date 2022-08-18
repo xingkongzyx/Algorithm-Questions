@@ -4,3 +4,10 @@ https://leetcode.cn/problems/number-of-provinces/solution/sheng-fen-shu-liang-by
 
 
 必看文章 https://leetcode.cn/circle/discuss/FyPTTM/
+
+
+* 讲解递归过程中是处理当前访问的节点，还是处理下一个要访问的节点的必看文章(代码随想录): 
+? 1: https://leetcode.cn/problems/all-paths-from-source-to-target/solution/by-carlsun-2-66pf/
+? 2: https://leetcode.cn/problems/keys-and-rooms/solution/dai-ma-sui-xiang-lu-841-yao-chi-he-fang-8mlei/
+
+/ 相似的有 841(构建的是「有向有环图」), 547(构建的是「无向有环图」), 323(构建的是「无向有环图」), 797(构建的是「有向无环图」)
