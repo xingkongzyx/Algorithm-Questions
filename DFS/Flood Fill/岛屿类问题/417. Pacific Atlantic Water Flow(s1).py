@@ -37,7 +37,7 @@ class Solution(object):
                 if inArea(newRowIdx, newColIdx) and \
                    visited[newRowIdx][newColIdx] == False and \
                    heights[newRowIdx][newColIdx] >= heights[rowIdx][colIdx]:
-                    # > doing DFS from the present cell to the neighbours from which it can receive the water.
+                    # > doing DFS from the present cell to the neighbors from which it can receive the water.
                     traverse(newRowIdx, newColIdx, visited)
 
         def inArea(rowIdx, colIdx):

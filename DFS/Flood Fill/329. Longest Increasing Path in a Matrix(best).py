@@ -20,7 +20,8 @@ class Solution:
 
         numRows = len(matrix)
         numCols = len(matrix[0])
-
+        
+        # / 函数作用: 计算以当前位置为起点的满足要求的最长路径长度
         def traverse(rowIdx, colIdx, memo):
             # *  return if result is already calculated
             if memo[rowIdx][colIdx] != -1:

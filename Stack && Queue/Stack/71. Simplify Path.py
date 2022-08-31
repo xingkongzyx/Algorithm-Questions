@@ -9,6 +9,8 @@
 ? 链接: https://leetcode.cn/problems/simplify-path/solution/gong-shui-san-xie-jian-dan-zi-fu-chuan-m-w7xi/
 ? https://leetcode.cn/problems/simplify-path/solution/jian-hua-lu-jing-by-leetcode-solution-aucq/
 """
+
+
 class Solution(object):
     def simplifyPath(self, path):
         """
@@ -19,19 +21,19 @@ class Solution(object):
         stack = []
 
         for ele in pathArr:
-            #* 对应情况 ➂
+            # * 对应情况 ➂
             if ele == "." or ele == "":
                 continue
-            #* 对应情况 ➁
+            # * 对应情况 ➁
             if ele == "..":
                 if len(stack) > 0:
                     stack.pop()
             else:
-            #* 对应情况 ➀
+                # * 对应情况 ➀
                 stack.append(ele)
 
-        #* 如果栈是空的, 返回 "/". 否则, 我们将从栈底到栈顶的字符串用 / 进行连接，再在最前面加上 / 表示根目录，就可以得到简化后的规范路径。
+        # * 如果栈是空的, 返回 "/". 否则, 我们将从栈底到栈顶的字符串用 / 进行连接，再在最前面加上 / 表示根目录，就可以得到简化后的规范路径。
         return "/" + "/".join(stack)
-        
-    
+
+
 print(Solution().simplifyPath("/..."))
