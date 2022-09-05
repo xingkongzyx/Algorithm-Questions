@@ -1,4 +1,5 @@
 """ 
+> 与 496 是一模一样的
 ? https://leetcode.cn/problems/next-greater-node-in-linked-list/solution/10xing-dai-ma-biao-zhun-by-huxiyue-bqjl/
 / 时间复杂度 O(N): 每个节点出栈入栈一次)
 / 空间复杂度O(N): 栈空间

@@ -1,5 +1,5 @@
 
-#? python 的相关避坑操作: https://leetcode.cn/problems/evaluate-reverse-polish-notation/solution/xiang-jie-ni-bo-lan-biao-da-shi-fu-ben-t-sfl6/
+# ? python 的相关避坑操作: https://leetcode.cn/problems/evaluate-reverse-polish-notation/solution/xiang-jie-ni-bo-lan-biao-da-shi-fu-ben-t-sfl6/
 class Solution:
     def evalRPN(self, tokens):
         operators = {"+", "-", "*", "/"}
@@ -16,10 +16,12 @@ class Solution:
                     result = num2 * num1
                 elif char == "-":
                     result = num2 - num1
-                    
+
                 stack.append(result)
             else:
                 stack.append(int(char))
         return stack[-1]
 
-print(Solution().evalRPN(tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]))
+
+print(Solution().evalRPN(
+    tokens=["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]))
