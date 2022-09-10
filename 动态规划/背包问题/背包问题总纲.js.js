@@ -27,7 +27,7 @@ var two_dimension_bag_problem = function (
             if (itemWeight > capacity)
                 dp[itemIdx][capacity] = dp[itemIdx - 1][capacity];
             else {
-                //# 如果当前位置的capacity能放置当前的itemIdx的物品，那么有两种可能一种是放置这个物品，一种是不放这个物品。不放的的话当前的最大价值是 dp[itemIdx - 1][capacity]。
+                //# 如果当前位置的capacity能放置当前的itemIdx的物品，那么有两种可能，一种是放置这个物品，一种是不放这个物品。不放的的话当前的最大价值是 dp[itemIdx - 1][capacity]。
                 //# 如果放置的话也不是直接 dp[itemIdx - 1][capacity] + values[itemIdx]. 这么计算是不对的，dp[itemIdx - 1][capacity]是计算的从下标为[0-itemIdx-1]的物品里任意取，放进容量为capacity的地方，价值总和最大是多少。而我们在同一个capacity直接加上当前itemIdx的价值，相当于把对应的weights加到了capacity里，这样会导致当前的容量无法放置这么多东西。
                 //! 而应该是 dp[itemIdx - 1][capacity - itemWeight] + values[itemIdx]。dp[itemIdx - 1][capacity - itemWeight]为背包容量为capacity - itemWeight的时候不放物品itemIdx的最大价值。那加上values[itemIdx]就是背包放物品itemIdx得到的最大价值
                 dp[itemIdx][capacity] = Math.max(

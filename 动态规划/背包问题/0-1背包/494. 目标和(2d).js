@@ -1,3 +1,4 @@
+// ? https://leetcode.cn/problems/target-sum/solution/hen-xiang-xi-de-zhuan-hua-wei-0-1bei-bao-irvy/
 var findTargetSumWays = function (nums, target) {
     //# 为了避免 nums = [100]，target = -200的情况。这种情况开拓数组传入负数会报错。所以把target的值替换为它的绝对值就可以了，原因是这个数组如果可以用加法凑出某个正数，那么也一定能用减法凑出它的相反数。
     target = Math.abs(target);
