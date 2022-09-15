@@ -1,4 +1,7 @@
-// https://leetcode-cn.com/problems/coin-change-2/solution/dong-tai-gui-hua-wan-quan-bei-bao-wen-ti-by-liweiw/
+/* 
+
+/ https://leetcode-cn.com/problems/coin-change-2/solution/dong-tai-gui-hua-wan-quan-bei-bao-wen-ti-by-liweiw/
+*/
 var change = function (amount, coins) {
     //! dp[i][j]表示从区间 [0, i]种硬币中选，且总金额恰好为 j 的所有选法集合的方案数，即为答案。属于组合类动归，可以参考 474. 一和零
 

@@ -39,7 +39,7 @@ class Solution:
                     return False
             return True
 
-        # # 防止有「孤立节点」, 应该遍历所有节点着色, 若flag已经不成立则可以直接退出循环
+        # # 因为图中可能含有多个连通域(例如 graph = [[], [2,3], [1,3], [1,2]] )，为了防止有「孤立节点」, 应该遍历所有节点并将为染色的节点着色, 这过程中如果出现不成立则可以直接退出循环
         for node in range(len(graph)):
             if colors[node] == 0:
                 check = DFS(node, 1)

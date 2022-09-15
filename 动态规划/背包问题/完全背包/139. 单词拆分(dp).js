@@ -1,16 +1,11 @@
-//* https://leetcode-cn.com/problems/word-break/solution/shou-hui-tu-jie-san-chong-fang-fa-dfs-bfs-dong-tai/
-
 /* 
-> 为什么内层外层的遍历顺序是重要的
-排列问题：是否有 任何一种 单词排列 可以 凑成目标 s（固定死单词出现的顺序，可能无法拼出s）
+? 为什么先遍历硬币的方式不行, 非常好的讲解:
+?  https://leetcode.cn/problems/word-break/solution/by-fenjue-e8d5/
+* 更具体的说: 不能先单词后背包的顺序。比如 s = "applepenapple" wordDict = ["apple","pen"] 这个案例, 若物品在外循环, 背包在内循环, 那么外循环第一次使用apple遍历到 dp[12] 也是第二个apple的结尾时, 此时尽管能匹配上但 dp[8](也就是字符 'n') 处于False 的状态, 因此 dp[12] 仍然是 False。在使用 "pen" 进行第二轮外循环时, 使用 pen 将 dp[8] 置为 true 后, 也没法再使用 "apple" 这个物品匹配 dp[12] 了。
 
-本题与[凑硬币]不同的是，相同长度的单词不一定相同 => 导致了
+? 标准解法: https://leetcode-cn.com/problems/word-break/solution/shou-hui-tu-jie-san-chong-fang-fa-dfs-bfs-dong-tai/
 
-组合问题 变 排序问题
-转移方程，除来考虑单词长度 以外，还要考虑 单词是否相等 s[i-len(w):i]==w
-
-链接：https://leetcode.cn/problems/word-break/solution/139-dan-ci-chai-fen-bu-ke-gu-ding-dan-ci-3x74/
-链接: https://leetcode.cn/problems/word-break/solution/by-fenjue-e8d5/
+? 链接：https://leetcode.cn/problems/word-break/solution/139-dan-ci-chai-fen-bu-ke-gu-ding-dan-ci-3x74/
 */
 
 // ! 严格按照遍历条件的标准版
@@ -31,21 +26,6 @@ var wordBreak = function (s, wordDict) {
             ) {
                 dp[i] = true;
             }
-        }
-    }
-    return dp[s.length];
-};
-
-// ! carl的优化版
-var wordBreak_sol2 = function (s, wordDict) {
-    let wordSet = new Set(wordDict);
-    let dp = new Array(s.length + 1).fill(false);
-    dp[0] = true;
-
-    for (let i = 1; i <= s.length; i++) {
-        for (let j = 0; j < i; j++) {
-            let word = s.substring(j, i);
-            if (wordSet.has(word) && dp[j] === true) dp[i] = true;
         }
     }
     return dp[s.length];
