@@ -1,0 +1,17 @@
+
+;/ 剑指 offer 21, 345, 125 这三道题都属于同一类型，左右指针遍历字符串或者数组，直到 left 和 right 进行比较的时候指向的都是「有效的字符或者数字」且两个指针没有越界 才会进行判断或者交换.
+
+? 必看讲解: https://leetcode.cn/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/solution/mian-shi-ti-21-diao-zheng-shu-zu-shun-xu-shi-qi-4/
+
+class Solution:
+    def exchange(self, nums: List[int]) -> List[int]:
+        i, j = 0, len(nums) - 1
+        while i < j:
+            while i < j and nums[i] & 1 == 1: i += 1
+            while i < j and nums[j] & 1 == 0: j -= 1
+            nums[i], nums[j] = nums[j], nums[i]
+        return nums
+
+* 为什么 while 循环里面还要判断 i < j:
+* 第二步和第三步循环过程中，有可能遇到 i == j 的边界情况，此时就应终止，不然 i 就跑到 j 右边了，这和本文方法定义不符。当然此时 nums[i], nums[j] = nums[j], nums[i] 还会执行，不过由于 i == j 了，所以相当于自己交换自己，相当于没有交换
+* 总的来说每次指针移动后，首先要做的是判断索引值的合法性。只有索引合法才有后续的操作。例如 [1,3,5,7] 没有判断的话交换会报错

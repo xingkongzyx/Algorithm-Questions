@@ -1,5 +1,5 @@
 """
-* 重要的注意点是为空树时要用 "#" 代替，这样才能先序唯一确定一棵树。如果没有 "#" 表示空树，需要〔先序加中序〕或者〔后序加中序〕才能唯一确定一棵树。强制为空树加上 "#" 表示反而简化了这个问题。
+* 重要的注意点是为空树时要用 "X" 代替，这样才能先序唯一确定一棵树。如果没有 "X" 表示空树，需要〔先序加中序〕或者〔后序加中序〕才能唯一确定一棵树。强制为空树加上 "X" 表示反而简化了这个问题。
 ! 选择「前序」遍历，是因为「根|左|右」的打印顺序，在反序列化时更容易定位出根节点的值。
 ? 必看: https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/solution/shou-hui-tu-jie-gei-chu-dfshe-bfsliang-chong-jie-f/ 
 ? 带图片: https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/solution/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua-by-le-2/
@@ -17,13 +17,14 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
+        # / 递归函数作用: 创建以当前节点node为根节点的子树的序列化字符串
         def DFS(node):
             if node == None:
                 return "X"
 
             leftSubTreeStr = DFS(node.left)
             rightSubTreeStr = DFS(node.right)
-
+            # * 当前节点与其左右子树的序列化结果要使用 "," 进行连接
             curNodeTreeStr = str(node.val) + "," + \
                 leftSubTreeStr + "," + rightSubTreeStr
 
@@ -39,7 +40,7 @@ class Codec:
                 return None
 
             poppedVal = treeList.pop(0)
-            # * 如果是"#"表示空节点
+            # * 如果是"X"表示空节点
             if poppedVal == "X":
                 return None
 

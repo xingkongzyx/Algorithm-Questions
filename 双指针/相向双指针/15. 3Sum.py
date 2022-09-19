@@ -13,6 +13,7 @@ class Solution(object):
             if currentNum > 0:
                 return result
             
+            # * 当 i > 0且 "nums[i] == nums[i - 1]" 时即跳过此元素 nums[i]：因为已经将 nums[i - 1] 的所有组合加入到结果中，本次双指针搜索只会得到重复组合。
             if i > 0 and currentNum == nums[i-1]:
                 continue
             
