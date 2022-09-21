@@ -1,6 +1,6 @@
 """ 
 * 用一个栈模拟，栈中元素为一个 tuple (letter, count)，第一个值为字母，第二个为它的连续重复次数；
-? https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string-ii/solution/shan-chu-zi-fu-chuan-zhong-de-suo-you-xiang-lin--4/
+? https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string-ii/solution/zhan-python3-by-smoon1989/
 
 / 时间复杂度: O(n)，其中 n 是字符串长度。每个字符只处理一次。
 / 空间复杂度: O(n)，栈空间。

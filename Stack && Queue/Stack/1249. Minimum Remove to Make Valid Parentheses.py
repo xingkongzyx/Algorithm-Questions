@@ -5,7 +5,7 @@ class Solution(object):
     def minRemoveToMakeValid(self, s):
         #* 「标记数组」, 这个数组用于标记 s 中「无效括号」的位置. 默认数组所有位置都是有效的(都是 True). 通过遍历将出现「无效括号」的位置变为 False
         validArr = [True for _ in s]
-        #* 模拟一个栈存放所有遍历到的「左括号」左括号的索引, 
+        #* 模拟一个栈存放所有遍历到的「左括号」的索引, 
         stack = []
         
         for i in range(len(s)):
