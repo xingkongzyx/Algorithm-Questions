@@ -45,6 +45,7 @@ class Solution:
                         # print(newLine)
                 charIdx += 1
 
+            # ! 为什么只有在 not inBlock 时才能够加入 newLine 呢, 防止 source = ["a/*comment", "line", "more_comment*/b"] 的情况, 如果不判断此时是否在「块注释」中, 那么在第一次第二次遍历的时候即使处于「块注释」中仍旧会把 newLine = "a" 加入到 res 中, 导致 res 的结果变为 ["a", "a", "ab"] 而不是正确的 ["ab"]
             if len(newLine) > 0 and inBlock == False:
                 res.append(''.join(newLine))
 

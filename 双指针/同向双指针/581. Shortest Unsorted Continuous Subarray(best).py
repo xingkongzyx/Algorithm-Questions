@@ -5,18 +5,23 @@
 * 因此, 我们可以「两次」遍历, 从而找出「无序」的左右边界
 * ❶ 第一次: 正序遍历, 找到最后一个值小于我们连续更新的 maxVal 值的位置
 * ❷ 第二次: 逆序遍历, 找到最后一个值大于我们连续更新的 minVal 值的位置 
+
+! 这个思路用到的想法就是, 前后有两段「有序」的部分, 在有序的部分, 你从左往右更新 max 肯定是在一直更新的, 从右往左更新 min 也是同理, 但遇到了「无序」的部分就不一定, 下个元素可能会小于 max, 也可能会大于 min。因为「无序」一定有这一性质, 那么记录这一条件最后得到的肯定是「无序」的『左右边界』。
+
 ? https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/solution/581-zui-duan-wu-xu-lian-xu-zi-shu-zu-si-8rivt/
 ? https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/solution/si-lu-qing-xi-ming-liao-kan-bu-dong-bu-cun-zai-de-/1194164
 ? https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/solution/java-shuang-zhi-zhen-shuang-xiang-bian-l-etqf/
 / 时间复杂度: O(n), 其中 n 是给定数组的长度, 我们仅需要遍历该数组两次。
 / 时间复杂度: O(1)。我们只需要常数的空间保存若干变量
 """
+
+
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
         length = len(nums)
         maxVal = nums[0]
         minVal = nums[length - 1]
-        #* 双指针: 用于确认「无序」的左右边界 
+        # * 双指针: 用于确认「无序」的左右边界
         startIdx = 0
         endIdx = 0
 
@@ -26,14 +31,13 @@ class Solution:
             else:
                 endIdx = i
 
-        
         for i in range(length - 2, -1, -1):
             if nums[i] <= minVal:
                 minVal = nums[i]
             else:
                 startIdx = i
 
-        #* 如果最后左右指针所在位置相等, 说明原数组就是有序的, 返回 0 即可。
+        # * 如果最后左右指针所在位置相等, 说明原数组就是有序的, 返回 0 即可。
         if startIdx == endIdx:
             return 0
         else:

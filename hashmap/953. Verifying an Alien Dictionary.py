@@ -1,4 +1,4 @@
-""" 「」
+""" 
 * 对所有的 words 遍历, 判断相邻 word 间是否符合「外星语」的字典序。
 ! 只有每对相邻单词都是有序的, 那么整个 words 才是有序的
 ! 原因: 「有序性」是可以传递的, 例如, word1 <= word2 和 word2 <= word3 可以推出 word1 <= word3
@@ -8,7 +8,7 @@
 
 ? 代码借鉴: https://leetcode.cn/problems/verifying-an-alien-dictionary/solution/by-fuxuemingzhu-d81b/
 ? 有序性传递: https://leetcode.cn/problems/verifying-an-alien-dictionary/solution/by-nehzil-99e7/
-/ 时间复杂度: O(n*m)。n为单词的个数, m 为较长单词的字母数。
+/ 时间复杂度: O(n*m)。n 为单词的个数, m 为较长单词的字母数。
 / 空间复杂度: O(1)。只有26个小写字母, 哈希表大小为常数。
 """
 
