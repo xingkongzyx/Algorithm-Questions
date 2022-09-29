@@ -1,7 +1,8 @@
 
 """ 
-https://leetcode.cn/problems/sliding-window-maximum/solution/dan-diao-dui-lie-si-lu-zhi-you-3ju-hua-b-oqbx/
-# 为什么队列中要存放「数组下标」而不是直接存储「数值」，因为要判断队首的值是否在窗口范围内，由「数组下标」取值很方便，而由「数值」取「数组下标」不是很方便。
+# 为什么队列中要存放「数组下标」而不是直接存储「数值」, 因为要判断队首的值是否在窗口范围内, 由「数组下标」取值很方便, 而由「数值」取「数组下标」不是很方便。
+# 也可以选择加入值, 下面动画链接对应的代码就是加入值的
+? 动画: https://leetcode.cn/problems/sliding-window-maximum/solution/zhe-hui-yi-miao-dong-bu-liao-liao-de-hua-7fy5/
 
 
 ? https://leetcode.cn/problems/sliding-window-maximum/solution/you-xian-dui-lie-zui-da-dui-dan-diao-dui-dbn9/
@@ -15,7 +16,7 @@ https://leetcode.cn/problems/sliding-window-maximum/solution/dan-diao-dui-lie-si
 
 class Solution(object):
     def maxSlidingWindow(self, nums, k):
-        # * 使用双端队列，并且存入index
+        # * 使用双端队列, 并且存入index
         queue = collections.deque()
         res = []
         for i in range(len(nums)):
@@ -23,7 +24,7 @@ class Solution(object):
             while queue and nums[queue[-1]] < nums[i]:
                 queue.pop()
             queue.append(i)
-            # * 当单调队列的第一个元素（即最大的元素）不在滑动窗口的范围 [i - k + 1, i]内, 说明该最大元素在当前的窗口之外，则popleft单调队列中的第一个元素
+            # * 当单调队列的第一个元素（即最大的元素）不在滑动窗口的范围 [i - k + 1, i]内, 说明该最大元素在当前的窗口之外, 则popleft单调队列中的第一个元素
             if queue[0] <= i - k:
                 queue.popleft()
             # * 在当前index >= k - 1的时候（即这时候已经能够构成长度为k的窗口）把单调队列的第一个元素加入到结果中去

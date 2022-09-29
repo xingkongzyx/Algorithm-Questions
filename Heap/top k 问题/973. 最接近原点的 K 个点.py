@@ -4,7 +4,6 @@ class Solution(object):
     def kClosest(self, points, k):
 
         #* 求离的最近的，说明要把距离远的排除出去，所以使用 maxHeap
-        
         maxHeap = MaxHeap()
         record = {}
         for xIdx, yIdx in points:
