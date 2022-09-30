@@ -6,7 +6,7 @@
 ? 调用 python 库函数: https://leetcode.cn/problems/top-k-frequent-words/solution/pythonyou-xian-dui-lie-by-luo-bi-da-quan-w8me/
 
 / 时间复杂度: 使用哈希表统计词频，复杂度为 O(n)；使用最多 n 个元素维护一个大小为 k 的堆，复杂度为 O(nlogk)；输出答案时颠倒数组, 复杂度为 O(k), 同时 k≤n。整体复杂度为 O(nlogk)
-/ 空间复杂度: O(n)
+/ 空间复杂度: O(k) since the largest number of words in our minheap is K
 
 ? https://leetcode.cn/problems/top-k-frequent-words/solution/gong-shui-san-xie-xiang-jie-shi-yong-ha-8dxt2/
 """
@@ -28,7 +28,7 @@ class Solution:
                 heap.remove()
 
         res = []
-        # print(heap.heap)
+
         while heap.size:
             res.append(heap.remove()[1])
 
@@ -75,22 +75,14 @@ class MinHeap:
 
     def siftDown(self, currentIdx):
         endIdx = len(self.heap) - 1
-        # * 如果「左子节点」的索引已经越界, 终止下沉
         while currentIdx * 2 + 1 <= endIdx:
-            # * 记录「左子节点」在 heap 中的位置(由于 while 的判断条件, 确定它一定存在)
             childOneIdx = currentIdx * 2 + 1
-
-            # * 记录「右子节点」在 heap 中的位置(此时不确定它是否存在)
             childTwoIdx = currentIdx * 2 + 2
-
-            # * 记录下沉过程中「可能的」用于交换的子节点, 默认为「左子节点」。
-            # 此时不能确定是否满足下沉交换条件, 这只是「可能的」用于交换的子节点
             childIdxToSwap = childOneIdx
-            # * 如果「右子节点」存在且它的值比「左子节点」更小, 则用它作为待交换的节点
+
             if childTwoIdx <= endIdx and self.compare(childTwoIdx, childOneIdx):
                 childIdxToSwap = childTwoIdx
 
-            # * 因为是 minHeap, 如果 currentIdx 代表的数字比前面记录的「可能的」用于交换的子节点都大, 则进行交换
             if self.compare(childIdxToSwap, currentIdx):
                 self.swap(childIdxToSwap, currentIdx)
                 currentIdx = childIdxToSwap
