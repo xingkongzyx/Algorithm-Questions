@@ -2,15 +2,13 @@
 """ 
 # 为什么队列中要存放「数组下标」而不是直接存储「数值」, 因为要判断队首的值是否在窗口范围内, 由「数组下标」取值很方便, 而由「数值」取「数组下标」不是很方便。
 # 也可以选择加入值, 下面动画链接对应的代码就是加入值的
-? 动画: https://leetcode.cn/problems/sliding-window-maximum/solution/zhe-hui-yi-miao-dong-bu-liao-liao-de-hua-7fy5/
+? python 很清晰的讲解1(必看): https://leetcode.cn/problems/sliding-window-maximum/solution/python-jian-ji-de-dan-diao-dui-lie-jie-f-q56i/
+? 很清晰的讲解2: https://leetcode.cn/problems/sliding-window-maximum/solution/you-xian-dui-lie-zui-da-dui-dan-diao-dui-dbn9/
 
+? 有动画, 但队列中储存的是值(不建议): https://leetcode.cn/problems/sliding-window-maximum/solution/zhe-hui-yi-miao-dong-bu-liao-liao-de-hua-7fy5/
 
-? https://leetcode.cn/problems/sliding-window-maximum/solution/you-xian-dui-lie-zui-da-dui-dan-diao-dui-dbn9/
-
-? python 很清晰的讲解(必看): https://leetcode.cn/problems/sliding-window-maximum/solution/python-jian-ji-de-dan-diao-dui-lie-jie-f-q56i/
 / 时间复杂度: O(n), 其中 n 是数组 nums 的长度。每一个下标恰好被放入队列一次, 并且最多被弹出队列一次, 因此时间复杂度为 O(n)。
-
-/ 空间复杂度: O(k)。与方法一不同的是, 在方法二中我们使用的数据结构是双向的, 因此「不断从队首弹出元素」保证了队列中最多不会有超过 k+1 个元素, 因此队列使用的空间为 O(k)。
+/ 空间复杂度: O(k)。我们使用的数据结构是双向的, 因此「不断从队首弹出元素」保证了队列中最多不会有超过 k+1 个元素, 因此队列使用的空间为 O(k)。
 """
 
 

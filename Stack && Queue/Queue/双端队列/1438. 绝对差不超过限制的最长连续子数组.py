@@ -10,15 +10,11 @@
 ! ➄ 问题是, 窗口缩小时, 需要便历窗口内所有数字才能确定 maxNumber 和 minNumber 的大小, 这个过程时间复杂度是 O(n), 令算法整体时间复杂度到了O(n^2)。
 * ➅ 那么, 如何在更短的时间内确定『滑动窗口』的 maxNumber(最大值) 和 minNumber(最小值) 的大小呢？那我们完全可以借助滑动窗口的最大值这个题目的思想来解决这个题目。
 # 维护一个「单调递减」的双端队列, 进而得到滑动窗口的「最大值」。维护一个「单调递增」的双端队列, 来获取滑动窗口的「最小值」。
-? 代码来自 https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/solution/shi-pin-mo-ni-yi-xia-gao-ding-by-chefyua-tjzl/
-
-
-#? 从暴力法到滑动窗口到单调队列的思考过程: https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/solution/pythonhua-dong-chuang-kou-dan-diao-zhan-90tea/
-
+? 代码来自 https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/solution/jue-dui-chai-bu-chao-guo-xian-zhi-de-zui-chang-lia/
+#? 从暴力法到滑动窗口到单调队列的思考过程: https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/solution/he-gua-de-shu-ju-jie-gou-hua-dong-chuang-v46j/
 
 / 时间复杂度: O(n), 两个队列出队、入队最多 n 次。所以时间复杂度为 O(n)
 / 空间复杂度: O(n), 其中 n 是数组长度。最坏情况下有序集合将和原数组等大
-
 """
 
 
@@ -35,30 +31,24 @@ class Solution:
         increaseQueue = deque([])
 
         while right < len(nums):
-            # * 右沿元素进入窗口、维护最大值单调队列
-            while decreaseQueue and decreaseQueue[-1] < nums[right]:
-                decreaseQueue.pop()
-            decreaseQueue.append(nums[right])
-
-            # * 右沿元素进入窗口、维护最小值单调队列
-            while increaseQueue and increaseQueue[-1] > nums[right]:
+            # * 右沿元素的下标进入窗口、维护最小值单调队列
+            while increaseQueue and nums[increaseQueue[-1]] > nums[right]:
                 increaseQueue.pop()
-            increaseQueue.append(nums[right])
+            increaseQueue.append(right)
 
-            # print(decreaseQueue)
-            # print(increaseQueue)
-            # print("=====")
+            # * 右沿元素的下标进入窗口、维护最大值单调队列
+            while decreaseQueue and nums[decreaseQueue[-1]] < nums[right]:
+                decreaseQueue.pop()
+            decreaseQueue.append(right)
+
             # * 如果当前窗口的最大值最小值的差大于 limit, 则不断缩小窗口（左沿++）, 直至最大值变小或者最小值变大从而满足 limit 限制
-            while abs(decreaseQueue[0] - increaseQueue[0]) > limit:
-                leftNum = nums[left]
-                if leftNum == increaseQueue[0]:
-                    increaseQueue.popleft()
-                if leftNum == decreaseQueue[0]:
-                    decreaseQueue.popleft()
+            while nums[decreaseQueue[0]] - nums[increaseQueue[0]] > limit:
                 left += 1
+                while decreaseQueue and decreaseQueue[0] < left:
+                    decreaseQueue.popleft()
+                while increaseQueue and increaseQueue[0] < left:
+                    increaseQueue.popleft()
 
-            curLen = right - left + 1
-            maxLen = max(maxLen, curLen)
+            maxLen = max(maxLen, right - left + 1)
             right += 1
-
         return maxLen
