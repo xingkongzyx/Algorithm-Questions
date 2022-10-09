@@ -1,10 +1,18 @@
 """ 
+> 注意跟「右段尾部」比较不用考虑数组本身就是也有序的特殊情况
 * 本题与 153 不同的是 - 元素的值可以相同:
 * 对于处理元素相同的情况, 一般我们可以通过「递减」right 的索引或者「递加」left 的索引解决
-* 例如在 81. 搜索旋转排序数组 II 中我们是通过「递加」left 的索引解决解决 nums[mid] == nums[left] 的情况
-
-
+* 例如在 81. 搜索旋转排序数组 II 中我们是通过「递加」left 的索引解决 nums[mid] == nums[left] 的情况
 ? https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/solution/er-fen-fa-fen-zhi-fa-python-dai-ma-by-liweiwei1419/
+
+ 
+ #? 综合性讲解 https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/solution/154-find-minimum-in-rotated-sorted-array-ii-by-jyd/
+ 
+ #/ 关于细节很好的讲解(包括为什么要与右段尾部进行比较，而不与左段头部进行比较，明明也有类似的效果？ 为什么变化时right = mid；而left = mid + 1？为什么nums[mid] == nums[right]时，直接将right--，再继续比较就可以，这样不会出现问题吗？): https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/solution/di-zi-dui-guan-fang-ti-jie-er-fen-fa-de-omkrg/
+ 
+ #? 一般性情况的图画: https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/solution/tong-guo-hua-tu-lai-shen-ke-li-jie-er-fen-fa-by-ch/
+
+
 
 """
 
@@ -27,6 +35,7 @@ class Solution:
                 right = mid
             else:
                 """ 
+                # 与153相比新增加的情况
                 * 结论 3: 当中间数与右边界表示的数相等的时候，看下面两个例子: 
 
                 * 例 5: [0, 1, 1, 1, 1, 1, 1]
