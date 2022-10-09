@@ -1,13 +1,10 @@
 """ 
-* 要想使得操作次数最小, 我们应当「尽可能减少 nums 1 中元素的值, 同时尽可能增加 nums 2 ​中元素的值」
-* 重点: 题主把下降的值用 num-1 也变成上升了, 比如相差是8, 用两个5超过了, 返回2次。因为用5可以超过或相等, 那么5可以只升3, 一定可以得到答案。
-* freq[i] 代表的是最多能增加/减少i, 比如我最后 i = 4 把 diff = 2 变成了 -2 由于是最多调整4, 那么这次我可以调整 2 让diff变成 0, 对最后次数不产生影响。
+* 假设 nums1 的和「大于」 nums2 的和, 要想使得「操作次数」最小, 我们应当『尽可能减少 nums1 中元素的值, 同时尽可能增加 nums2 ​中元素的值』
+* 重点: 题主把下降的值用 "num - 1" 也变成上升了, 比如相差是8, 用两个5超过了, 返回2次。因为用5可以超过或相等, 那么5可以只升3, 一定可以得到答案。
+* freq[i] 代表的是最多能增加/减少i, 比如我最后 i = 4 把 diff = 2 变成了 -2 由于是最多调整4, 那么这次我可以调整 2 让 diff 变成 0, 对最后次数不产生影响。
 
 * 增大nums1的一个数, 就等于减小nums2中的一个数。
 * 在有多个数可以选择的情况下, 增大时应该优先增大较小的数（上升空间大）; 同理, 减小时应当优先减小较大的数（下降空间大）。
-
-
-
 ? https://leetcode.cn/problems/equal-sum-arrays-with-minimum-number-of-operations/solution/tong-guo-zui-shao-cao-zuo-ci-shu-shi-shu-o8no/
 """
 
@@ -38,7 +35,7 @@ class Solution:
         for j in range(len(nums2)):
             num2Increase = 6 - nums2[j]
             freq[num2Increase] += 1
-
+        print(freq)
         diff = sum1 - sum2
         res = 0
         for i in range(5, 0, -1):
@@ -48,3 +45,7 @@ class Solution:
                 res += 1
 
         return res if diff <= 0 else -1
+
+
+Solution().minOperations([5, 2, 1, 5, 2, 2, 2, 2,
+                          4, 3, 3, 5], [1, 4, 5, 5, 6, 3, 1, 3, 3])
