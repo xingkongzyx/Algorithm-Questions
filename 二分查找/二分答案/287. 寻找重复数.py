@@ -24,7 +24,7 @@ class Solution:
                 #* 下一轮搜索区间 [left, mid]
                 right = mid
             else:
-                #* 下一轮搜索区间 [mid + 1, right]
+                #* 这里包含了小于的情况, 小于的情况会在 [2,2,2,2,2] && mid = 1 时出现, 小于时, 也能确定当前的 mid 一定不是答案. 下一轮搜索区间应是 [mid + 1, right].而等于时, 也可以确定当前的 mid 及其左边不存在重复数, 下一轮搜索区间应是 [mid + 1, right].
                 left = mid + 1
         return left
     
