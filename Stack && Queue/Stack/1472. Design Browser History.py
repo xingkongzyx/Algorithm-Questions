@@ -1,7 +1,8 @@
 """ 
 ? https://leetcode.cn/problems/design-browser-history/solution/yong-shu-zu-shi-xian-quan-o1de-she-ji-by-x0sr/
 ? 代码借鉴: https://leetcode.cn/problems/design-browser-history/solution/-by-wywy-m-brat/
-/ 时间复杂度: O(1)
+/ Time: O(1) for each method
+/ Space: O(N), where N is the most URLs we save
 """
 
 

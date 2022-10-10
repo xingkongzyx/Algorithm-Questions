@@ -12,37 +12,38 @@
 * ➄ 当调用 findMedian 查询中位数的时候, 中位数就是最大堆的堆顶元素, 或者 (最大堆的堆顶元素 + 最小堆的堆顶元素)/2
 
 
-? https://leetcode.cn/problems/find-median-from-data-stream/solution/tong-ge-lai-shua-ti-la-tu-jie-da-ding-du-ghiy/
+? 过程图解: https://leetcode.cn/problems/find-median-from-data-stream/solution/tong-ge-lai-shua-ti-la-tu-jie-da-ding-du-ghiy/
+? 代码借鉴: https://leetcode.com/problems/find-median-from-data-stream/discuss/74158/Python-O(lgn)-using-two-heapq-data-sturctures
 
 / 时间复杂度: addNum 函数的复杂度为 O(logn); findMedian 函数的复杂度为 O(1)
 / 空间复杂度: O(n)
 """
 
+
 class MedianFinder(object):
 
     def __init__(self):
         self.lowerHalf = MaxHeap()
-        self.greaterHalf= MinHeap()
+        self.greaterHalf = MinHeap()
 
     def addNum(self, num):
-        #* 我们要保证每次插入元素后, 两堆维持相对长度。让 minHeap 为长度较大的堆, 每次插入元素时进行判断。
+        # * 我们要保证每次插入元素后, 两堆维持相对长度。让 minHeap 为长度较大的堆, 每次插入元素时进行判断。
         if self.lowerHalf.size == 0 or num < self.lowerHalf.peek():
             self.lowerHalf.insert(num)
         else:
             self.greaterHalf.insert(num)
-            
-        #* 如果按照上述规则插入后发现两个堆的长度「差为 2」, 则需要从「元素多」的那个堆中「移除」一个元素, 并将「移除的元素」给予另一个「元素少」的那个堆
+
+        # * 如果按照上述规则插入后发现两个堆的长度「差为 2」, 则需要从「元素多」的那个堆中「移除」一个元素, 并将「移除的元素」给予另一个「元素少」的那个堆
         if self.lowerHalf.size - self.greaterHalf.size == 2:
             self.greaterHalf.insert(self.lowerHalf.remove())
         elif self.greaterHalf.size - self.lowerHalf.size == 2:
             self.lowerHalf.insert(self.greaterHalf.remove())
 
-
     def findMedian(self):
-        #* 如果当前两个 heaps 大小一样, 则中位数是两堆的「堆顶元素平均值」。
-        #* 如果当前两个 heaps 大小不一样, 因为我们上面的『重新平衡』操作, 则一定有一个「元素多」的堆, 中位数为「数字较多堆」的堆顶元素。
+        # * 如果当前两个 heaps 大小一样, 则中位数是两堆的「堆顶元素平均值」。
+        # * 如果当前两个 heaps 大小不一样, 因为我们上面的『重新平衡』操作, 则一定有一个「元素多」的堆, 中位数为「数字较多堆」的堆顶元素。
         if self.lowerHalf.size == self.greaterHalf.size:
-            return float(self.lowerHalf.peek() + self.greaterHalf.peek()) /2
+            return float(self.lowerHalf.peek() + self.greaterHalf.peek()) / 2
         elif self.lowerHalf.size > self.greaterHalf.size:
             return self.lowerHalf.peek()
         elif self.lowerHalf.size < self.greaterHalf.size:
@@ -52,18 +53,18 @@ class MedianFinder(object):
 class MaxHeap:
     def __init__(self):
         self.heap = []
-    
+
     @property
     def size(self):
         return len(self.heap)
-    
+
     def peek(self):
         return self.heap[0]
-    
+
     def insert(self, value):
         self.heap.append(value)
         self.siftUp(len(self.heap) - 1)
-    
+
     def remove(self):
         item = self.heap[0]
         self.swap(0, len(self.heap) - 1)
@@ -79,7 +80,7 @@ class MaxHeap:
                 currentIdx = parentIdx
             else:
                 break
-    
+
     def siftDown(self, currentIdx):
         endIdx = len(self.heap) - 1
         while currentIdx * 2 + 1 <= endIdx:
@@ -88,13 +89,13 @@ class MaxHeap:
             childIdxToSwap = childOneIdx
             if childTwoIdx <= endIdx and self.heap[childTwoIdx] > self.heap[childOneIdx]:
                 childIdxToSwap = childTwoIdx
-            
+
             if self.heap[currentIdx] < self.heap[childIdxToSwap]:
                 self.swap(childIdxToSwap, currentIdx)
                 currentIdx = childIdxToSwap
             else:
                 break
-                   
+
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
@@ -102,18 +103,18 @@ class MaxHeap:
 class MinHeap:
     def __init__(self):
         self.heap = []
-    
+
     @property
     def size(self):
         return len(self.heap)
-    
+
     def peek(self):
         return self.heap[0]
-    
+
     def insert(self, value):
         self.heap.append(value)
         self.siftUp(len(self.heap) - 1)
-        
+
     def siftUp(self, currentIdx):
         while currentIdx > 0:
             parentIdx = (currentIdx - 1) // 2
@@ -122,7 +123,7 @@ class MinHeap:
                 currentIdx = parentIdx
             else:
                 break
-            
+
     def remove(self):
         item = self.heap[0]
         self.swap(0, len(self.heap) - 1)
@@ -130,7 +131,6 @@ class MinHeap:
         self.siftDown(0)
         return item
 
-    
     def siftDown(self, currentIdx):
         endIdx = len(self.heap) - 1
         while currentIdx * 2 + 1 <= endIdx:
@@ -139,12 +139,12 @@ class MinHeap:
             childIdxToSwap = childOneIdx
             if childTwoIdx <= endIdx and self.heap[childTwoIdx] < self.heap[childOneIdx]:
                 childIdxToSwap = childTwoIdx
-            
+
             if self.heap[childIdxToSwap] < self.heap[currentIdx]:
                 self.swap(childIdxToSwap, currentIdx)
                 currentIdx = childIdxToSwap
             else:
                 break
-                  
+
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]

@@ -4,6 +4,13 @@
 ? 详细讲解: https://leetcode.cn/problems/reorganize-string/solution/cjavapython-zui-da-dui-by-yanghk/
 ? 代码借鉴: https://leetcode.cn/problems/reorganize-string/solution/c-da-ding-dui-ji-hu-shuang-bai-de-jie-fa-1bkq/
 ? https://leetcode.cn/problems/reorganize-string/solution/lc767-zhong-gou-zi-fu-chuan-dui-tan-xin-by-fight_f/
+
+/ O(n) to build map with <Character, Count>
+/ add to priority queue: k * lg (k) --> constant, because this step you just have 26 entries in map
+/ Building string - StringBuilder O(n * lg k ) , where k is 26
+/ you are potentially adding back values into queue
+/ Overall O(n * lg(26)) --> O(n)
+/ space: O(1) because map or PQ has size of alphabet
 """
 
 
