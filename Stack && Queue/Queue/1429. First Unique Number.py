@@ -18,6 +18,7 @@ class FirstUnique:
                 self.dic[num] += 1
 
     def showFirstUnique(self) -> int:
+        # * 通过更新 self.idx 来找到第一个 unique number, 如果找不到, 则返回 -1
         while self.index < len(self.nums):
             if self.dic[self.nums[self.index]] == 1:
                 return self.nums[self.index]

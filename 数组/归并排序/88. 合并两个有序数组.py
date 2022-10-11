@@ -32,7 +32,6 @@ class Solution(object):
                 nums2Idx -= 1
 
             insertIdx -= 1
-        return nums1
 
 
 Solution().merge(nums1=[1], m=1, nums2=[], n=0)
