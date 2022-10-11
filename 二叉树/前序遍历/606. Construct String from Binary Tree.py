@@ -2,7 +2,15 @@
 * 前序遍历没什么好说的, 难点在于加括号时区分左右子树。
 * 左子树加括号的条件是: 1.左子树不空, 2.左子树为空, 但右子树不空；
 * 右子树加括号的条件是: 右子树不空
-? 思路: https://leetcode.cn/problems/construct-string-from-binary-tree/solution/qian-xu-bian-li-mei-shi-yao-hao-shuo-de-nan-dian-z/
+
+* Approach:
+* Here we recursively traverse the nodes in binary tree and check:
+* • If there exists a left or right child, we add parentheses for left child and put inside whatever we find on left subtree.
+* • If there exists only right child, we add parentheses for right child and add inside whatever we find in right subtree.
+* • The difference that can observed is that for left part we create parentheses even when there is no left child, but for right part we create parentheses only when there is right child.
+/ Time Complexity: O(N), where N is the number of nodes in the Binary Tree.
+/ Space Complexity: O(H), where H is the height of the Binary Tree (Recursion stack space)
+? 思路: https://leetcode.com/problems/construct-string-from-binary-tree/discuss/2542357/C%2B%2B-or-Recursive-Pre-Order-Traversal-Approach
 """
 
 

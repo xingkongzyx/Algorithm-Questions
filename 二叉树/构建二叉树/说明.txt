@@ -1,0 +1,5 @@
+Difference between reconstruct the tree #105 preorder/postorder + inorder and this problem(297) which just uses preorder
+
+#105 preorder/postorder + inorder: why we have to use 2 lists/traversals?
+The lists does not preserve the null, so we do not have an indicator to check if a node is in the left subtree or right subtree, so 2 traversals are needed.
+But for this problem, we can preserve null, so we can reconstruct by just using 1 list, i.e. preorder list.(Q: can we do it just using postorder or inorder? )
