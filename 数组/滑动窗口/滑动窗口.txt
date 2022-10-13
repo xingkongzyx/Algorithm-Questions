@@ -1,10 +1,6 @@
-? 最小滑动窗口七道题总结: https://leetcode.cn/problems/M1oyTv/solution/by-flix-4bcr/
-外网的题目
-https://leetcode.com/discuss/study-guide/1773891/Sliding-Window-Technique-and-Question-Bank
-https://leetcode.com/discuss/study-guide/657507/Sliding-Window-for-Beginners-Problems-or-Template-or-Sample-Solutions
+
 ? 13道题总结 https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/yi-ge-mo-ban-miao-sha-10dao-zhong-deng-n-sb0x/
 
-https://leetcode.cn/circle/article/WC6uBv/ 
 !最大窗口与最小窗口的区别:
 ? https://leetcode.cn/problems/fruit-into-baskets/solution/shen-du-jie-xi-zhe-dao-ti-he-by-linzeyin-6crr/
 

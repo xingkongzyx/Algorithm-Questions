@@ -39,10 +39,9 @@ class Solution(object):
             #! 当且仅当滑动窗口 s[left, right] 已经满足了题目要求的「涵盖 t 所有字符」的要求. 此时那些字符在 s_map 中的出现频次一定是「大于或等于」他们在 t 中的出现频次的. 这个时候「缩小窗口」, 寻找『最小覆盖字串』 
             while distance == len(t):
                 #* 当窗口的长度比已有的 minLen 小时, 更新 minLen , 并记录起始位置
-                if distance == len(t):
-                    if right - left + 1 < minLen:
-                        beginIdx = left
-                        minLen = right - left + 1
+                if right - left + 1 < minLen:
+                    beginIdx = left
+                    minLen = right - left + 1
                 
                 leftChar = s[left]
                 
