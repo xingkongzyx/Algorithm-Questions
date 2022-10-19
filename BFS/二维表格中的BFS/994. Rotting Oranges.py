@@ -10,9 +10,9 @@
 
 / 思路详细叙述
 / 1.刚开始将所有烂橘子位置压入队列, 并统计新鲜橘子数量;
-/ 2.bfs从烂橘子位置开始遍历, 让所有新鲜橘子摆烂, 并且把本次摆烂的橘子压入队列;
-/ 3.由上一层摆烂的橘子继续向其四周扩散, 以此层层迭代;
-/ 4.随着摆烂蔓延, 新鲜橘子越来越少, 最后判断时间;
+/ 2.bfs从烂橘子位置开始遍历, 让所有新鲜橘子变烂, 并且把本次变烂的橘子压入队列;
+/ 3.由上一层变烂的橘子继续向其四周扩散, 以此层层迭代;
+/ 4.随着变烂蔓延, 新鲜橘子越来越少, 最后判断时间;
 ? https://leetcode.cn/problems/rotting-oranges/solution/ji-jian-si-lu-bfs-javaban-ben-by-ren-fei-ugc1/
 """
 
@@ -53,7 +53,7 @@ class Solution:
                     newColIdx = c + dir_y
                     # * 如果四个方向有「新鲜」的橘子。注意, 必须得是「新鲜」的橘子才能被感染, 如果 grid[i][j] == 0, 代表 an empty cell, 是不能被感染的
                     if inArea(newRowIdx, newColIdx) and grid[newRowIdx][newColIdx] == 1:
-                        # * 新鲜橘子变腐烂, 避免它被「重复遍历」
+                        # ! * 新鲜橘子变腐烂, 避免它被「重复遍历」
                         grid[newRowIdx][newColIdx] = 2
                         # * 新鲜的橘子数-1
                         count -= 1

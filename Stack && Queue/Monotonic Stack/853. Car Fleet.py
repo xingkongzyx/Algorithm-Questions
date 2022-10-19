@@ -24,6 +24,7 @@ class Solution:
         stack = []
 
         for pos, time in cars:
+            # * 注意: 前后两辆车到达终点的时间相同也能合并成一个车队.
             while stack and stack[-1] <= time:
                 stack.pop()
             stack.append(time)
