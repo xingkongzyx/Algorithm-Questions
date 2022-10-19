@@ -5,6 +5,10 @@
 ! 这道题实际上就是求「海洋」格子到「陆地」格子的「最长路径」. 也就是从「陆地 1」开始, 要扩散多少次, 才能把所有的「海洋」给覆盖掉. 「最远」应该从这个角度来理解. BFS 能求最短路径, 自然也能求最长路径. 那么这道题使用 BFS, 应该是毫无疑问的了. 
 ? https://leetcode.cn/problems/as-far-from-land-as-possible/solution/tao-lu-da-jie-mi-gao-dong-ti-mu-kao-cha-shi-yao-sh/
 ? https://leetcode.cn/problems/as-far-from-land-as-possible/solution/li-qing-si-lu-wei-shi-yao-yong-bfs-ru-he-xie-bfs-d/
+
+/ 时间复杂度: O(N^2), 这里 NN 是方格的边长。二维表格里所有的元素都会被看一遍；
+/ 空间复杂度: O(N^2), 最坏情况下, 方格里全部是陆地的时候, 元素全部会进队列。
+
 """
 
 
