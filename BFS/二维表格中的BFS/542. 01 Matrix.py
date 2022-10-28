@@ -23,6 +23,7 @@ class Solution:
             return 0 <= rowIdx < numRows and 0 <= colIdx < numCols
 
         queue = []
+        # > 在向队列中加入下一轮要处理的节点的时候, 对其对应的 visited数组 以及 结果数组 进行更新
         for i in range(numRows):
             for j in range(numCols):
                 # * 首先把所有为 0 的元素的坐标加入队列, 并将 visited 的对应位置标记为「已访问」
@@ -33,22 +34,21 @@ class Solution:
 
         steps = 0
         while queue:
+            steps += 1
             numOfNodesInLevel = len(queue)
-            # * 对 queue 中当前层的所有元素进行遍历, 检查是否为 1, 是的话更新 res 数组, 然后对它「上下左右」四个邻居进行判断, 判断其是否越界以及是否「已访问」
+            # * 对 queue 中当前层的所有元素进行遍历, 对弹出的每个元素的「上下左右」四个邻居进行判断, 判断「邻居」是否越界以及是否「已访问」
             for i in range(numOfNodesInLevel):
-                poppedNode = queue.pop(0)
-                currentX, currentY = poppedNode[0], poppedNode[1]
-                if mat[currentX][currentY] == 1:
-                    res[currentX][currentY] = steps
+
+                currentX, currentY = queue.pop(0)
 
                 for dirIdx in range(4):
                     newX, newY = currentX + \
                         x_dir[dirIdx], currentY + y_dir[dirIdx]
-                    # # 在本轮就把下一轮要访问的元素标记为「已访问」
+                    # # 在本轮就把下一轮要访问的元素标记为「已访问」, 并且对应的结果数组进行更新
                     if inArea(newX, newY) and visited[newX][newY] == False:
+                        res[newX][newY] = steps
                         visited[newX][newY] = True
                         queue.append((newX, newY))
-            steps += 1
         return res
 
 

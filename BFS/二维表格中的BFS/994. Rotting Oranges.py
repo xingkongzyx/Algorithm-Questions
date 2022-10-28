@@ -28,6 +28,7 @@ class Solution:
 
         queue = []
         # * count 表示新鲜橘子的数量
+        # > 在向队列中加入下一轮要处理的节点的时候, 对其对应的 visited数组(这里是grid数组) 进行更新. 方法是新鲜橘子变腐烂, 避免它被「重复遍历」
         count = 0
         for r in range(numRows):
             for c in range(numCols):

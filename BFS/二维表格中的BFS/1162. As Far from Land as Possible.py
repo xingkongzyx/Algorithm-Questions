@@ -1,5 +1,4 @@
 """ 
-> 本题与1162. 地图分析是一样的思路。
 * 对于本题, 如果套用「单源最短路」做法, 我们需要对每个「海洋」位置做一次 BFS：求得每个「海洋」的最近陆地距离, 然后在所有的距离中取 max 作为答案。时间复杂度为 O(n⁴), 不符合要求
 ? 为什么不能从海洋开始遍历: https://leetcode.cn/problems/as-far-from-land-as-possible/solution/gong-shui-san-xie-ru-he-shi-yong-duo-yua-vlea/
 ! 这道题实际上就是求「海洋」格子到「陆地」格子的「最长路径」. 也就是从「陆地 1」开始, 要扩散多少次, 才能把所有的「海洋」给覆盖掉. 「最远」应该从这个角度来理解. BFS 能求最短路径, 自然也能求最长路径. 那么这道题使用 BFS, 应该是毫无疑问的了. 
@@ -24,6 +23,7 @@ class Solution:
         queue = []
         numLands = 0
         # * 将所有陆地都放入队列中
+        # > 在向队列中加入下一轮要处理的节点的时候, 对其对应的 visited数组 进行更新
         for i in range(numRows):
             for j in range(numCols):
                 if grid[i][j] == 1:
