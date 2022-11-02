@@ -4,6 +4,11 @@
 ! 本题有一个注意点：本题是一个「无向图」, 需要用标记位, 标记着节点是否走过, 否则就会死循环！代码中采取的标记的写法是将访问过的单词从 wordSet 中移除
 ? 无向图图片来自: https://leetcode.cn/problems/word-ladder/solution/yan-du-you-xian-bian-li-shuang-xiang-yan-du-you-2/
 ? https://leetcode.cn/problems/word-ladder/solution/shou-hua-tu-jie-127-dan-ci-jie-long-bfsde-dian-x-2/
+
+/ For space: BigO(M * N) where M is no. of character that we had in our string & N is the size of our wordList. Total space occupied would be Length of word * No. of words = M*N.
+
+/ For Time:  BigO(M^2 * N), where M is size of dequeued word & N is size of our word list. Replacing each character in a string and constructing a new string from it is both 'M' work. Since that is nested it becomes M^2.
+
 """
 
 
