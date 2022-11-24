@@ -1,46 +1,46 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+""" 
+两节点间的路径和 = 两节点的前缀和之差
+* 递归函数的意义: 更新以当前节点作为路径的最后一个节点时满足路径和的结果数量
+/ 时间复杂度: 每个节点只遍历一次, O(N).
+/ 空间复杂度: 开辟了一个hashMap, O(N).
+
+? https://leetcode.cn/problems/path-sum-iii/solutions/596361/dui-qian-zhui-he-jie-fa-de-yi-dian-jie-s-dey6/?orderBy=most_votes
+"""
+
+
 class Solution:
     def pathSum(self, root, targetSum):
         if root == None:
             return 0
-        self.preSumMap = {0: 1}
-        self.count = 0
-        self.currentSum = root.val
+        preSumMap = {0: 1}
+        count = 0
+        currentSum = root.val
         # targetSum
 
         def traverse(node):
-            #* 这里使用前缀和从而判断是否有路径和满足 targetSum 的条件
-            if self.currentSum - targetSum in self.preSumMap:
-                # print(node.val, self.preSumMap)
-                self.count += self.preSumMap[self.currentSum - targetSum]
-
-            if self.currentSum in self.preSumMap:
-                self.preSumMap[self.currentSum] += 1
-            else:
-                self.preSumMap[self.currentSum] = 1
-
+            nonlocal currentSum, preSumMap, count
+            # * 这里使用前缀和从而判断是否有路径和满足 targetSum 的条件
+            if currentSum - targetSum in preSumMap:
+                # print(node.val, preSumMap)
+                count += preSumMap[currentSum - targetSum]
+            preSumMap[currentSum] = preSumMap.get(currentSum, 0) + 1
             #* 递归的终止条件, 一旦遇到了叶子节点就不会再往下继续遍历, 因为代码中没有处理空节点的逻辑
             if node.left == None and node.right == None:
-                return 
+                return
+
             #! 非常关键, 当我们遍历另一条路径时不希望已经遍历过的节点还储存在 preSumMap map 中, 这样会导致结果错误. 所以在前面遍历完左/右子树后能够将在遍历左右子树过程中加入 preSumMap map 的项撤回.
             if node.left:
-                self.currentSum += node.left.val
+                currentSum += node.left.val
                 traverse(node.left)
-                #* 这里撤回的其实是在 遍历到 node.left 时加入到 map 中的 [ self.currentSum + node.left.val] 的项
-                self.preSumMap[self.currentSum] -= 1
-                self.currentSum -= node.left.val
+                preSumMap[currentSum] -= 1
+                currentSum -= node.left.val
 
             if node.right:
-                self.currentSum += node.right.val
+                currentSum += node.right.val  
                 traverse(node.right)
-                self.preSumMap[self.currentSum] -= 1
-                self.currentSum -= node.right.val
-            # self.preSum[self.currentSum] -= 1
+                preSumMap[currentSum] -= 1
+                currentSum -= node.right.val
+            # preSum[currentSum] -= 1
 
         traverse(root)
-        return self.count
+        return count

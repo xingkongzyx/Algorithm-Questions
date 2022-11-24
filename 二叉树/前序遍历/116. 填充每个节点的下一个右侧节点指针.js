@@ -6,18 +6,19 @@
 ? 来源代码随想录: https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/solution/116-di-gui-yu-die-dai-xiang-jie-by-carls-k8od/ 
 
 ? 猪猪爆破组的整体解释: https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/solution/shou-hua-tu-jie-dfs-di-gui-yi-yu-li-jie-by-xiao_be/ 
+
 */
 
 var connect = function (root) {
     if (root == null) return null;
     function traverse(node) {
-        //* 递归终止条件, 因为需要用到父节点来操作其「左子节点 .next」 指向其「右子节点」。当到达叶子节点后因为没有子节点, 自然无法进行这样的操作。所以最后一次的递归的执行是在叶子结点的上一层然后对叶子结点进行操作
+        //* 递归终止条件, 因为需要用到父节点来操作其「左子节点 .next」 指向其「右子节点」。当到达叶子节点后因为没有子节点, 自然无法进行这样的操作。所以最后一次的递归的执行是在叶子结点的上一层对最后一层的叶子结点进行操作
         if (node.left == null && node.right == null) return;
         //# 中
         //* 因为到达叶子节点就直接返回了, 所以遍历到这里的时候「当前节点」一定有子节点。又因为是 perfect tree, 所以 「当前节点」 的左孩子肯定有右邻居
         node.left.next = node.right;
 
-        //* 如果「当前节点」有右邻居(也就是 node.next 不为空, 这时通过上一层遍历被赋值的), 那么「当前节点」的右孩子(node.right) 一定也有属于它的右邻居(node.next.left), 「node.right」与「node.next.left」通过 next 进行连接
+        //* 如果「当前节点」有右邻居(也就是 node.next 不为空, next指针是是通过上一层遍历被赋值的), 那么「当前节点」的右孩子(node.right) 一定也有属于它的右邻居(node.next.left), 「node.right」与「node.next.left」通过 next 进行连接
         if (node.next) {
             node.right.next = node.next.left;
         }

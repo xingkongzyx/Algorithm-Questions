@@ -1,5 +1,7 @@
 /* 
 / Time analysis with this solution is actually very tricky. In the beginning, I thought if each node takes logN time, then it will be O(NlogN). On a second thought, however, if(hl==hr) return pow(2,hl)-1; makes sure on each level/depth of the tree, only one node can possibly trigger the recursion, therefore it becomes h (height of the tree=logN) + (h-1) + (h-2)...+1 = O(h^2) = O(logN*logN)
+/ 每次递归调用对应了一层树高，调用logN次，每次调用计算 perfect 二叉树的高度需要O(logN)，综合：O(logN*logN)
+
 / https://leetcode.com/problems/count-complete-tree-nodes/discuss/61953/Easy-short-c++-recursive-solution/230201
 // ? 讲解 https://leetcode.cn/problems/count-complete-tree-nodes/solution/tu-jie-222-wan-quan-er-cha-shu-de-jie-dian-ge-shu-/
 */
