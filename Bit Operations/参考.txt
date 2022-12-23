@@ -1,0 +1,12 @@
+# bit操作
+& 符号，x & y ，会将两个十进制数在二进制下进行与运算
+| 符号，x | y ，会将两个十进制数在二进制下进行或运算
+^ 符号，x ^ y ，会将两个十进制数在二进制下进行异或运算
+<< 符号，x << y 左移操作，最右边用 0 填充
+>> 符号，x >> y 右移操作，最左边用 0 填充
+~ 符号，~x ，按位取反操作，将 x 在二进制下的每一位取反
+
+
+https://leetcode.cn/problems/reverse-bits/solution/zhi-qi-ran-zhi-qi-suo-yi-ran-wei-yun-suan-jie-fa-x/
+
+https://leetcode.cn/problems/reverse-bits/solution/ccying-gai-zhi-dao-de-wei-cao-zuo-zong-j-etzo/
