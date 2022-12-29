@@ -29,7 +29,7 @@ class Solution(object):
         else:
             return -1
 
-    # * 寻找的是最后小于等于 target 的位置，所以 "nums[mid] > target" 时一定不是答案
+    # * 寻找的是最后一个小于等于 target 的位置，所以 "nums[mid] > target" 时一定不是答案
 
     def findLastIdx(self,  nums,  target):
         left = 0

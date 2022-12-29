@@ -1,5 +1,5 @@
 """ 
-> 与「三路快排」的代码思路一模一样, 代码对应视频讲解的第二种方法
+> 与「三路快排」的代码思路一模一样, 代码对应视频讲解的第一种方法
 [0, zeroPointer] 区间内的元素都是 0, zeroPointer 是这个区间的最后一个元素
 (zeroPointer, i) 区间内的元素都是 1, zeroPointer + 1 是这个区间的第一个元素
 [twoPointer, len(nums - 1)] 区间内的元素都是 2, twoPointer 是这个区间的第一个元素

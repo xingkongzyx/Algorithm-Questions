@@ -6,7 +6,8 @@
 >> 符号，x >> y 右移操作，最左边用 0 填充
 ~ 符号，~x ，按位取反操作，将 x 在二进制下的每一位取反
 
+➀ 任何数与「其本身」进行异或操作得到的结果是 0，任何数与「0」进行异或操作得到的结果是原数
+➁ 任何数字与 1 进行 & 操作时得到的结果只会是 0 或者 1, n & 1 得到的是将 n 转换为二进制后的最后一位。
+n & (n - 1) ，这个代码可以把 n 的二进制中，最后一个出现的 1 改写成 0。 参考: https://leetcode.cn/problems/number-of-1-bits/solution/fu-xue-ming-zhu-xiang-jie-wei-yun-suan-f-ci7i/
 
-https://leetcode.cn/problems/reverse-bits/solution/zhi-qi-ran-zhi-qi-suo-yi-ran-wei-yun-suan-jie-fa-x/
-
-https://leetcode.cn/problems/reverse-bits/solution/ccying-gai-zhi-dao-de-wei-cao-zuo-zong-j-etzo/
+? 位操作总结: https://leetcode.cn/problems/reverse-bits/solution/ccying-gai-zhi-dao-de-wei-cao-zuo-zong-j-etzo/

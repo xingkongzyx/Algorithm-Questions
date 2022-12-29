@@ -1,8 +1,12 @@
+""" 
+/ 时间复杂度: O(N)
+? https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/60294/Solution-explained/comments/343833/
+"""
 import random
 
 
 class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
+    def findKthLargest(self, nums, k):
         left = 0
         right = len(nums) - 1
         # * 「第 1 大」的元素所在的位置是 len(nums) - 1,「第 2 大」的元素所在的位置是 len(nums) - 2,「第 k 大」的元素所在的位置是 len(nums) - k
@@ -36,7 +40,7 @@ class Solution:
             while le <= ge and nums[ge] > pivot:
                 ge -= 1
 
-            # 此时, le 来到了第一个大于等于pivot的位置, ge 来到了第一个小于等于pivot的位置
+            # 此时, le来到了第一个大于等于pivot的位置, ge来到了第一个小于等于pivot的位置
             if le >= ge:
                 # 如果 le 与 ge 重合的话, le 所在的位置的值与 ge 所在的位置的值是相等的, 都等于 pivot
                 break

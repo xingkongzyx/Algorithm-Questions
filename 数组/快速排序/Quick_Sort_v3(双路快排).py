@@ -46,6 +46,7 @@ class Solution(object):
 
             # 细节：相等的元素通过交换，等概率分到数组的两边
             nums[le], nums[ge] = nums[ge], nums[le]
+            # # 这里的update是必须的，否则遇到le以及ge都指向等于pivot的元素的时候，会陷入死循环！！
             le += 1
             ge -= 1
 
