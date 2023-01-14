@@ -5,7 +5,7 @@
 * ① 如果当前区间的左端点 > prevIntervalEnd, 那么它们不会重合, 我们可以直接将 prevInterval 加入数组 res 的末尾；并更新 prevInterval 为当前 interval
 * ② 如果当前遍历到的区间的左端点 <= prevIntervalEnd, 说明它们有交集, 此时产生合并操作, 即：对prevIntervalEnd 更新（取两个区间的最大值）. 
 
-# 注意: 我们是「先合并」, 遇到不重合的区间「再推入」 prevInterval. 当考察完最后一个区间, 后面没区间了, 遇不到不重合区间, 最后的 prevInterval 没推入 res, 要单独补上. 
+# 注意: 我们是「先合并」, 遇到不重合的区间「再推入」prevInterval. 当考察完最后一个区间, 后面没区间了, 遇不到不重合区间, 最后的 prevInterval 没推入 res, 要单独补上. 
 
 ? https://leetcode-cn.com/problems/merge-intervals/solution/shou-hua-tu-jie-56he-bing-qu-jian-by-xiao_ben_zhu/
 ? 也很好: https://leetcode.cn/problems/merge-intervals/solution/56-he-bing-qu-jian-jian-dan-yi-dong-liao-uxbo/

@@ -1,6 +1,6 @@
 """ 
 ? 思路参考: https://leetcode.cn/problems/rotate-image/solution/48-xuan-zhuan-tu-xiang-chao-jian-ji-yi-d-nuau/
-? 另一种解法: https://leetcode.cn/problems/rotate-image/solution/48-xuan-zhuan-tu-xiang-fu-zhu-ju-zhen-yu-jobi/
+? 外国 https://leetcode.com/problems/rotate-image/solutions/18879/ac-java-in-place-solution-with-explanation-easy-to-understand/?orderBy=most_votes 
 
 * 上下对称: matrix[i][j] ➩ matrix[n-i-1][j] (列不变)
 * 左右对称: matrix[i][j] ➩ matrix[i][n-j-1] (行不变)
@@ -15,7 +15,7 @@
 # 主对角线对称: matrix[i][j] ➩ matrix[j][i] 
 # 左右对称(也就是代码中的以「中心」的竖线为轴做翻转): matrix[j][i] ➩ matrix[j][n-1-i]
 ? 各来自种旋转角度非常好的总结: https://leetcode.cn/problems/rotate-image/solution/lu-qing-ge-chong-by-pennx-ce3x/
-/ 时间复杂度: O(N^2) 其中 NN 是 matrix 的边长。对于每一次翻转操作，我们都需要枚举矩阵中一半的元素。
+/ 时间复杂度: O(N^2) 其中 N 是 matrix 的边长。对于每一次翻转操作，我们都需要枚举矩阵中一半的元素。
 / 额外空间: O(1) 为原地翻转得到的原地旋转。
 """
 

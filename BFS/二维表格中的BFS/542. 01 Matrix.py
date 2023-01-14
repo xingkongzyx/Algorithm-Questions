@@ -23,7 +23,7 @@ class Solution:
             return 0 <= rowIdx < numRows and 0 <= colIdx < numCols
 
         queue = []
-        # > 在向队列中加入下一轮要处理的节点的时候, 对其对应的 visited数组 以及 结果数组 进行更新
+        # > 在向队列中加入下一轮要处理的节点的时候, 将其对应的 visited数组 以及 结果数组 进行更新
         for i in range(numRows):
             for j in range(numCols):
                 # * 首先把所有为 0 的元素的坐标加入队列, 并将 visited 的对应位置标记为「已访问」

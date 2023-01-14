@@ -25,11 +25,11 @@ class Solution(object):
         if node == None:
             return None
 
-        # * 这个dictionary的key是原node, val是原node的cloned copy
+        # * 这个 dictionary 的 key 是「原 node」, val 是「原 node」的「cloned node」
         cloned_dict = {}
 
         def DFS(currentNode):
-            # * 终止条件: 如果这个node已经被创建过了, 返回它的cloned copy
+            # * 终止条件: 如果这个 node 已经被创建过了, 返回它的 cloned copy
             if currentNode in cloned_dict:
                 return cloned_dict[currentNode]
 
@@ -37,7 +37,7 @@ class Solution(object):
             clonedNode = Node(currentNode.val)
             cloned_dict[currentNode] = clonedNode
 
-            # * 对于 currentNode 的每个neighbor, 创建它的copy, 然后把 clonedNeighbor 放到 clonedNode的neighbors list中
+            # * 对于 currentNode 的每个 neighbor, 通过递归创建它的「cloned neighbor」, 然后把 「cloned neighbor」 放到 clonedNode 的neighbors list中
             for neighbor in currentNode.neighbors:
                 clonedNeighbor = DFS(neighbor)
                 clonedNode.neighbors.append(clonedNeighbor)

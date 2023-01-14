@@ -13,7 +13,7 @@ var insert = function (intervals, newInterval) {
     }
     //* 这时intervals[index] 与 newInterval 重叠，我们需要进行合并。
     //* 只要是intervals[index]的起始位置 <= newInterval的终止位置，就要一直合并下去
-    //! 结合 第一个while loop, 所以此时满足的要求其实是 "intervals[i][1] >= newInterval[0] && newInterval[1] >= intervals[i][0]"
+    //! 结合 第一个while loop, 所以此时满足的要求其实是 "intervals[i][1] >= newInterval[0] && intervals[i][0] <= newInterval[1]"
     while (index < len && intervals[index][0] <= newInterval[1]) {
         newInterval[0] = Math.min(
             newInterval[0],

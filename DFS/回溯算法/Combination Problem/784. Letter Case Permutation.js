@@ -8,6 +8,20 @@
 * ➃ if (s.size() == idx) 说明当前选择的“路”已经走到底。
 ? 链接：https://leetcode.cn/problems/letter-case-permutation/solution/3chong-hui-su-jie-fa-by-fengziluo-oirf/
 
+
+    a1b2   i=0, when it's at a, since it's a letter, we have two branches: a, A
+    /        \
+a1b2       A1b2 i=1 when it's at 1, we only have 1 branch which is itself
+|          |   
+a1b2       A1b2 i=2 when it's at b, we have two branches: b, B
+/  \        / \
+a1b2 a1B2  A1b2 A1B2 i=3  when it's at 2, we only have one branch.
+|    |     |     |
+a1b2 a1B2  A1b2  A1B2 i=4 = S.length(). End recursion, add permutation to ans. 
+
+During this process, we are changing the S char array itself
+? https://leetcode.com/problems/letter-case-permutation/solutions/255071/java-detailed-explanation-of-dfs-backtracking-solution/?orderBy=most_votes
+
 * 为什么「当前字符」是「数字字符」也要有回溯操作呢? 正如图中所示，参数 s = "a1b2" 是先进入「小写 a」的分支将其产生的两个结果 ["a1b2","a1B2"] 加入结果数组，然后进行回溯，再进入「大写 A」的分支，这个回溯的过程，遇到的「数字字符」也得从 cur 中排除，重新在「大写 A」的分支重新加入
 ? 递归树: https://leetcode.cn/problems/letter-case-permutation/solution/shen-du-you-xian-bian-li-hui-su-suan-fa-python-dai/
 

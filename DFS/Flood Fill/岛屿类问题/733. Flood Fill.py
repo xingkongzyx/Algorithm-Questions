@@ -22,7 +22,7 @@ class Solution(object):
             if inArea(rowIdx, colIdx) == False:
                 return
 
-            # * 判断这个位置是否已经处理过
+            # * 如果当前位置的颜色值和开始位置(sr, sc)的颜色值不同时，有两种可能, 1) 这个位置的颜色已经被染过, 2) 它不是起始点的颜色 targetColor
             if image[rowIdx][colIdx] != targetColor:
                 return
 

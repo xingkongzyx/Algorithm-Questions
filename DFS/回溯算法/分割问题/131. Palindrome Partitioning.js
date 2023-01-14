@@ -12,12 +12,11 @@ var partition = function (s) {
         }
 
         for (let i = startIdx; i < s.length; i++) {
-            if (checkPalindrome(s, startIdx, i)) {
-                currentPath.push(s.substring(startIdx, i + 1));
-            } else {
+            if (checkPalindrome(s, startIdx, i) === false) {
                 continue;
             }
 
+            currentPath.push(s.substring(startIdx, i + 1));
             backtracking(s, i + 1);
             currentPath.pop();
         }

@@ -20,7 +20,7 @@ var restoreIpAddresses = function (s) {
                 backtracking(s, i + 1);
                 currentPath.pop();
             } else {
-                //! 这里注意, 如果截取的字串不符合要求, 直接break而不是continue, 因为以startIdx开始的字串都不会符合要求, 例如已经以多余的 0 开始的字串, 即使 i 继续往后移动, 截取的字串还是从 0 开始, 导致不符合要求
+                //! 这里注意, 如果截取的字串不符合要求, 直接 break 而不是 continue, 因为以 startIdx 开始的字串都不会符合要求, 例如已经以多余的 0 开始的字串, 即使 i 继续往后移动, 截取的字串还是从 0 开始, 导致不符合要求
                 break;
             }
         }

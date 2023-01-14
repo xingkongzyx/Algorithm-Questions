@@ -21,6 +21,7 @@ function symmetricHelper(leftTree, rightTree) {
 
     //# 左
     let leftCheck = symmetricHelper(leftTree.left, rightTree.right);
+    //# 右
     let rightCheck = symmetricHelper(leftTree.right, rightTree.left);
     return leftCheck && rightCheck;
 }

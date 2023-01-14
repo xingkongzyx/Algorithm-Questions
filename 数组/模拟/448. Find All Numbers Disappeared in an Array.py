@@ -1,4 +1,5 @@
 """
+> 与 442 的思路是一样的
 * 根据题目特点, 可以把数组中的「元素」与「索引」建立一一对应的关系。因为「索引」是确定的, 范围是[0, n-1], 一个也不缺, 而数组的「元素」是不确定的, 少了哪个也不知道。
 * 既然两者是一一对应的关系, 那么我们在第一次遍历过程中对数组中的每个「元素」对应的「索引」做个标记；"当前元素对应的索引 = 当前元素的值 - 1", 然后把「当前元素对应的索引」这个位置的值变为负数, 代表其对应的「元素值」已经被访问过。
 
@@ -10,9 +11,11 @@
 ? https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/solution/bu-xu-yao-e-wai-kong-jian-si-lu-chao-ji-qing-xi-bu/
 """
 
+from typing import List
 
-class Solution(object):
-    def findDisappearedNumbers(self, nums):
+
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         res = []
         # * 遍历下数组的元素, 对对应的索引位置的元素作标记
         for i in range(len(nums)):

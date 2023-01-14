@@ -1,6 +1,6 @@
 """ 
 # 与标准的「拓扑排序」代码不同的地方在于：这个问题是无向图。
-#「拓扑排序」应用于有向无环图, 找到没有指向它的结点, 找的是「入度为 0」的结点; 当前这个问题, 因为是无向图, 就不能找「入度为 0」的结点了, 无向图的「叶子」的特点是, 「出度为 1」。
+#「拓扑排序」应用于有向无环图, 找到没有指向它的结点, 找的是「入度为 0」的结点; 当前这个问题, 因为是无向图, 找的是「叶子节点」, 同样用入度数组表示的话，就是找「入度为 1」的结点了
 ? https://leetcode.cn/problems/minimum-height-trees/solution/tan-xin-fa-gen-ju-tuo-bu-pai-xu-de-si-lu-python-da/
 
 * The obvious method is to BFS for each node with the complexity of O(n^2) (and will get TLE).
