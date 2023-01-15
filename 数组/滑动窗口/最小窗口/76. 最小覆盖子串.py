@@ -61,3 +61,4 @@ class Solution(object):
         
         return s[beginIdx: beginIdx + minLen]
     
+# aaabc abc {a:1, b:1, c:1}
