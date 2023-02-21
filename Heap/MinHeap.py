@@ -83,3 +83,12 @@ class MinHeap:
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
+
+
+heap = MinHeap()
+heap.insert(4)
+heap.insert(1)
+heap.insert(5)
+heap.insert(3)
+heap.insert(2)
+print(heap.heap)

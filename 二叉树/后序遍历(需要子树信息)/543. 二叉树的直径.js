@@ -30,7 +30,7 @@ var diameterOfBinaryTree = function (root) {
         let leftHeight = traverse(node.left);
         let rightHeight = traverse(node.right);
 
-        //* 通过分别递归左右子树, 求得了左子树高度(左儿子向下遍历经过最多的节点数) 以及 右子树深度(右儿子向下遍历经过最多的节点数)，从而可以更新路径经过节点数的最大值(注意这里要 + 1)
+        //* 通过分别递归左右子树, 求得了左子树高度(左儿子向下遍历经过最多的节点数) 以及 右子树高度(右儿子向下遍历经过最多的节点数)，从而可以更新路径经过节点数的最大值(注意这里要 + 1)
         ans = Math.max(ans, leftHeight + rightHeight + 1);
 
         return Math.max(leftHeight, rightHeight) + 1;
