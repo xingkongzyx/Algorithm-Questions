@@ -25,13 +25,11 @@ class Solution:
                 cur.next = h1
                 break
             elif h1.val < h2.val:
-                newNode = h1
-                cur.next = newNode
+                cur.next = h1
                 cur = cur.next
                 h1 = h1.next
             else:
-                newNode = h2
-                cur.next = newNode
+                cur.next = h2
                 cur = cur.next
                 h2 = h2.next
 

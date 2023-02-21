@@ -1,9 +1,9 @@
 """ 
 > 通过比较中值与右值, 可以确定最小值的位置范围, 从而决定边界收缩的方向。所以最后收缩的结果就是当left与right重合, 此时它们指向的位置就是最小值
 
-* 在while循环内, nums[mid]要么大于要么小于nums[right], 不会等于。因为循环条件是 left < right, 并且 mid 的计算方式是向下取整的, 所以 mid 在最后一次循环与 left 重合, 但绝对不会与right重合, 所以 nums[mid] != nums[right]
+* 在while循环内, nums[mid] 要么大于要么小于 nums[right], 不会等于。因为循环条件是 left < right, 并且 mid 的计算方式是向下取整的, 所以 mid 在最后一次循环与 left 重合, 但绝对不会与 right 重合, 所以 nums[mid] != nums[right]
 
-*  这个二分的目的, 是将目标最小值套住, 通过判断mid与左右的大小关系, 将单调递增的那部分去除掉, 最后剩下的就是不连续的那个点。问题来了, 如果我们是 mid 比较 right, 因为是找最小值, 如果 "mid < right", 立即能判断出来 mid 到 right 之间都递增, 最小值必不在其中(mid 仍可能), 因此能移动 right. 
+*  这个二分的目的, 是将目标最小值套住, 通过判断 nums[mid] 与左右的大小关系, 将单调递增的那部分去除掉, 最后剩下的就是不连续的那个点。问题来了, 如果我们是 mid 比较 right, 因为是找最小值, 如果 "nums[mid] < nums[right]", 立即能判断出来 mid 到 right 之间都递增, 最小值必不在其中(mid 仍可能), 因此能移动 right. 
 
 # 但如果 left < mid, 左侧递增, 你能直接排除 left 到 mid 吗?
 # 并不能, 因为最小数可能就在left上,你无法据此把这部分排除出去。 这里存在一个取巧办法: 当 nums[left] < nums[right] 时, nums[left] 就是最小值, 因为在收缩过程中, 如果 "nums[left] > nums[right]",说明不连续的点仍然在 [left, right] 中间,一旦nums[left] <= nums[right], 说明这个区间已经连续递增, 这只能说明, 

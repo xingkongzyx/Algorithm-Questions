@@ -20,7 +20,7 @@ class Solution(object):
         slow = head
         fast = head
 
-        # # 使用这样的判别条件在节点个数为偶数个时取到的是左边的节点
+        # # 使用这样的判别条件在节点个数为偶数个时取到的是左边的节点, 之所以取左边的节点是为了在下面能够通过 "slow.next = None" 能够分开两个链表, 如果取右边的节点那么在节点个数为偶数个时无法平均分配
         while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next

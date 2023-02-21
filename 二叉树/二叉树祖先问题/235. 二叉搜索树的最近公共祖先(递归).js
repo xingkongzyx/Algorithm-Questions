@@ -10,14 +10,6 @@
 var lowestCommonAncestor = function (root, p, q) {
     if (root === null) return null;
 
-    //# 中
-    //* 只要 p.val 和 q.val 不是都大于(小于) root.val, 即只要 p, q 不同处在 root 的一个子树, root 即为所求！
-    if (
-        (root.val >= p.val && root.val <= q.val) ||
-        (root.val <= p.val && root.val >= q.val)
-    )
-        return root;
-
     //# 左
     //* 如果 p.val 和 q.val 都比 root.val 小, 则p、q肯定在 root 的左子树, 『最近公共祖先』肯定也在左子树。递归左子树并直接返回递归的结果就行！
     if (root.val > p.val && root.val > q.val) {
@@ -30,6 +22,6 @@ var lowestCommonAncestor = function (root, p, q) {
         return lowestCommonAncestor(root.right, p, q);
     }
 
-    //* 上面『#中』后面的代码等价于下面的 return root, 只不过是前序遍历, 将对当前节点的处理逻辑放在『#左右』前面更加清晰, 因为前面已经有对当前节点的处理逻辑, 所以 return root 不会运行
-    // return root;
+    //* 只要 p.val 和 q.val 不是都大于(小于) root.val, root 即为所求！此时，p 和 q 要么在当前节点的不同的子树中，要么其中一个就是当前节点。
+    return root;
 };
