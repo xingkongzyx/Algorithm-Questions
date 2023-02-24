@@ -2,50 +2,54 @@
 ? 非常好: https://leetcode.cn/problems/implement-trie-prefix-tree/solution/by-lfool-k6hb/
 ? https://leetcode.cn/problems/implement-trie-prefix-tree/solution/shi-xian-trie-qian-zhui-shu-qian-zhui-sh-2acp/
 
-/ 时间复杂度: 初始化为 O(1), 其余操作为 O(|S|). 其中 |S| 是每次插入或查询的字符串的长度。
-/ 空间复杂度: O(|T| * Σ). T 为所有插入的字符串长度之和。Σ 为字符集的大小, |Σ|=26
+/ 时间复杂度:
+/ insert(word): O(|word|)
+/ search(word): O(|word|)
+/ startsWith(prefix): O(|prefix|)
+
+/ 空间复杂度: O(T), where T is total of Trie nodes, in the worst case it's total number of characters of words we inserted.
 """
 
 
 class TrieNode:
-    def __init__(self) -> None:
+    def __init__(self):
+        # Stores children nodes and whether node is the end of a word
         self.children = {}
         self.isEnd = False
-
 
 class Trie:
     def __init__(self):
         self.root = TrieNode()
 
     def insert(self, word: str) -> None:
-        curTrieNode = self.root
-
-        for char in word:
-            if char not in curTrieNode.children:
-                # * create a new TrieNode for the new character
-                curTrieNode.children[char] = TrieNode()
-
-            curTrieNode = curTrieNode.children[char]
-        curTrieNode.isEnd = True
+        cur = self.root
+        # Insert character by character into trie
+        for c in word:
+            # if character path does not exist, create it
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.isEnd = True
+        
 
     def search(self, word: str) -> bool:
-        curTrieNode = self.root
-
-        for char in word:
-            if char not in curTrieNode.children:
+        cur = self.root
+        # Search character by character in trie
+        for c in word:
+            # if character path does not exist, return False
+            if c not in cur.children:
                 return False
-
-            curTrieNode = curTrieNode.children[char]
-
-        return curTrieNode.isEnd
+            cur = cur.children[c]
+        return cur.isEnd
+        
 
     def startsWith(self, prefix: str) -> bool:
-        curTrieNode = self.root
-        for char in prefix:
-            if char not in curTrieNode.children:
+        # Same as search, except there is no isEnd condition at final return
+        cur = self.root
+        for c in prefix:
+            if c not in cur.children:
                 return False
-            curTrieNode = curTrieNode.children[char]
-
+            cur = cur.children[c]
         return True
 
         # Your Trie object will be instantiated and called as such:
