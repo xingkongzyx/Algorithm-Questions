@@ -7,7 +7,7 @@
 / 4. 根据根节点的位置确定左子树和右子树在前序数组和中序数组中的左右边界位置
 / 5. 递归构造左子树和右子树
 / 6. 返回根节点结束
-
+? https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/88557/si-lu-qing-xi-dai-ma-jian-ji-he-105ti-si-lu-yi-z-2/
 */
 var buildTree = function (preorder, inorder) {
     let map = {};
