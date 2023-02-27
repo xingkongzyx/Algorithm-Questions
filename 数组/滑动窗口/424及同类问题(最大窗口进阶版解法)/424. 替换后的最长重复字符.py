@@ -8,9 +8,9 @@
 ! 3. 就算某一刻你发现窗口里元素都不一样, 但不要怀疑, ⭐因为它曾经辉煌过⭐,它会一直呈现它窗口最大时候的状态
 * 现在我是这样: aaab【cdef】, 是因为曾经我: 【aaab】cdef (容错次数 K=1)
 
-# maxFrequency 并不是当前窗口内出现次数最多字母的次数, 而是历史窗口中出现次数最多字母的次数。为什么在窗口平移的时候不用更新？因为曾经有一个窗口满足过条件。滑动窗口的长度只有在 maxFrequency 变大的时候才增加, 由于不需要对滑动窗口减小, 因此没有对 maxFrequency 进行减小操作, 如果减小了反而可能出现错误。感觉这题的核心思路就是通过滑动窗口的方式寻找窗口内相同字符出现最多的次数, 并且使用的是历史最长保证窗口长度不会减小。
+# maxFrequency 并不是「当前窗口内」出现次数最多字母的次数, 而是「历史窗口中」出现次数最多字母的次数。为什么在窗口平移(也就是 left += 1)的时候不用更新 maxFrequency? 因为曾经有一个窗口满足过条件。滑动窗口的长度只有在 maxFrequency 变大的时候才增加, 由于不需要对滑动窗口减小, 因此没有对 maxFrequency 进行减小操作, 如果减小了反而可能出现错误。感觉这题的核心思路就是通过滑动窗口的方式寻找窗口内相同字符出现最多的次数, 并且使用的是「历史最长」保证窗口长度不会减小。
 
-# 因为我们要找的是「最长」那一个符合条件的子串, 而子串长度是由 maxFrequency + k 来决定的, 所以我们只在其有机会变得更大时将其更新。什么时候变得更大呢？ 只有当其超出「历史最大值」时。在这里我们不关心当前窗口的各个字符重复次数最大值, 只关心这个最大值有没有超出历史最大值。
+# 因为我们要找的是「最长」那一个符合条件的子串, 而子串长度是由 maxFrequency + k 来决定的, 所以我们只在其有机会变得更大时将其更新。什么时候变得更大呢？ 只有当其超出「历史最大值」时。在这里我们不关心当前窗口的各个字符重复次数最大值, 只关心这个「最大值」有没有超出「历史最大值」。
 ? https://leetcode.cn/problems/longest-repeating-character-replacement/solution/tan-xin-de-hua-dong-chuang-kou-si-lu-qing-xi-dai-m/
 """
 
@@ -24,16 +24,15 @@ class Solution(object):
         left = 0
         right = 0
         while right < len(s):
-            # * 右边界先移动找到一个满足题意的可以替换 k 个字符以后, 所有字符都变成一样的当前看来最长的子串, 直到右边界纳入一个字符以后, 不能满足的时候停下；
+            # * 右边界先移动找到一个满足题意的: 可以替换 k 个字符以后, 所有字符都变成一样的当前看来最长的子串. 直到右边界纳入一个字符以后, 不再能满足条件时才停下；
             rightChar = s[right]
             rightCharIdx = ord(rightChar) - ord('A')
             map[rightCharIdx] += 1
+            
             # print("move right边界")
             if map[rightCharIdx] > maxFrequency:
                 maxFrequency = map[rightCharIdx]
-
-            if right - left + 1 <= maxFrequency + k:
-                maxLen = max(maxLen, right - left + 1)
+                
             # print(
             #     f'left is {left}, right is {right}, {s[left: right + 1]}, maxFrequency is {maxFrequency}')
             """ 
@@ -47,6 +46,8 @@ class Solution(object):
                 leftCharIdx = ord(leftChar) - ord('A')
                 map[leftCharIdx] -= 1
                 left += 1
+            # * 这时的窗口大小就是满足要求的大小
+            maxLen = max(maxLen, right - left + 1)
             # print(f'left is {left}, right is {right}, {s}, \n')
             right += 1
 

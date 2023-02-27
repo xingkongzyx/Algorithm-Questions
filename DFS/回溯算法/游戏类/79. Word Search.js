@@ -1,4 +1,5 @@
 /* 
+> 与 200 岛屿问题一样采取的是先污染后治理, 等于在向四个方向进行递归操作时不检查这四个将要访问的位置是否越界, 是否访问过, 是否字符相同, 而是下一轮也就是在正在访问这个位置的时候才进行检查
 ? https://leetcode.cn/problems/word-search/solution/shou-hua-tu-jie-79-dan-ci-sou-suo-dfs-si-lu-de-cha/
 ? 讲解很好: https://leetcode.cn/problems/word-search/solution/dan-ci-sou-suo-hui-su-suan-fa-jian-zhi-v-0vbd/
 ? k 神的链接: https://leetcode.cn/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/
@@ -19,9 +20,10 @@ var exist = function (board, word) {
         [0, 1],
         [0, -1],
     ];
-    
+
     function backtracking(rowIdx, colIdx, wordIdx) {
         //* 如果 wordIdx 指针越界了, 则证明已经找到与 word 匹配的所有字符了
+        //! 这个条件必须在第一个进行检查, 此时即使处的位置是越界的, 也不影响得到结论: 已经找到了当前单词 word
         if (wordIdx === word.length) {
             return true;
         }
@@ -53,7 +55,8 @@ var exist = function (board, word) {
             if (tempRes) return true;
         }
 
-        //* 对于这个分支的 DFS 已经完成了, 需要回溯还原现场. 将当前访问标记设置为 false, 为了能够当当前这一趟递归不能够找到结果的时候, 在后续遍历过程中还能够访问该方格。
+        //* 对于这个分支的 DFS 已经完成了, 需要回溯还原现场.
+        //! 将当前访问标记设置为 false, 为了能够当当前这一趟递归不能够找到结果的时候, 在后续遍历过程中还能够访问该方格。
         visited[rowIdx][colIdx] = false;
 
         //* 前面如果没有找到完整匹配的结果则返回false

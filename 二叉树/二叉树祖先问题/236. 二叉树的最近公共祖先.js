@@ -5,7 +5,7 @@
 
 # 注意两种定义的区别: 「公共祖先」是两个节点的祖先，「祖先」是可以一个节点的
 
-/ lowestCommonAncestor 这个函数不要理解为「找最近公共祖先」, 而就理解为帮两个节点「找最近的祖先」. 传入的值是 root, p, q, 在「以 root 为根节点的子树中」帮 p 和 q 找到一个祖先就行, 找到两个就更好了, 如果找不到祖先就返回 null. 在以 root->left 为根节点的子树里面找一次, 在以 root->right 为根节点的子树里面再找一次. 如果某一边返回值是 null, 那么说明「p 的祖先」和「q 的祖先」都在另一边. 由于找的时候, 一定是找的「最近的祖先」返回, 所以这里直接返回前面的返回值就行了, 可以保证是最近的公共祖先. 如果左右的返回值都不是null, 那说明「p 的祖先」和「q 的祖先」分别在两边, 则当前节点就是「最近公共祖先」. 左右都找不到就直接返回 null
+/ lowestCommonAncestor 这个函数不要理解为「找最近公共祖先」, 而就理解为〖帮 p 或者 q 找到一个最近的祖先〛. 传入的值是 root, p, q, 在「以 root 为根节点的子树中」帮 p 和 q 找到一个祖先就行, 找到两个就更好了, 如果找不到祖先就返回 null. 在以 root->left 为根节点的子树里面找一次, 在以 root->right 为根节点的子树里面再找一次. 如果某一边返回值是 null, 那么说明「p 的祖先」和「q 的祖先」都在另一边. 由于找的时候, 一定是找的「最近的祖先」返回, 所以这里直接返回前面的返回值就行了, 可以保证是最近的公共祖先. 如果左右的返回值都不是null, 那说明「p 的祖先」和「q 的祖先」分别在两边, 则当前节点就是「最近公共祖先」. 左右都找不到就直接返回 null
 ? https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/solution/c-jing-dian-di-gui-si-lu-fei-chang-hao-li-jie-shi-/486473
 
 ? 来自笨猪爆破组: https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/jsersi-lu-hao-li-jie-by-hyj8/

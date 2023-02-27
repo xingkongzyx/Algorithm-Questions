@@ -1,12 +1,12 @@
 /*
  * APPROACH :
  * ➀ Insert all the words of the array dictionary into a "Trie".
- * ➁ Create an empty string ans.
- * ➂ Extract each word from sentence & invoke getReplacedWord method on each sentence word :
- *   1. If any prefix of the word is not present in the trie, return empty ans directly
+ * ➁ Extract each word from sentence & invoke "getReplacedWord" method on each sentence word :
+ *   1. Create an empty string ans.
+ *   1. If the word is not present in the trie, return empty ans directly
  *   2. If a prefix of the word exists & isEnd of the last letter of the prefix is true, then that's the root & the remaining is the successor. So add the 'root' part to the ans, return current ans
- *   3. After traversing the whole word, we still not return ans, it means the word is on the trie, but it is not reach the end of current branch, so return empty ans
- * ➃ For each returned ans:
+ *   3. After traversing the whole word, we still not return ans, it means the word is on the trie, but it is not reach the end of current branch, so return empty ans. 例如 trie 中记录的单词是 "bat", 而当前的 word 是 "ba", 此时也要返回 ""
+ * ➂ For each returned ans of the word returned by "getReplacedWord" method:
  *   1. If ans == "", we will add old word to the result sentence
  *   2. if ans !== "", which means we get the replacedWord in the ans variable, so we use the new replacedWord in the result sentence
  */
