@@ -1,5 +1,6 @@
 /* 
 ? https://leetcode-cn.com/problems/insert-interval/solution/57-cha-ru-qu-jian-mo-ni-cha-ru-xiang-jie-by-carlsu/
+? 图片更加直观: https://leetcode.cn/problems/insert-interval/solutions/472435/shou-hua-tu-jie-57-cha-ru-qu-jian-fen-cheng-3ge-ji/?orderBy=most_votes
  */
 
 var insert = function (intervals, newInterval) {
@@ -11,10 +12,12 @@ var insert = function (intervals, newInterval) {
         result.push(intervals[index]);
         index++;
     }
-    //* 这时intervals[index] 与 newInterval 重叠，我们需要进行合并。
-    //* 只要是intervals[index]的起始位置 <= newInterval的终止位置，就要一直合并下去
-    //! 结合 第一个while loop, 所以此时满足的要求其实是 "intervals[i][1] >= newInterval[0] && intervals[i][0] <= newInterval[1]"
-    while (index < len && intervals[index][0] <= newInterval[1]) {
+    /* 
+    * 这时intervals[index] 与 newInterval 重叠，我们需要进行合并。
+    * 只要是intervals[index]的起始位置 <= newInterval的终止位置，就要一直合并下去.
+    # 也可以从反面进行考虑, 只有在 "newInterval[1] < intervals[index][0]" 的时候说明合并结束, 所以相反的情况下(也就是 >= 时)就要持续进行合并    
+    */
+    while (index < len && newInterval[1] >= intervals[index][0]) {
         newInterval[0] = Math.min(
             newInterval[0],
             intervals[index][0]
@@ -26,6 +29,7 @@ var insert = function (intervals, newInterval) {
 
         index++;
     }
+
     //* 合并之后，将newInterval放入result就可以了
     result.push(newInterval);
 

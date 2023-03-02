@@ -7,10 +7,10 @@ class Node:
 """ 
 / 1. 递归参数和返回值: 传入当前要进行clone的start node, 返回的则是最开始传入的start node的cloned node. 也就是题目中的"将「给定节点的拷贝」作为对克隆图的引用返回"。
 / 2. 递归终止条件: 当目前要访问的 currentNode 已经被记录在 graphDict 中, 直接返回它的 cloned node
-/ 3. 本层递归: 首先创建 currentNode 的 cloned node, 然后将原node与cloned node加入 dict. 然后继续递归, 对 currentNode 的 neighbors 同样 create cloned copy. 并把每个 neighbor 的拷贝加入 clonedNode.neighbors 列表
+/ 3. 本层递归: 首先创建 currentNode 的 cloned node, 然后将原 node 与 cloned node 加入 dict. 然后继续递归, 对 currentNode 的 neighbors 同样 create cloned copy. 并把每个 neighbor 的拷贝加入 clonedNode.neighbors 列表
 
 
-* 如果不使用 hashmap 可能陷入死循环。这是由于无向图里面 A⇆B, A的邻接表会有B, B的邻接表也会有A, 如果不能把已经走过的节点记录下来就会陷入「死循环」. 所以使用一个 hashmap 存放已经走过的节点，每次进行深拷贝之前先判断是否已经拷贝过了，如果是则直接用他，如果不是再进行接下来的深拷贝操作。
+* 如果不使用 hashmap 可能陷入死循环。这是由于无向图里面 A⇆B, A 的邻接表会有 B, B 的邻接表也会有 A, 如果不能把已经走过的节点记录下来就会陷入「死循环」. 所以使用一个 hashmap 存放已经走过的节点，每次进行深拷贝之前先判断是否已经拷贝过了，如果是则直接用他，如果不是再进行接下来的深拷贝操作。
 ? 官方讲解非常好: https://leetcode.cn/problems/clone-graph/solution/ke-long-tu-by-leetcode-solution/
 ? https://leetcode.cn/problems/clone-graph/solution/ke-long-tu-ha-xi-dfs-zui-qing-xi-yi-dong-3v6l/
 """
@@ -37,7 +37,7 @@ class Solution(object):
             clonedNode = Node(currentNode.val)
             cloned_dict[currentNode] = clonedNode
 
-            # * 对于 currentNode 的每个 neighbor, 通过递归创建它的「cloned neighbor」, 然后把 「cloned neighbor」 放到 clonedNode 的neighbors list中
+            # * 对于 currentNode 的每个 neighbor, 通过递归创建它的「cloned neighbor」, 每一次调用返回其对应邻接点的克隆节点, 然后把 「cloned neighbor」 放到 clonedNode 的neighbors list中
             for neighbor in currentNode.neighbors:
                 clonedNeighbor = DFS(neighbor)
                 clonedNode.neighbors.append(clonedNeighbor)

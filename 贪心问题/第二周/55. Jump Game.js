@@ -7,9 +7,6 @@
 # 贪心算法局部最优解: 每次取最大跳跃步数(取最大覆盖范围), 整体最优解: 最后得到整体最大覆盖范围, 看是否能到终点。
 */
 var canJump = function (nums) {
-    if (nums === null || nums.length == 0) {
-        return true;
-    }
     let maxCover = 0;
     for (let i = 0; i < nums.length; i++) {
         //* i 最多到达数组尾部, 如果我们「最远可覆盖的范围」比 i 小, 那么肯定到达不了数组尾部, 停止traverse, 返回false

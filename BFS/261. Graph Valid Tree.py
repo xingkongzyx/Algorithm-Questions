@@ -1,6 +1,6 @@
 """ 「」
 * 对于该题目的思路, 主要有两个要满足的条件: 
-* ➀ 是「连通图」或者说是这个图的「连通分量」等于1。若该图有两个或更多「连通分量」, 那么也不能构成树; 
+* ➀ 是「连通图」或者说是这个图的「连通分量」等于 1。若该图有两个或更多「连通分量」, 那么也不能构成树; 
 * ➁ 不存在环. 
 * 
 * ➀ 「连通图」要满足的条件是: 以 BFS 或者 DFS 的方式遍历一遍图. 如果存在没有遍历到的节点, 那么就是「非连通图」, 返回 False.
@@ -16,6 +16,8 @@
 /    if len(edges) != n - 1:
 /        return False
 ? https://leetcode.cn/problems/graph-valid-tree/solution/c-zui-jian-dan-yi-dong-de-fang-fa-by-mapleking/
+
+? JavaScript 代码: https://leetcode.cn/problems/graph-valid-tree/solutions/1737710/by-daomingqian-ueqq/?orderBy=newest_to_oldest&page=2
 """
 
 
