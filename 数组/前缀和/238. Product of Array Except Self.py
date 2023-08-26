@@ -18,6 +18,7 @@ class Solution(object):
         left_prod = [1 for _ in nums]
         right_prod = [1 for _ in nums]
 
+        # 因为 left_prod[i-1] 记录的乘积是不包含 nums[i-1] 的，所以再乘上 nums[i-1] 就是 i 左边所有数字的乘积
         for i in range(1, len(nums)):
             left_prod[i] = left_prod[i - 1] * nums[i - 1]
 

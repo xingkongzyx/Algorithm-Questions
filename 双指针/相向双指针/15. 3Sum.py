@@ -9,11 +9,11 @@ class Solution(object):
         result = []
         for i in range(len(nums) - 1):
             currentNum = nums[i]
-            
+            # * 如果最小的数大于0则不可能三个数的和为0, 直接退出
             if currentNum > 0:
                 return result
             
-            # * 当 i > 0且 "nums[i] == nums[i - 1]" 时即跳过此元素 nums[i]：因为已经将 nums[i - 1] 的所有组合加入到结果中，本次双指针搜索只会得到重复组合。
+            # * 当 i > 0且 "nums[i] == nums[i - 1]" 时即跳过此元素 nums[i]：因为已经将 nums[i - 1] 的所有组合加入到结果中，本次双指针搜索只会得到重复组合。例如当 a === d 时，a + b + c = d + b + c = 0, 寻找下一个不同的数
             if i > 0 and currentNum == nums[i-1]:
                 continue
             
@@ -28,11 +28,12 @@ class Solution(object):
                 
                 if leftNum + rightNum == target:
                     result.append([currentNum, leftNum, rightNum])
-                    #! 我觉得最重要的一点 如果不加 left < right 这个判断条件, 遇到 [0, 0, 0, 0] 的情况 会一直执行 left += 1 最终导致溢出的情况
+                    #! 我觉得最重要的一点 如果不加 left < right 这个判断条件, 遇到 [0, 0, 0, 0] 的情况 会一直执行 left += 1 到达数组最后一个位置, 在加上判断后的更新指针操作, 最终导致索引溢出的情况发生
                     while left < right and nums[left] == nums[left + 1]:
                         left += 1
                     while left < right and nums[right] == nums[right - 1]:
                         right -= 1
+                    # * 上面进行检查更新后，此时左右指针的位置在左右最后一个相同的数上，需要再前进/后退一步，到达第一个不同的位置
                     left += 1
                     right -= 1
                 elif leftNum + rightNum > target:
