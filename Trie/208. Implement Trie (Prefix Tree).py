@@ -1,6 +1,6 @@
 """ 
 ? 非常好: https://leetcode.cn/problems/implement-trie-prefix-tree/solution/by-lfool-k6hb/
-? https://leetcode.cn/problems/implement-trie-prefix-tree/solution/shi-xian-trie-qian-zhui-shu-qian-zhui-sh-2acp/
+? https://www.youtube.com/watch?v=oobqoCJlHA0 
 
 / 时间复杂度:
 / insert(word): O(|word|)

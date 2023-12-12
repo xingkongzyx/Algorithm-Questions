@@ -1,8 +1,11 @@
 """ 
-/ TC : O(∑ L) + O(26^X), where L is the length of words we are inserting in Trie, X is the length of word we are searching.
-/ SC : O(∑ L)
+/ 时间复杂度: addWord() 的时间复杂度为 O(n), n 为输入单词的平均长度, search() 的平均时间复杂度为 O(n), 最坏情况下查找的单词全是点, 所以最坏的时间复杂度为 O(n^C), C 固定为 26。
+/ 空间复杂度: O(C*N), C 固定为 26, N 为输入单词的长度之和, 最坏情况为所有单词都没有共同的前缀, 每个单词中的每个字母都要占用 O(C) 的空间。
 ? https://leetcode.cn/problems/design-add-and-search-words-data-structure/solution/yu-dao-tong-pei-fu-shi-di-gui-chu-li-python-dai-ma/
 ? 带注释: https://leetcode.cn/problems/design-add-and-search-words-data-structure/solutions/1054648/python-qian-zhui-zi-dian-shu-dfsjian-zhi-g6r0/?orderBy=most_votes
+
+! 关于这道问题的难点是通配符 "." 的处理，其实也不难：在遇到 "." 的时候，使用递归方法，将该结点的每一个分支都看过去，只要有一个分支返回 true 就可以了，全部分支都走过去，都没有返回 true 的才返回 false。
+
 """
 
 
