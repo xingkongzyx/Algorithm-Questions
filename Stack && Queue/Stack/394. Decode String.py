@@ -4,10 +4,9 @@
 *  1 当遇到 '[', 把 '[' 和与之匹配的 ']' 之间的字母需要重复的次数和 '[' 之前的字符进栈, 本例中进栈 (2, "a")
 *  2 当遇到 ']', 代码中的字符串res即: b, 就是要重复的字母, 此时出栈之前进栈的(2, "a"), res 变成 a + 2 * b = "abb"
 
+! 外层的解码需要等待内层解码的结果。先扫描的字符还用不上, 但不能忘了它们。所以由内到外, 层层解决[ ], 但是需要保持对外面字符的记忆, 于是用栈。
 ? 例子链接: https://leetcode.cn/problems/decode-string/solution/zhi-xing-yong-shi-0-ms-zai-suo-you-c-ti-jiao-zh-47/
-
-? 使用两个栈的解法: https://leetcode.cn/problems/decode-string/solution/zhan-de-ji-yi-nei-ceng-de-jie-ma-liao-bie-wang-lia/
-? https://leetcode.cn/problems/decode-string/solution/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd/
+? 代码: https://leetcode.cn/problems/decode-string/solutions/19447/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd/
 """
 
 

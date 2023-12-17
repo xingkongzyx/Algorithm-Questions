@@ -15,7 +15,9 @@ class Solution:
         for i in range(len(prices)):
             # 到当前的「第i天」为止的最低买入价格
             minCost = min(minCost, prices[i])
-            # # 到当前「第i天」为止的最大收益, 这个收益可能来源于今天的卖出 -「第 i 天卖出的最高利润: price - minCost」, 也有可能是「前 i-1 天最高利润 profit 」。无论哪种都能够保证不会颠倒买入卖出的顺序
+            # # 到当前「第i天」为止的最大收益, 这个收益可能来源于下面两种情况的最大值: 
+            # # 1. 第 i 天卖出的最高利润: 「今天的卖出价格 price - 当前为止的最低买入价格 minCost」, 
+            # # 2.「前 i-1 天最高利润 profit 」。
             maxProfit = max(maxProfit, prices[i] - minCost)
 
         return maxProfit
