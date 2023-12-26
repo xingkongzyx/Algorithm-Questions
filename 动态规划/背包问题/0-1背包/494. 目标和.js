@@ -26,7 +26,10 @@ var findTargetSumWays = function (nums, target) {
     dp[0] = 1;
 
     //! 当前填满容量为j的包的方法数 = 之前填满容量为j的包的方法数 + 之前填满容量为j - num的包的方法数. 也就是当前数num的加入，可以把之前和为j - num的方法数加入进来。
-
+    // dp[capacity] += dp[capacity - nums[i]]：
+    // 1、如果不选第i个数（nums[i]）的话，则方法数为dp[capacity]；
+    // 2、如果选第i个数（nums[i]）的话，则方法数为dp[capacity - nums[i]]；
+    //  所以方法总数为：dp[capacity] = dp[capacity] + dp[capacity - nums[i]]；
     for (let i = 0; i < nums.length; i++) {
         for (
             let capacity = bagWeight;
