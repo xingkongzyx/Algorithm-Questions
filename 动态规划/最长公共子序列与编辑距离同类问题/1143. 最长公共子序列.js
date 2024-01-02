@@ -1,6 +1,6 @@
 //? leetcode.cn/problems/longest-common-subsequence/solution/zui-chang-gong-gong-zi-xu-lie-tu-jie-dpz-6mvz/
 /* 
-* dp[i][j]表示字符串text1的[0, i-1]区间和字符串text2的[0, j-1]区间的最长公共子序列长度
+* dp[i][j]表示字符串text1的[0, i-1]区间 (以 text1[i-1]结尾) 和字符串text2的[0, j-1]区间 (以 text2[j-1]结尾)的最长公共子序列长度
 
 如果两个字符串 i和j 位置的字符相等
 dp[i][j] = dp[i-1][j-1] + 1

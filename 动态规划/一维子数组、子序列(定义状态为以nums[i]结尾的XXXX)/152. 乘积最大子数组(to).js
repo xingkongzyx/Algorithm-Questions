@@ -21,9 +21,9 @@
  *      nums[i] 是负数，希望乘上前面的最大积
  *      nums[i] 是正数，希望乘上前面的最小积
  * 所以，dp[i][0] 取三种情况中的最小值
- * dp[i][0] = min(dp[i - 1][0] * nums[i],dp[i - 1][1] * nums[i], nums[i])
+ * dp[i][0] = min(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
  * 
- * 类似的，dp[i][1]dp[i][1] 值取三种情况中的最大值
+ * 类似的，dp[i][1] 值取三种情况中的最大值
  * dp[i][1] = max(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
 
 ? 链接：https://leetcode.cn/problems/maximum-product-subarray/solution/wa-ni-zhe-ti-jie-shi-xie-gei-bu-hui-dai-ma-de-nu-p/
