@@ -1,4 +1,4 @@
-// > 本题我们要找一条符合条件的路径, 所以递归函数需要返回值, 及时返回
+// > 本题我们要找一条符合条件的路径, 类似于回溯问题，for 循环在这里变成了遍历左右两个子树，递归代表着回溯树中继续向下走
 // ! 可以使用深度优先遍历的方式来遍历二叉树.
 // ! 本题前中后序遍历都可以, 因为中节点也没有处理逻辑
 
@@ -28,6 +28,7 @@ function helper(node, targetSum) {
         if (targetSum === 0) return true;
         else return false;
     }
+
     if (node.left) {
         targetSum -= node.left.val; //> 递归, 处理节点;
         let leftRes = helper(node.left, targetSum);

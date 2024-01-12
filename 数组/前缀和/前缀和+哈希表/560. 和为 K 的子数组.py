@@ -10,12 +10,17 @@
 * 2. 可以这样做, 在扫描数组的同时, 假设当前扫到第i位, 记录它的前 i 项和 preSum, 用该和减去 k, 即 preSum - k, 判断 preSum - k 是否为某个位置的前 n 项和, 若是, 更新统计量。
 ? 链接：https://leetcode.cn/problems/subarray-sum-equals-k/solution/qian-zhui-he-shi-xian-jian-dan-by-jarvis1890/
 
+
+// 为什么要边遍历存储前缀和一边看当前前缀和 - k 是否在map中. 而不能得到前缀和数组再对每一项进行 presum[i] - k 计算的操作?
+边存边查看 map, 如果 map 中存在 key 为「当前前缀和 - k」, 说明这个之前出现的前缀和, 满足「当前前缀和 - 该前缀和 == k」, 它出现的次数, 累加给 count。
+因为我们要看的是在这个元素之前的前缀和, 至于它之后的我们遍历到之后的元素的时候会累加给 count的, 如果在当前位置都进行了相加, 总结果会是重复的结果。
+
 """
 class Solution(object):
     def subarraySum(self, nums, k):
         from collections import defaultdict
 
-        #* 这里定义的前缀和变量指的是到nums[i]为止(包含当前元素)的前缀和是多少，而不是一个数组。这个变量可以理解为与 nums 数组一一对应，不是像平常定义前缀和数组时多定义一个位置
+        #* 这里定义的前缀和变量指的是到nums[i]为止(包含当前元素)的前缀和是多少, 而不是一个数组。这个变量可以理解为与 nums 数组一一对应, 不是像平常定义前缀和数组时多定义一个位置
         preSum = 0
         
         #* map 存储某 "前缀和" 出现的次数，这里用collections.defaultdict来定义它
