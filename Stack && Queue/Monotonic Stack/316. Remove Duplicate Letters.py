@@ -11,6 +11,7 @@
 """
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
+        # * 记录遍历到当前位置时，其剩下的字符的出现次数
         remain_counter = {}
         stack = []
         for char in s:
