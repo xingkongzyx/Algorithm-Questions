@@ -17,9 +17,9 @@ var moveZeroesS1 = function (nums) {
         }
     }
     //* 因为循环不变量的定义是 [0, insertPointer) 之间的数组是不为 0 的，所以 insertPointer 之前的位置经过上面的 while 循环都是不为0的，从它开始的位置要进行设置成 0 的操作
-    for (; insertPointer < nums.length; insertPointer++) {
-        nums[insertPointer] = 0;
-    }
+    // for (; insertPointer < nums.length; insertPointer++) {
+    //     nums[insertPointer] = 0;
+    // }
 };
 
 var moveZeroesS2 = function (nums) {
