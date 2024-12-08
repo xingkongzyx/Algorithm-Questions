@@ -57,7 +57,7 @@ var containsNearbyDuplicate = function (nums, k) {
     let right = 0;
     let set = new Set();
     while (right < nums.length) {
-        // 与一般固定滑动窗口不同的地方在于添加当前值之前需要先检查窗口中是否已经包含了这个数字
+        // 与一般固定滑动窗口不同的地方在于添加当前值之前需要先检查窗口中是否已经包含了这个数字，所以此时的窗口的长度一定是保持小于 k 的；如果等于 k 就意味着用一个已经为 k 的创建判断窗口外的元素是否包含其中，不符合题目要求；如果此时长度为 k - 1，就是判断即将加入窗口的元素是否已然与窗口中的其他元素相等，然后将其加入窗口，在后面的 if 移除窗口最左边的元素，使得此时的长度又变为 k - 1，继续 while 循环
         if (set.has(nums[right])) {
             return true;
         }

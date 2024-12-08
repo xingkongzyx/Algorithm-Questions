@@ -41,7 +41,7 @@ class Solution:
 
         while left < right:
             mid = left + (right - left + 1) // 2
-            # * 如果 matrix[mid][0] 大于 target, 说明mid及其之后的元素都不满足条件, 下一轮搜索区间 [left, mid - 1]
+            # * 使用 weiwei 提到的如果 matrix[mid][0] 大于 target, 说明mid及其之后的元素都不满足条件, 下一轮搜索区间 [left, mid - 1]
             if matrix[mid][0] > target:
                 right = mid - 1
             else:
