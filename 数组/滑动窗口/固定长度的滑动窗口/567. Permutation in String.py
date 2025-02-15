@@ -32,6 +32,7 @@ class Solution(object):
             ## 根据题意可知窗口长度固定，所以用if
             #! 滑动窗口在每次循环结束后[left, right) 代表的的都是 s2 中与 s1 的长度仅相差一个长度的子串, 然后再进入循环后, 加上 rightChar, 滑动窗口的长度便  == s1_len
             ## 窗口左指针前移一个单位保证窗口长度固定, 同时提前更新需要维护的变量 (s2_record)
+            #! 本题中的 map 用字典来实现的时候，需要注意：如果移除 left 元素后，若 s2_record[leftChar] == 0 那么需要从字典中删除 s2[left] 这个key。因为 {"a":0, "b":1} 和 {"b":1} 是不等的。
             if (right - left + 1) == s1_len:
                 leftChar = s2[left]
                 s2_record[leftChar] -= 1

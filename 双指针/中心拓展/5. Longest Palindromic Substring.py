@@ -1,6 +1,7 @@
 """ 
 * 枚举「中心位置」时间复杂度为 O(N), 从「中心位置」扩散得到「回文子串」的时间复杂度为 O(N), 因此时间复杂度可以降到 O(N^2)
-
+* abaa -> axbaa axaa abxaa abxa abaxa x代表中心拓展的起始位置
+? https://leetcode.cn/problems/longest-palindromic-substring/solutions/7792/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/ 这道题中心拓展的示意图非常好
 ? https://leetcode.cn/problems/longest-palindromic-substring/solution/5-zui-chang-hui-wen-zi-chuan-by-alexer-660/
 """
 

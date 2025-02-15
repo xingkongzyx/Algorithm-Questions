@@ -18,7 +18,7 @@ class Solution(object):
             if mul < k:
                 count += (right - left + 1)  
             """     
-            ## 这里left一定要<= right 在不满足条件时 left 会等于right + 1 才能在计算 count 时得到 right-left + 1 = 0
+            ## 这里 left 一定要有 ｢<=｣ right 的条件, 这样在满足 mul >= k 条件时 left 会更新到等于 right + 1(nums = [12,1,3], k=0), 再更新 count 时 right-left + 1 = 0, 最后的结果会是正确的. 像这里的例子, left=1, right=0, count += 0, 最后能获得正确的答案
             while mul >= k and left <= right:
                 leftNum = nums[left]
                 mul //= leftNum

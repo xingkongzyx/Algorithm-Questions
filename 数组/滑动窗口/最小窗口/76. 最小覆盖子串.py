@@ -33,7 +33,7 @@ class Solution(object):
                 if s_map.get(rightChar, 0) < t_map[rightChar]:
                     distance += 1
                     
-                #* 更新对应字符在 s_map 中的出现频次
+                #* 更新对应字符在 s_map 中的出现频次, s_map 是需要被及时更新的, 因为左边界右移时需要它的记录.(s=AABB t=AB)
                 s_map[rightChar] = s_map.get(rightChar, 0) + 1
                 
             #! 当且仅当滑动窗口 s[left, right] 已经满足了题目要求的「涵盖 t 所有字符」的要求. 此时那些字符在 s_map 中的出现频次一定是「大于或等于」他们在 t 中的出现频次的. 这个时候「缩小窗口」, 寻找『最小覆盖字串』 
