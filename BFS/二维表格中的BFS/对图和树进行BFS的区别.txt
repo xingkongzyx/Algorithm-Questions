@@ -1,0 +1,13 @@
+思路：
+对于 「Tree 的 BFS」 （典型的「单源 BFS」） 大家都已经轻车熟路了：
+
+首先把 root 节点入队，再一层一层无脑遍历就行了。
+对于 「图 的 BFS」 （「多源 BFS」） 做法其实也是一样滴～，与 「Tree 的 BFS」的区别注意以下两条就 ok 辣～
+
+Tree 只有 1 个 root，而图可以有多个源点，所以首先需要把多个源点都入队；
+Tree 是有向的因此不需要标识是否访问过，而对于无向图来说，必须得标志是否访问过哦！并且为了防止某个节点多次入队，需要在其入队之前就将其设置成已访问！【 看见很多人说自己的 BFS 超时了，坑就在这里哈哈哈
+
+作者：Sweetiee 🍬
+链接：https://leetcode.cn/problems/01-matrix/solutions/203486/2chong-bfs-xiang-jie-dp-bi-xu-miao-dong-by-sweetie/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

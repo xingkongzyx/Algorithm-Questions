@@ -19,6 +19,9 @@
     / ➅ 再check一遍, 给的顺序中有无逆序. 前面内容相同, 短的小, 应该在前面. 注意特殊样例['aba'], 这是绝了
     ? https://leetcode.cn/problems/alien-dictionary/solution/cpython3-tuo-bu-pai-xu-topsort-by-hanxin-oyux/
 
+    > 针对于 ["z","x","a","ab","ac"] 的情况，理想情况应输出 "bczxa" 或者 "zxabc"，但我们的答案输出的是 "zbxca" 相当于把所有入度为 0 的元素同时加入了队列，而没有按照每个入度为 0 的元素所代表的后面的 word 顺序进行遍历，但是答案机制没有考虑这一点
+
+
 
     """
 

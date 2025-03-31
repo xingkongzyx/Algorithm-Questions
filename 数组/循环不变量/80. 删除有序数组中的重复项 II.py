@@ -1,7 +1,29 @@
 """ 
 # 循环不变量是[0, insertPointer), 表示 insertPointer 位置之前的数组是「有序的」且每个元素「最多出现两次」, insertPointer 指向「下一个要被赋值」的地方。nums 数组的「第0位、第1位」最坏情况就是同一个数字出现了两次。insertPointer 初始化为 2, 仍然是符合0, insertPointer) 的数组是「有序的」且每个元素「最多出现两次」的循环不变量. 所以初始遍历从数组第 3 位开始
 """
-
+""" 
+另一种通过 count 来记录单一元素重复次数的方法的方法
+根据循环不变量的定义 count 最开始也是 1
+var removeDuplicates = function(nums) {
+    let insert = 1;
+    let count = 1
+    for(let traverse = 1; traverse < nums.length; traverse++) {
+        if(nums[traverse] !== nums[insert - 1]) {
+            nums[insert] = nums[traverse];
+            insert++;
+            count = 1
+        } else {
+            if(count === 2) {
+            } else {
+                count ++;
+                nums[insert] = nums[traverse];
+                insert++;
+            }
+        }
+    }
+    return insert
+};
+ """
 
 class Solution(object):
     def removeDuplicates(self, nums):
