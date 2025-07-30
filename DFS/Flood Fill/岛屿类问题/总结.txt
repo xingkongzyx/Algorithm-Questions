@@ -2,4 +2,6 @@
 
 在网格类或者岛屿问题中, 我们在 DFS 中采取的策略是先污染再治理, 也就是传入的 row_idx, col_idx 是没有经过任何边界检查的当前访问的位置, 这个位置可能是越界的, 可能的被访问过的, 可能是不符合题目要求的. 这些终止条件都要在当前访问的过程中处理, 同样地, 如果要对当前位置进行操作, 也在当前轮进行, 而不是在向四个方向进行 dfs 的 for loop 中提前一轮进行. 在向四个方向的 for loop 中, 不负责向四个方向的进行递归 dfs(new_row_idx, new_col_idx) 之外的任何操作, 所有的 validation 检查都在进入对应方向的递归函数时进行。
 
+这点与 BFS 不同，BFS 是在访问四个方向的时候就提前对节点进行处理(添加进 visited/是否满足条件直接 return)，为了避免重复访问的情况发生
+
 多个练习题：https://leetcode.cn/problems/number-of-islands/solution/by-lfool-2wmw/

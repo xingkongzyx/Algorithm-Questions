@@ -33,12 +33,3 @@
 
 * 值得一看的文章包含代码模板: 
 ? https://leetcode.cn/problems/as-far-from-land-as-possible/solution/tao-lu-da-jie-mi-gao-dong-ti-mu-kao-cha-shi-yao-sh/
-
-* 编写广度优先遍历算法的注意事项
-如果题目要求返回的结果和距离相关，需要在 while 循环内部一下子把当前列表的所有元素都依次取出来，这种「一下子」操作的次数就是我们需要的距离；
-如果一个单元格被添加到队列以后，需要马上将它标记为已经访问（根据情况，可以直接在原始输入数组上修改，也可以使用一个布尔数组 visited 进行标记），如果不这么做，很可能会出现死循环，这一点如果一开始没有注意到，也可以通过调试代码观察出。
-
-作者：liweiwei1419
-链接：https://leetcode.cn/problems/as-far-from-land-as-possible/solutions/176043/yan-du-you-xian-bian-li-java-by-liweiwei1419/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
