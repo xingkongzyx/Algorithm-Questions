@@ -1,5 +1,6 @@
 /* 
 两节点间的路径和 = 两节点的前缀和之差
+以当前节点为结尾的路径” = “当前节点的前缀和 - 某个祖先的前缀和
 * 递归函数的意义: 更新以当前节点作为路径的最后一个节点时满足路径和的结果数量
 / 时间复杂度: 每个节点只遍历一次, O(N).
 / 空间复杂度: 开辟了一个hashMap, O(N).
@@ -50,3 +51,33 @@ function pathSum(root, targetSum) {
     traverse(root);
     return count;
 }
+
+/* 
+var pathSum = function(root, targetSum) {
+    if(root === null) return 0;
+    let hashmap = new Map();
+    hashmap.set(0, 1)
+    let res = 0
+    function backtracking(node, curSum) {
+        res += hashmap.get(curSum - targetSum) || 0;
+
+        if(node.left) {
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) + 1)
+            curSum += node.left.val
+            backtracking(node.left, curSum)
+            curSum -= node.left.val
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) - 1)
+        }
+        if(node.right) {
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) + 1)
+            curSum += node.right.val
+            backtracking(node.right, curSum)
+            curSum -= node.right.val
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) - 1)
+        }
+    }
+
+    backtracking(root, root.val)
+    return res
+};
+*/

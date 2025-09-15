@@ -34,3 +34,61 @@ var maxDepth = function (root) {
     getDepth(root, 1);
     return result;
 };
+
+/* 
+* 更加标准的前序遍历
+* curDepth 并不是在统计“从根到叶子路径的总长度”，而是实时表示 “我当前正处于树的第几层”。
+    # 进入节点时层数 +1
+    # 离开节点时层数 -1
+    # 所以任何时刻，curDepth 都是“调用栈的深度”，即当前遍历路径的层数。
+* 而 maxDepth 就是遍历过程中遇到的 curDepth 最大值。
+
+       A
+      / \
+     B   C
+        /
+       D
+
+Step 1: 从根 A 开始
+进入 A → curDepth = 1
+👉 表示“我现在在第 1 层”
+
+Step 2: 进入左子树 B
+进入 B → curDepth = 2
+👉 表示“我现在在第 2 层”
+B 没孩子 → 返回时回溯：curDepth = 1
+👉 我回到了 A 这一层
+
+Step 3: 进入右子树 C
+进入 C → curDepth = 2
+👉 “我现在在第 2 层”
+继续进入 D：curDepth = 3
+👉 “我现在在第 3 层”
+D 没孩子 → 回溯：curDepth = 2
+👉 回到 C 这一层
+
+Step 4: C 的右子树空 → 返回
+C 的递归结束 → 回溯：curDepth = 1
+👉 回到 A 这一层
+
+Step 5: A 的左右子树都走完了
+回溯：curDepth = 0
+👉 “我离开了整棵树”
+*/
+var maxDepth = function (root) {
+    let maxDepth = 0;
+    let curDepth = 0;
+    function DFS(node) {
+        if (node === null) return;
+
+        curDepth += 1;
+        maxDepth = Math.max(curDepth, maxDepth);
+
+        DFS(node.left);
+        DFS(node.right);
+
+        curDepth -= 1;
+    }
+    DFS(root);
+    return maxDepth;
+};

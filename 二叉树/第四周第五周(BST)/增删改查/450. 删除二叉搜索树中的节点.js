@@ -18,7 +18,21 @@ var deleteNode = function (root, key) {
         else if (root.left !== null && root.right === null)
             return root.left;
         else {
-            //* 下面代码的含义是 将待删除节点的左子树放到待删除节点的右子树的最下面的左叶子节点的左子树上
+            /* 
+            # 下面代码的含义是 将待删除节点的左子树放到待删除节点的右子树的最下面的左叶子节点的左子树上
+            在右子树中找到最左（最小）节点 minNode；
+            把整棵左子树挂到 minNode.left（因为左子树所有值 < 根 < 右子树最小值，BST 仍然成立）；
+            返回 root.right，也就是把“整棵右子树”提升为新的根；原来的 root 节点自然被丢弃（由上层接住返回值完成替换）。
+
+            删除前：            删除后（提升右子树）
+            root(k)                  root.right R
+            /     \                     /    \
+        L(<k)    R(>k)        ...   (min)   ...
+                    /
+                (min)               (min).left = L
+            
+            ! minNode 是右子树最左节点，一定没有左孩子，因此把 minNode.left = root.left 是安全的；
+            */
             let temp = root.right;
             while (temp.left !== null) {
                 temp = temp.left;

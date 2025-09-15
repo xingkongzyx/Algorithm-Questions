@@ -9,6 +9,7 @@ class Node:
 / 2. 递归终止条件: 当目前要访问的 currentNode 已经被记录在 graphDict 中, 直接返回它的 cloned node
 / 3. 本层递归: 首先创建 currentNode 的 cloned node, 然后将原 node 与 cloned node 加入 dict. 然后继续递归, 对 currentNode 的 neighbors 同样 create cloned copy. 并把每个 neighbor 的拷贝加入 clonedNode.neighbors 列表
 
+/ 这里递归函数的定义是: 给定原图里的某个节点，返回它对应的克隆节点（并递归确保它的所有邻居也被克隆并连接好）
 
 * 如果不使用 hashmap 可能陷入死循环。这是由于无向图里面 A⇆B, A 的邻接表会有 B, B 的邻接表也会有 A, 如果不能把已经走过的节点记录下来就会陷入「死循环」. 所以使用一个 hashmap 存放已经走过的节点，每次进行深拷贝之前先判断是否已经拷贝过了，如果是则直接用他，如果不是再进行接下来的深拷贝操作。
 ? 官方讲解非常好: https://leetcode.cn/problems/clone-graph/solution/ke-long-tu-by-leetcode-solution/

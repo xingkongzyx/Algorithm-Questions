@@ -6,6 +6,7 @@
 class Solution:
     def sortArrayByParity(self, nums):
         # [0, left) 都是偶数
+        # [left, right] 是未处理区域
         # (right, len(nums) - 1] 都是奇数
         left = 0
         right = len(nums) - 1
