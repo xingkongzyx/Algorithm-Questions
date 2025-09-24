@@ -24,6 +24,4 @@ var searchBST = function (root, val) {
     else if (root.val > val) return searchBST(root.left, val);
     //# 右
     else if (root.val < val) return searchBST(root.right, val);
-
-    return root;
 };

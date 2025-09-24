@@ -2,18 +2,18 @@
 ! 为什么其他构造题目例如 "中序 + 后序" 就不需要 `preStart === preEnd` 这种叶子判断?
 ## 关键区别
 
-* **前序 + 后序**
-  为了切分左右子树，你需要读取**左子树根**：`preorder[preStart + 1]`。
-  当当前区间只剩 **1 个节点** 时（叶子），`preStart + 1` 会**越界**，从而把 `postOrderNodePos` 搞成 `undefined`，区间计算变成 `NaN`，递归失控 → 栈溢出。
-  所以这里**必须**在叶子处提前返回：`if (preStart === preEnd) return newNode;`。
+* 前序 + 后序
+  为了切分左右子树，你需要读取｢左子树根｣：`preorder[preStart + 1]`。
+  当当前区间只剩 ｢1 个节点｣ 时（叶子），`preStart + 1` 会｢越界｣，从而把 `postOrderNodePos` 搞成 `undefined`，区间计算变成 `NaN`，递归失控 → 栈溢出。
+  所以这里｢必须｣在叶子处提前返回：`if (preStart === preEnd) return newNode;`。
 
-* **中序 + 后序**
+* 中序 + 后序
   切分左右子树完全依赖：
 
   * 根：`postorder[postorderEnd]`（当前区间非空时一定存在）
   * 根在中序的位置：`inorderMap.get(rootVal)`（也一定存在）
 
-  当只有 **1 个节点** 时：
+  当只有 ｢1 个节点｣ 时：
 
   * `midNodeVal = postorder[postorderEnd]` 正常
   * `midNodeInInorderPos = inorderStart = inorderEnd`
@@ -47,7 +47,7 @@ var constructFromPrePost = function (preorder, postorder) {
 
     // post: left right cur
     // pre: cur left right
-    function buildTree(postStart, postEnd, preStart, preEnd) {
+    function buildTree(preStart, preEnd, postStart, postEnd) {
         if (postStart > postEnd || preStart > preEnd) return null;
 
         let nodeVal = preorder[preStart];
@@ -68,20 +68,20 @@ var constructFromPrePost = function (preorder, postorder) {
         // 前序: [根][左子树 leftNodes][右子树 ...]
         // 后序: [左子树 leftNodes][右子树 ...][根]
         newNode.left = buildTree(
-            postStart,
-            postOrderNodePos,
             preStart + 1,
-            preStart + leftNodes
+            preStart + leftNodes,
+            postStart,
+            postOrderNodePos
         );
         newNode.right = buildTree(
-            postOrderNodePos + 1,
-            postEnd - 1,
             preStart + leftNodes + 1,
-            preEnd
+            preEnd,
+            postOrderNodePos + 1,
+            postEnd - 1
         );
 
         return newNode;
     }
 
-    return buildTree(0, postorder.length - 1, 0, preorder.length - 1);
+    return buildTree(0, preorder.length - 1, 0, postorder.length - 1);
 };
