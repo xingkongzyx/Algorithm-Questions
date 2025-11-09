@@ -1,6 +1,10 @@
 /* 
-两节点间的路径和 = 两节点的前缀和之差
-以当前节点为结尾的路径” = “当前节点的前缀和 - 某个祖先的前缀和
+# 非常关键的 edge case:
+# root = [1]
+# targetSum =0
+
+为什么 preSumMap[currentSum] 的更新不能放到 "let count = 0; let currentSum = root.val;" 这里而是要在 if (preSumMap[currentSum - targetSum] !== undefined) 检查完后再更新
+
 * 递归函数的意义: 更新以当前节点作为路径的最后一个节点时满足路径和的结果数量
 / 时间复杂度: 每个节点只遍历一次, O(N).
 / 空间复杂度: 开辟了一个hashMap, O(N).
@@ -52,6 +56,8 @@ function pathSum(root, targetSum) {
     return count;
 }
 
+// ! 非常标准的回溯的解法
+// g
 /* 
 var pathSum = function(root, targetSum) {
     if(root === null) return 0;
@@ -62,18 +68,53 @@ var pathSum = function(root, targetSum) {
         res += hashmap.get(curSum - targetSum) || 0;
 
         if(node.left) {
+            // 这行代码放到 curSum 发生变化前非常重要: 要在访问子节点时确保把“当前节点本身”的前缀和加入哈希表
             hashmap.set(curSum, (hashmap.get(curSum) || 0) + 1)
-            curSum += node.left.val
-            backtracking(node.left, curSum)
-            curSum -= node.left.val
+            backtracking(node.left, curSum + node.left.val)
             hashmap.set(curSum, (hashmap.get(curSum) || 0) - 1)
         }
         if(node.right) {
             hashmap.set(curSum, (hashmap.get(curSum) || 0) + 1)
-            curSum += node.right.val
-            backtracking(node.right, curSum)
-            curSum -= node.right.val
+            backtracking(node.right, curSum + node.right.val)
             hashmap.set(curSum, (hashmap.get(curSum) || 0) - 1)
+        }
+    }
+
+    backtracking(root, root.val)
+    return res
+};
+*/
+
+// !非常迷惑的错误解法
+// # 无法通过的 edge case:
+// # root = [1]
+// # targetSum =0
+/*
+var pathSum = function(root, targetSum) {
+    if(root === null) return 0;
+    let hashmap = new Map();
+    hashmap.set(0, 1)
+    hashmap.set(root.val, 1)
+    let res = 0
+    function backtracking(node, curSum) {
+        let remain = curSum - targetSum;
+        if(hashmap.has(remain)) {
+            res += hashmap.get(remain)
+        }
+
+        if(node.left) {
+            curSum += node.left.val
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) + 1)
+            backtracking(node.left, curSum)
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) - 1)
+            curSum -= node.left.val
+        }
+        if(node.right) {
+            curSum += node.right.val
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) + 1)
+            backtracking(node.right, curSum)
+            hashmap.set(curSum, (hashmap.get(curSum) || 0) - 1)
+            curSum -= node.right.val
         }
     }
 

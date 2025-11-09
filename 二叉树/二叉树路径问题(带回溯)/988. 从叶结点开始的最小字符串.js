@@ -11,6 +11,7 @@ var smallestFromLeaf = function (root) {
             if (result == "") {
                 result = currentStr;
             } else if (currentStr.localeCompare(result) < 0) {
+                //* localeCompare() 是 JavaScript 字符串（String）对象的一个方法，用于比较两个字符串在本地化（locale）环境下的排序顺序。它常用于按字母顺序或自然语言规则对字符串进行排序。
                 //* 如果 currentStr 出现在 result 前面
                 result = currentStr;
             }
