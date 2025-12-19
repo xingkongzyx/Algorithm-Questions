@@ -1,4 +1,13 @@
 /* 
+
+正确的思路既能够按照区间左端点排序，也能够按照区间右端点排序。
+
+1.对于按照区间左端点排序，当两个比较的区间存在重叠时，再比较区间右端点的大小，保留右端点小的区间（对应结束时间早的区间)，这样能够满足剩余非重叠区间的个数最多。
+
+2.对于按照区间右端点排序，当两个比较的区间存在重叠时，无需比较右端点的大小, 因为按照右端点排序, 后者肯定大于前者，因此只需保留右端点(前者)小的区间(对应结束时间早的区间)。
+
+综上所述：按照左区间排序比按照右区间排序多了一步比较两区间右端点大小，选出右端点小的区间的步骤罢了。整体思路还是贪心。
+
 > 这道题不要看carl的题解
 # key concept : pick interval with smallest end, because smallest end can hold most intervals. keep track of current element end. if next start is smaller than previous end, remove that next element
 * we can sort interval by ending time and key track of current earliest end time. Once next interval's start time is earlier than current end time, then we have to remove one interval. Otherwise, we update earliest end time.

@@ -1,8 +1,13 @@
 """ 
 > 与「三路快排」的代码思路一模一样, 代码对应视频讲解的第一种方法
- *[0, zeroPointer] 区间内的元素都是 0, zeroPointer 是这个区间的最后一个元素
- *(zeroPointer, i) 区间内的元素都是 1, zeroPointer + 1 是这个区间的第一个元素
- *[twoPointer, len(nums - 1)] 区间内的元素都是 2, twoPointer 是这个区间的第一个元素
+* # 红色区(0)
+* [0, zeroPointer]                -> 全部是 0
+* # 白色区(1)
+* [zeroPointer+1, i)              -> 全部是 1
+* # 未检查区
+* [i, twoPointer-1]               -> 未处理的元素
+* # 蓝色区(2)
+* [twoPointer, len(nums)-1]       -> 全部是 2
 
 
 / 时间复杂度: O(N)，这里 N 是输入数组的长度；
