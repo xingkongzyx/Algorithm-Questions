@@ -30,8 +30,8 @@ var maxPathSum = function (root) {
             maxPath,
             node.val,
             leftPath,
-            rightPath,
-            pathThroughRoot
+            
+            pathThrougrightPath,hRoot
         );
 
         return Math.max(node.val, leftPath, rightPath);
