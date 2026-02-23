@@ -1,44 +1,66 @@
 
-#? 类比 424的解法: https://leetcode.cn/problems/max-consecutive-ones-iii/solution/hua-dong-chuang-kou-chuang-kou-chang-du-jian-xiao-/
-""" 
-因为最终要求的是最长的滑动窗口, 我们可以先找到第一个满足条件的滑动窗口, 之后以该窗口滑动。如果窗口内 maxOneCount + k 小于此时窗口的长度, 则不改变窗口长度继续滑动 (即保持左右指针的相对距离是maxOneCount + k); 如果窗口内 maxOneCount + k 的个数比当前的窗口大, 则扩大窗口长度 (即右指针右移）
+#? 类比 424的解法 - 最大窗口技巧
+#? 参考: https://leetcode.cn/problems/max-consecutive-ones-iii/solution/hua-dong-chuang-kou-chuang-kou-chang-du-jian-xiao-/
+"""
+【最大窗口解法】- 窗口只增不减
 
+核心思想：
+因为最终要求的是最长的滑动窗口，所以比当前窗口更小的窗口没有意义。
+当窗口无效时，保持窗口大小不变（左右指针同步移动），而不是收缩到有效状态。
 
-链接：https://leetcode.cn/problems/max-consecutive-ones-iii/solution/python3-hua-dong-chuang-kou-de-liang-cho-4xvj/
+关键变量：
+- numOfOnes：当前窗口 [left, right] 内 1 的个数（不是历史最大值！）
+- 窗口大小：right - left + 1
 
+不变量：
+窗口大小始终等于历史最大有效窗口的大小
 
-1) 窗口增大: left不变, right右移, 即right++
+判断条件：
+- numOfOnes + k >= windowSize → 窗口有效，可以继续扩大
+- numOfOnes + k < windowSize → 窗口无效，左边界右移一步（保持窗口大小）
 
-什么时候增大? 窗口内的1的数量加上k, 比当前窗口的长度大, 说明k还可以替换更多的0, 此时增大窗口
+窗口变化规则：
+1) 窗口增大：当 numOfOnes + k >= windowSize 时，only right++，窗口扩大
+2) 窗口平移：当 numOfOnes + k < windowSize 时，left++ 和 right++ 同步，窗口大小不变
 
-2) 窗口不变: 当 maxOneCount 没有发生变化的时候, 我们的窗口始终保持着 maxOneCount + k 的长度。也就是新的循环开始, 检查在上次循环中更新的 right += 1 情况下 maxOneCount 是否会变大(也就是新的窗口更新后的 oneCount 数量是否会大于 maxOneCount). 如果没变大, 则在后面的 if 循环中通过 left += 1 缩小窗口, 使得窗口大小恢复 maxOneCount + k
-
+为什么正确？
+- 我们只关心最大值，比当前窗口更小的有效窗口不会更新答案
+- 保持窗口大小，等待找到更好的位置即可
 """
 class Solution(object):
     def longestOnes(self, nums, k):
-        oneCount = 0
-        maxOneCount = 0
-        maxLen = 0
+        """
+        最大窗口解法：窗口只增不减
         
+        不变量：窗口大小始终等于历史最大有效窗口的大小
+        numOfOnes：当前窗口 [left, right] 内 1 的个数
+        
+        判断条件：numOfOnes + k < windowSize 表示窗口无效
+        （即使把 k 个 0 变成 1，1 的个数也不够填满窗口）
+        """
         left = 0
         right = 0
+        numOfOnes = 0  # 当前窗口内 1 的个数
+        maxLen = 0
         
         while right < len(nums):
             rightNum = nums[right]
+            
+            # 右边界扩展，更新 1 的计数
             if rightNum == 1:
-                oneCount += 1
-            maxOneCount = max(maxOneCount, oneCount)
-
-            if right - left + 1 <= maxOneCount + k:
-                maxLen = max(maxLen, right - left + 1)
-                
-            if right - left + 1 > maxOneCount + k:
+                numOfOnes += 1
+            
+            # 窗口无效时，左边界右移一步（保持窗口大小不变）
+            if numOfOnes + k < right - left + 1:
                 leftNum = nums[left]
                 if leftNum == 1:
-                    oneCount -= 1
+                    numOfOnes -= 1
                 left += 1
-
+            
+            # 更新最大长度（此时窗口大小就是历史最大）
+            maxLen = max(maxLen, right - left + 1)
             right += 1
+        
         return maxLen
 res = Solution().longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2)
 print(res)
