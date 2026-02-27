@@ -1,12 +1,11 @@
 /*
 我们可以将该问题形式化地描述为：给定若干个数字，将其组合为一个整数。如何将这些数字重新排列，以得到下一个更大的整数。如 123 下一个更大的数为 132。如果没有更大的整数，则输出最小的整数。
 
-? https://leetcode.cn/problems/next-permutation/
+? https://leetcode.cn/problems/next-permutation/solutions/80560/xia-yi-ge-pai-lie-suan-fa-xiang-jie-si-lu-tui-dao-/
 
 / 时间复杂度：O(N)，其中 N 为给定序列的长度。我们至多只需要扫描两次序列，以及进行一次反转操作。
 / 空间复杂度：O(1)，只需要常数的空间存放若干变量。
 
-? https://leetcode.cn/problems/next-permutation/
 */
 var nextPermutation = function (nums) {
     let length = nums.length;
