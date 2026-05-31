@@ -1,23 +1,190 @@
+""" 
+## 一、题目
 
-#? 图片的讲解: https://leetcode.cn/problems/remove-duplicates-from-sorted-list/solution/83-shan-chu-pai-xu-lian-biao-zhong-de-zhong-fu-21/ 
-class Solution(object):
-    def deleteDuplicates(self, head):
-        if head == None:
-            return None
-        
-        validPointer = head
-        traversePointer = head.next
+> 给定一个**已排序**链表的头 `head`，删除所有重复的元素，使每个元素**只出现一次**。返回排序后的链表。
 
-        #* 循环不变量 [head, validPointer] 左闭右闭区间中的链表节点都是不重复的, validPointer.next 指向下一个「不重复」的节点
+```text
+输入: 1 -> 1 -> 2 -> 3 -> 3
+输出: 1 -> 2 -> 3
+```
 
-        while traversePointer != None:
-            if traversePointer.val == validPointer.val:
-                validPointer.next = traversePointer.next
+注意和第 82 题的区别：
+
+```text
+第82题(重复全删):   1 -> 1 -> 2 -> 3 -> 3  →  2
+第83题(重复留一个): 1 -> 1 -> 2 -> 3 -> 3  →  1 -> 2 -> 3   ← 本题
+```
+
+## 二、核心思路
+
+因为链表**有序**，重复值必然**相邻**。
+
+关键差异：第 83 题**重复值要保留一个**，所以被保留的那个节点永远不会被删，**头节点也永远不会被删**。这带来两个简化：
+
+1. **不需要 `dummy`**：头节点一定保留，不存在「删头」问题。
+2. **不需要 `pre` 指针**：每个不同的值都保留第一个，我们只需站在「保留节点」上，往后跳过和它相同的节点即可。
+
+所以只用**一个指针 `cur`** 就够了。
+
+## 三、算法步骤
+
+让 `cur` 从 `head` 出发，比较 `cur.val` 和 `cur.next.val`：
+
+- **相同**：`cur.next` 是重复节点，跳过它 —— `cur.next = cur.next.next`（`cur` 不动，因为后面可能还有重复）。
+- **不同**：`cur` 前进 —— `cur = cur.next`。
+
+```mermaid
+flowchart TD
+    A["开始 cur = head"] --> B{"cur 和 cur.next 都存在？"}
+    B -- 否 --> Z["返回 head"]
+    B -- 是 --> C{"cur.val == cur.next.val ?"}
+    C -- 相同 --> D["cur.next = cur.next.next<br/>(删除重复节点, cur 不动)"]
+    D --> B
+    C -- 不同 --> E["cur = cur.next<br/>(前进)"]
+    E --> B
+```
+
+## 四、代码
+
+## 五、举例走一遍
+
+链表 `1 -> 1 -> 2 -> 3 -> 3`：
+
+```text
+cur=第一个1, cur.next=第二个1  → 相同
+   删除: 1 -> 2 -> 3 -> 3   (cur 仍在第一个1)
+
+cur=1, cur.next=2  → 不同
+   前进: cur=2
+
+cur=2, cur.next=3  → 不同
+   前进: cur=3
+
+cur=第一个3, cur.next=第二个3  → 相同
+   删除: ... 3   (cur 仍在3)
+
+cur=3, cur.next=None  → 循环结束
+
+返回 head = 1 -> 2 -> 3
+```
+
+## 六、为什么相同时 `cur` 不前进？
+
+考虑连续多个重复 `1 -> 1 -> 1`：
+
+```text
+cur=第1个1: 删掉第2个1 → 1 -> 1, cur不动
+cur=第1个1: 删掉第3个1 → 1,    cur不动
+循环结束, 只剩一个 1
+```
+
+如果删除后 `cur` 也前进，就会**跳过**后续可能存在的重复节点，导致漏删。所以**只有值不同时才前进**。
+
+## 七、复杂度
+
+- **时间 O(n)**：每个节点最多被访问一次。
+- **空间 O(1)**：只用了一个 `cur` 指针。
+
+## 八、和第 82 题对比记忆
+
+| 维度 | 第 83 题（留一个） | 第 82 题（全删） |
+|------|------------------|----------------|
+| dummy | 不需要（头必留） | **需要**（头可能删） |
+| pre 指针 | 不需要 | **需要**（接线删整段） |
+| 指针数 | 1 个 `cur` | 3 个 `dummy/pre/cur` |
+| 删除写法 | `cur.next = cur.next.next` | `pre.next = cur.next` |
+| 返回 | `head` | `dummy.next` |
+
+## 九、为什么只需要 cur 而不需要 pre？
+
+核心在于先想清楚 `pre` 这个指针到底是干什么用的。
+
+### `pre` 存在的唯一理由
+
+在链表里删除一个节点, 本质是「让被删节点的前驱, 指向被删节点的后继」:
+
+```text
+pre -> X(要删) -> next
+       ↓ 删除
+pre --------------> next
+```
+
+也就是说, `pre` 唯一的作用是: 当你要删除某个节点时, 你需要拿到它的前驱来重新接线。
+
+所以判断要不要 `pre`, 只需问一句:
+
+> 我要删除的, 是不是「当前正站着的这个节点」?
+
+### 第 82 题: 要删的是「当前节点自己」→ 必须要 pre
+
+第 82 题重复值全删。当 `cur` 发现自己处在重复段里, `cur` 自己也要被删掉:
+
+```text
+pre -> 3(cur) -> 3 -> 4
+            ↑ cur自己也要消失
+```
+
+`cur` 自己都要消失, 它没办法给自己接线 —— 必须有外部的 `pre` 站在前面帮它接到后面。
+删自己 ⇒ 需要前驱 ⇒ 需要 pre。
+
+### 第 83 题: 要删的是「下一个节点」→ 不需要 pre
+
+第 83 题重复值保留一个。`cur` 站的位置, 永远是要保留的那个节点。
+要删的是它后面那个重复的:
+
+```text
+cur -> 1(要删) -> 2
+ ↑ cur自己安全
+```
+
+此时 `cur` 本身就是被删节点的前驱! 接线可以直接用 `cur` 完成:
+
+```python
+cur.next = cur.next.next
+```
+
+`pre` 想干的活(提供前驱), `cur` 自己就干了。
+删下一个 ⇒ 前驱就是 cur 自己 ⇒ pre 多余。
+
+### 关键洞察: 是「保留 vs 全删」决定了 cur 站在哪
+
+| | 第 83 题（留一个） | 第 82 题（全删） |
+|---|---|---|
+| cur 站的节点 | 永远是**保留**节点 | 可能是**要删**节点 |
+| 被删节点位置 | cur 的**后面** | cur **自己** |
+| 谁是被删节点的前驱 | **cur 自己** | 需要额外的 **pre** |
+| 头节点会被删吗 | 不会（必留） | 会 |
+| 需要 dummy 吗 | 不需要 | 需要 |
+
+### 一句话记忆法
+
+> 删的是「后面」的节点, 前驱就是自己, 不用 pre;
+> 删的是「自己」, 得让别人(pre)来接线。
+
+```mermaid
+flowchart TD
+    A["要删的节点在哪？"] --> B{"是 cur 自己吗？"}
+    B -- "是(82题:全删)" --> C["cur 无法自救<br/>需要 pre 接线 + dummy 兜底"]
+    B -- "否(83题:删下一个)" --> D["cur 就是前驱<br/>cur.next = cur.next.next 即可<br/>不需要 pre/dummy"]
+```
+
+所以「不需要 `pre`」不是背下来的, 而是从「`pre` 的本质是提供前驱」这个第一性原理推出来的 ——
+只要被删节点的前驱恰好是你已经握在手里的指针, `pre` 就是多余的。
+
+ """
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # cur 指向当前要保留的节点
+        cur = head
+
+        while cur and cur.next:
+            if cur.val == cur.next.val:
+                # 下一个节点是重复值, 直接跳过它(删除)
+                # cur 不动, 因为后面可能还有连续重复
+                cur.next = cur.next.next
             else:
-                validPointer = validPointer.next
-            traversePointer = traversePointer.next
-        
-        #* 因为定义是到 validPointer 为止的节点都是不重复的，traversePointer 为 null 结束循环整个链表后，[head, validPointer] 之间就已经包括了链表中所有不重复的节点。此时只需要让 validPointer.next 指向 None 结束链表即可
-        validPointer.next = None
-        return head
+                # 值不同, cur 前进到下一个保留节点
+                cur = cur.next
 
+        # 头节点一定保留, 直接返回 head
+        return head
